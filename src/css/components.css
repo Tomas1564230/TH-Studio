@@ -9,17 +9,82 @@
     pointer-events: none;
 }
 
-/* Cursor (Basic setup) */
+/* Cursor (Soft Spotlight) */
 .custom-cursor {
     position: fixed;
     top: 0;
     left: 0;
-    width: 20px;
-    height: 20px;
-    background: var(--color-accent);
+    width: 40px;
+    height: 40px;
+    background: rgba(56, 189, 248, 0.2);
+    /* Sky Blue with opacity */
+    border: 1px solid rgba(56, 189, 248, 0.4);
     border-radius: 50%;
     pointer-events: none;
     z-index: 10000;
-    mix-blend-mode: difference;
     transform: translate(-50%, -50%);
+    backdrop-filter: blur(2px);
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
+}
+
+.custom-cursor.active {
+    width: 80px;
+    height: 80px;
+    background: rgba(56, 189, 248, 0.1);
+    border-color: rgba(56, 189, 248, 0.8);
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5%;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content {
+    max-width: 800px;
+    text-align: center;
+    opacity: 0;
+    /* Animated in with GSAP */
+    transform: translateY(30px);
+}
+
+.hero-title {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #F8FAFC 0%, #94A3B8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: #94A3B8;
+    /* Muted text */
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--color-accent);
+    color: #0F172A;
+    /* Dark text for contrast */
+    font-weight: 600;
+    border-radius: 50px;
+    font-size: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.4);
+    opacity: 1;
 }

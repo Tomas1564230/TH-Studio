@@ -9,7 +9,7 @@ export default class Scene {
 
         // Core Setup
         this.scene = new THREE.Scene();
-        this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1); // 2D Fullscreen Quad setup
+        this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
 
         this.renderer = new THREE.WebGLRenderer({
             alpha: true,
@@ -17,7 +17,7 @@ export default class Scene {
             powerPreference: 'high-performance'
         });
 
-        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Limit pixel ratio for performance
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.container.appendChild(this.renderer.domElement);
 
@@ -25,17 +25,12 @@ export default class Scene {
         this.uniforms = {
             uTime: { value: 0 },
             uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
-            uMouse: { value: new THREE.Vector2(0, 0) },
-            uScroll: { value: 0 }
+            uMouse: { value: new THREE.Vector2(0.5, 0.5) } // Start center
         };
 
-        // Add Object
         this.addObjects();
-
-        // Events
         this.bindEvents();
 
-        // Ticker
         gsap.ticker.add(this.update.bind(this));
     }
 
@@ -55,7 +50,6 @@ export default class Scene {
     bindEvents() {
         window.addEventListener('resize', this.onResize.bind(this));
         window.addEventListener('mousemove', this.onMouseMove.bind(this));
-        window.addEventListener('scroll', this.onScroll.bind(this));
     }
 
     onResize() {
@@ -64,18 +58,17 @@ export default class Scene {
     }
 
     onMouseMove(e) {
-        // Normalize mouse coords (-1 to 1) for shader if needed, or pixel coords
-        // Here we pass pixel coords normalized 0-1
-        this.uniforms.uMouse.value.x = e.clientX / window.innerWidth;
-        this.uniforms.uMouse.value.y = 1.0 - (e.clientY / window.innerHeight); // GLSL Y is flipped
-    }
-
-    onScroll() {
-        this.uniforms.uScroll.value = window.scrollY;
+        // Smoother mouse lerp could be added here, but shader handles some softness
+        gsap.to(this.uniforms.uMouse.value, {
+            x: e.clientX / window.innerWidth,
+            y: 1.0 - (e.clientY / window.innerHeight),
+            duration: 1,
+            ease: "power2.out"
+        });
     }
 
     update(time, deltaTime, frame) {
-        this.uniforms.uTime.value += deltaTime * 0.001; // Convert ms to seconds
+        this.uniforms.uTime.value += deltaTime * 0.001;
         this.renderer.render(this.scene, this.camera);
     }
 }
