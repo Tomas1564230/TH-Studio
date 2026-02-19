@@ -1,14 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk">
 
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TH Studio | Premium Digital Solutions</title>
-  <meta name="description" content="We build high-performance websites for businesses. Modern design, clear results.">
 
-  <!-- Google Fonts: Inter (Professional, Clean) -->
+  <!-- SEO Meta Tags -->
+  <title>Tvorba Web stránok a E-shopov | TH Studio</title>
+  <meta name="description"
+    content="Profesionálna tvorba web stránok, e-shopov a digitálny marketing. Pomáhame slovenským firmám rásť online. Moderný dizajn, SEO a rýchlosť.">
+  <meta name="keywords"
+    content="tvorba web stránok, web dizajn, e-shop, seo optimalizácia, slovakia, th studio, tomas husivarga">
+  <meta name="author" content="Tomáš Husivarga - TH Studio">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tomas1564230.github.io/TH-Studio/">
+  <meta property="og:title" content="Tvorba Web stránok a E-shopov | TH Studio">
+  <meta property="og:description"
+    content="Profesionálna tvorba web stránok. Získajte viac klientov vďaka modernému webu.">
+  <meta property="og:image" content="https://tomas1564230.github.io/TH-Studio/og-image.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://tomas1564230.github.io/TH-Studio/">
+  <meta property="twitter:title" content="Tvorba Web stránok a E-shopov | TH Studio">
+  <meta property="twitter:description"
+    content="Profesionálna tvorba web stránok. Získajte viac klientov vďaka modernému webu.">
+  <meta property="twitter:image" content="https://tomas1564230.github.io/TH-Studio/og-image.jpg">
+
+  <!-- Local SEO JSON-LD -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "TH Studio",
+      "image": "https://tomas1564230.github.io/TH-Studio/logo.png",
+      "@id": "",
+      "url": "https://tomas1564230.github.io/TH-Studio/",
+      "telephone": "",
+      "priceRange": "€€",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "SK"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 48.669,
+        "longitude": 19.699
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "17:00"
+      },
+      "sameAs": [
+        "https://github.com/Tomas1564230"
+      ]
+    }
+    </script>
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -17,27 +78,52 @@
 </head>
 
 <body>
-  <!-- App Container -->
   <div id="app">
-    <!-- WebGL Canvas Container -->
     <div id="canvas-container"></div>
 
-    <!-- Main Content -->
     <main id="main-content" data-barba="wrapper">
       <div data-barba="container" data-barba-namespace="home">
         <!-- Hero Section -->
         <section class="hero">
           <div class="hero-content">
-            <h1 class="hero-title">We Build Digital <br> Experiences That Work.</h1>
-            <p class="hero-subtitle">Modern websites for modern businesses. Fast, beautiful, and built for growth.</p>
-            <a href="#contact" class="btn-primary">Start Your Project</a>
+            <h1 class="hero-title">Vytvárame weby,<br> ktoré predávajú.</h1>
+            <p class="hero-subtitle">Moderné riešenia pre vaše podnikanie. Získajte náskok pred konkurenciou vďaka
+              rýchlemu a peknému webu.</p>
+            <div class="hero-actions">
+              <a href="#services" class="btn-primary" data-magnetic>Naša ponuka</a>
+              <a href="#contact" class="btn-secondary" data-magnetic>Kontaktovať</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section-padding">
+          <div class="services-grid">
+            <div class="service-card" data-magnetic>
+              <h3 class="service-title">Web Dizajn & Vývoj</h3>
+              <p class="service-desc">Tvorba moderných web stránok na mieru. Žiadne pomalé šablóny, ale unikátny dizajn,
+                ktorý odlíši vašu značku.</p>
+            </div>
+            <div class="service-card" data-magnetic>
+              <h3 class="service-title">E-shop Riešenia</h3>
+              <p class="service-desc">Kompletné e-shopy zamerané na predaj. Jednoduchá správa produktov a platobné brány
+                pre vašich zákazníkov.</p>
+            </div>
+            <div class="service-card" data-magnetic>
+              <h3 class="service-title">SEO & Marketing</h3>
+              <p class="service-desc">Dostaňte sa na prvé priečky v Google. Optimalizujeme váš web tak, aby vás klienti
+                našli sami.</p>
+            </div>
           </div>
         </section>
       </div>
     </main>
 
-    <!-- Cursor -->
-    <div class="cursor"></div>
+    <!-- Functional Cursor -->
+    <div class="cursor">
+      <div class="cursor-dot"></div>
+      <div class="cursor-ring"></div>
+    </div>
   </div>
 
   <script type="module" src="/src/js/main.js"></script>
