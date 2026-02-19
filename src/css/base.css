@@ -1,0 +1,25 @@
+:root {
+  --color-bg: #050505;
+  --color-text: #E0E0E0;
+  --color-accent: #CCFF00;
+  --color-error: #FF3366;
+  --font-display: 'Arial Black', sans-serif; /* Placeholder */
+  --font-body: 'Courier New', monospace;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+canvas {
+    display: block;
+}
