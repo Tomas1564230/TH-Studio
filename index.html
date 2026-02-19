@@ -100,9 +100,11 @@
     </div>
 
     <!-- SVG Mask Definition for Liquid Effect -->
-    <svg width="0" height="0" style="position: absolute;">
+    <!-- Position absolute, width/height 100% to match screen coordinates -->
+    <svg id="mask-svg-layer" width="100%" height="100%"
+      style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: -9999;">
       <defs>
-        <mask id="liquid-mask">
+        <mask id="liquid-mask" maskUnits="userSpaceOnUse">
           <!-- White = Visible (The Corporate Layer) -->
           <rect x="0" y="0" width="100%" height="100%" fill="white" />
           <!-- Black = Invisible (The Hole revealing Creative Layer) -->
