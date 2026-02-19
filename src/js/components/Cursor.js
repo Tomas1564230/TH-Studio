@@ -20,11 +20,7 @@ export default class Cursor {
         }
 
         this.mouse = { x: 0, y: 0 };
-        this.cursorPos = { x: 0, y: 0 };
         this.isMagnetic = false;
-
-        // GSAP QuickSetters for performance
-        this.xSet = gsap.quickSetter(this.cursor, "css", "transform"); // Placeholder, actually using CSS vars
 
         window.addEventListener('mousemove', (e) => {
             this.mouse.x = e.clientX;
@@ -37,6 +33,13 @@ export default class Cursor {
     }
 
     updateCursor() {
+        // MASKING: Update CSS vars on Corporate Layer
+        const corporateLayer = document.querySelector('.layer-corporate');
+        if (corporateLayer) {
+            corporateLayer.style.setProperty('--cursor-x', `${this.mouse.x}px`);
+            corporateLayer.style.setProperty('--cursor-y', `${this.mouse.y}px`);
+        }
+
         if (this.isMagnetic) return; // Let magnetic logic handle position
 
         // Smooth follow for ring, instant for dot (via CSS var or GSAP)
