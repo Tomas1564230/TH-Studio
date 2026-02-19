@@ -20,35 +20,60 @@ export default class Cursor {
         }
 
         this.mouse = { x: 0, y: 0 };
+        this.lastMouse = { x: 0, y: 0 };
+        this.velocity = 0;
+        this.currentMaskSize = 250; // Base size
         this.isMagnetic = false;
+
+        // Bind the loop
+        this.update = this.update.bind(this);
 
         window.addEventListener('mousemove', (e) => {
             this.mouse.x = e.clientX;
             this.mouse.y = e.clientY;
-
-            this.updateCursor();
         });
 
+        gsap.ticker.add(this.update);
         this.initHoverEffects();
     }
 
-    updateCursor() {
-        // MASKING: Update CSS vars on Corporate Layer
+    update() {
+        // 1. Calculate Velocity for Liquid Effect
+        const dx = this.mouse.x - this.lastMouse.x;
+        const dy = this.mouse.y - this.lastMouse.y;
+        const speed = Math.sqrt(dx * dx + dy * dy);
+
+        // Smooth the velocity value
+        this.velocity = gsap.utils.interpolate(this.velocity, speed, 0.1);
+
+        // Calculate targeted mask size (faster = bigger/wobblier)
+        const targetMaskSize = 250 + (this.velocity * 1.5);
+        // Smoothly interpolate current size to target
+        this.currentMaskSize = gsap.utils.interpolate(this.currentMaskSize, targetMaskSize, 0.1);
+
+        // 2. Update CSS Variables for Mask
         const corporateLayer = document.querySelector('.layer-corporate');
         if (corporateLayer) {
             corporateLayer.style.setProperty('--cursor-x', `${this.mouse.x}px`);
             corporateLayer.style.setProperty('--cursor-y', `${this.mouse.y}px`);
+            corporateLayer.style.setProperty('--mask-size', `${this.currentMaskSize}px`);
         }
 
-        if (this.isMagnetic) return; // Let magnetic logic handle position
+        // 3. Update Visual Cursor Position
+        if (!this.isMagnetic) {
+            // Use GSAP for smooth follow on RING, instant on DOT
+            gsap.to(this.cursor, {
+                duration: 0.1,
+                '--cursor-x': `${this.mouse.x}px`,
+                '--cursor-y': `${this.mouse.y}px`,
+                ease: 'power2.out',
+                overwrite: 'auto'
+            });
+        }
 
-        // Smooth follow for ring, instant for dot (via CSS var or GSAP)
-        gsap.to(this.cursor, {
-            duration: 0.1,
-            '--cursor-x': `${this.mouse.x}px`,
-            '--cursor-y': `${this.mouse.y}px`,
-            ease: 'power2.out'
-        });
+        // Update history
+        this.lastMouse.x = this.mouse.x;
+        this.lastMouse.y = this.mouse.y;
     }
 
     initHoverEffects() {
@@ -59,14 +84,13 @@ export default class Cursor {
             el.addEventListener('mouseleave', () => this.cursor.classList.remove('text-hover'));
         });
 
-        // Magnetic Targets (Buttons, Links with data-magnetic)
+        // Magnetic Targets
         const magneticTargets = document.querySelectorAll('[data-magnetic]');
         magneticTargets.forEach(el => {
             el.addEventListener('mouseenter', (e) => {
                 this.isMagnetic = true;
                 this.cursor.classList.add('magnetic');
 
-                // Snapping logic
                 const rect = el.getBoundingClientRect();
                 const centerX = rect.left + rect.width / 2;
                 const centerY = rect.top + rect.height / 2;
@@ -75,10 +99,10 @@ export default class Cursor {
                     duration: 0.3,
                     '--cursor-x': `${centerX}px`,
                     '--cursor-y': `${centerY}px`,
-                    ease: 'back.out(1.7)'
+                    ease: 'back.out(1.7)',
+                    overwrite: 'auto'
                 });
 
-                // Move element slightly heavily (magnetic pull)
                 el.addEventListener('mousemove', (e) => this.magnetizeElement(e, el));
             });
 
@@ -86,10 +110,7 @@ export default class Cursor {
                 this.isMagnetic = false;
                 this.cursor.classList.remove('magnetic');
 
-                // Reset element position
                 gsap.to(el, { x: 0, y: 0, duration: 0.3, ease: 'power2.out' });
-
-                // Remove listener
                 el.removeEventListener('mousemove', this.magnetizeElement);
             });
         });
@@ -100,8 +121,7 @@ export default class Cursor {
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
 
-        // Calculate distance from center
-        const moveX = (e.clientX - centerX) * 0.3; // Strength of pull
+        const moveX = (e.clientX - centerX) * 0.3;
         const moveY = (e.clientY - centerY) * 0.3;
 
         gsap.to(el, {

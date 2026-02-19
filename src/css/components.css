@@ -7,7 +7,6 @@
     height: 100%;
     z-index: -1;
     pointer-events: none;
-    /* Let clicks pass through */
 }
 
 /* Functional Cursor */
@@ -40,7 +39,6 @@
     border-radius: 50%;
     transform: translate(var(--cursor-x, 0), var(--cursor-y, 0));
     transition: width 0.3s, height 0.3s, border-color 0.3s, transform 0.1s ease-out;
-    /* Smooth follow */
 }
 
 /* Magnetic State */
@@ -53,7 +51,6 @@
 
 .cursor.magnetic .cursor-dot {
     transform: translate(var(--cursor-x, 0), var(--cursor-y, 0)) scale(0.5);
-    /* Shrink dot */
 }
 
 /* Text Hover State */
@@ -61,7 +58,6 @@
     height: 20px;
     width: 2px;
     border-radius: 0;
-    /* Bar shape */
     background: var(--color-text);
 }
 
@@ -123,7 +119,6 @@
     text-decoration: none;
     transition: transform 0.3s ease;
     cursor: pointer;
-    /* Important for Magnetic logic */
 }
 
 .btn-primary {
@@ -176,15 +171,29 @@
     line-height: 1.6;
 }
 
-/* --- DUAL PERSONALITY LAYERS --- */
+/* --- DUAL PERSONALITY & LAYOUT --- */
+
+/* Shared Layout Containers for Perfect Alignment */
+.shared-layout {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5%;
+    width: 100%;
+}
+
+.content-wrapper {
+    max-width: 900px;
+    text-align: center;
+    width: 100%;
+}
 
 .layer-creative {
     position: relative;
     z-index: 1;
     width: 100%;
     min-height: 100vh;
-    background: var(--color-bg);
-    /* Dark Navy */
 }
 
 .layer-corporate {
@@ -194,99 +203,109 @@
     width: 100%;
     height: 100%;
     z-index: 20;
-    background: white;
-    color: #333;
-    font-family: 'Times New Roman', Times, serif;
-    /* Boring font */
     pointer-events: none;
-    /* Let clicks pass through to the real site */
 
-    /* The Flashlight Effect */
-    /* Black = Visible, Transparent = Invisible (The Hole) */
-    mask-image: radial-gradient(circle 250px at var(--cursor-x, 50%) var(--cursor-y, 50%),
-            transparent 0%,
-            black 100%);
-    -webkit-mask-image: radial-gradient(circle 250px at var(--cursor-x, 50%) var(--cursor-y, 50%),
-            transparent 0%,
-            black 100%);
+    /* Corporate Theme: Professional Blue/Grey */
+    background: #f0f4f8;
+    /* Light grayish blue (Enterprise vibe) */
+    color: #1e293b;
+    /* Slate 800 */
+    font-family: 'Roboto', 'Arial', sans-serif;
+    /* Boring but clean */
+
+    /* SHARP MASK (The Flashlight Hole) */
+    /* transparent = hole, black = visible */
+    /* var(--mask-size) will be dynamic via JS for liquid feel */
+    --mask-size: 250px;
+    mask-image: radial-gradient(circle var(--mask-size) at var(--cursor-x, 50%) var(--cursor-y, 50%),
+            transparent 0px,
+            transparent 100%,
+            black 100.5%
+            /* Sharp edge */
+        );
+    -webkit-mask-image: radial-gradient(circle var(--mask-size) at var(--cursor-x, 50%) var(--cursor-y, 50%),
+            transparent 0px,
+            transparent 100%,
+            black 100.5%);
 }
 
-/* Disable mask on mobile to show Creative layer by default */
+/* Disable mask on mobile */
 @media (hover: none) and (pointer: coarse) {
     .layer-corporate {
         display: none;
     }
 }
 
-/* --- CORPORATE STYLES (THE FACADE) --- */
-.hero-corporate {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    padding: 2rem;
-    text-align: center;
-    background: #f4f4f4;
-    /* Slight grey office wall color */
+/* --- CORPORATE STYLES --- */
+.hero-corporate-bg {
+    background: #f0f4f8;
 }
 
-.copro-content h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    color: #222;
-    letter-spacing: normal;
-}
-
-.copro-content p {
-    font-size: 1.2rem;
-    color: #555;
+.corpo-title {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    /* Matches .hero-title */
+    line-height: 1.1;
     margin-bottom: 2rem;
+    color: #0f172a;
+    /* Slate 900 */
+    letter-spacing: -0.01em;
+    font-weight: 700;
 }
 
-.corpo-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
+.corpo-subtitle {
+    font-size: 1.25rem;
+    color: #64748b;
+    /* Slate 500 */
+    margin-bottom: 3rem;
+    font-weight: 400;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .btn-boring {
-    padding: 10px 20px;
-    border: 1px solid #ccc;
-    background: #e0e0e0;
-    color: #333;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    cursor: not-allowed;
-    /* Adds to the boring vibe */
+    padding: 1rem 2.5rem;
+    /* Matches .btn-primary */
+    border: 1px solid #cbd5e1;
+    background: #e2e8f0;
+    color: #334155;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 4px;
+    /* Slightly rounded, standard */
+    cursor: default;
 }
 
-.btn-outline {
+.btn-boring.btn-outline {
     background: transparent;
+    border-color: #94a3b8;
 }
 
-.services-corporate {
-    padding: 50px 10%;
-    background: white;
-}
-
-.corpo-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+/* Services Alignment */
+.services-corporate-bg {
+    background: #f8fafc;
 }
 
 .corpo-card {
-    border: 1px solid #ddd;
-    padding: 20px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    padding: 2.5rem;
+    /* Matches .service-card */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    height: 100%;
 }
 
-.corpo-card h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    color: #444;
+.corpo-card-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #1e293b;
+    font-weight: 600;
 }
 
-.corpo-card p {
-    font-size: 0.9rem;
-    color: #666;
+.corpo-card-desc {
+    color: #475569;
+    font-size: 1rem;
+    line-height: 1.6;
 }
