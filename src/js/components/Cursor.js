@@ -6,7 +6,7 @@ export default class Cursor {
         this.dot = document.querySelector('.cursor-dot');
         this.ring = document.querySelector('.cursor-ring');
 
-        // Create if missing (fallback)
+        // Create DOM elements if missing (fallback)
         if (!this.cursor) {
             this.cursor = document.createElement('div');
             this.cursor.className = 'cursor';
@@ -19,13 +19,21 @@ export default class Cursor {
             document.body.appendChild(this.cursor);
         }
 
-        this.mouse = { x: 0, y: 0 };
-        this.lastMouse = { x: 0, y: 0 };
+        // SVG Mask Elements
+        this.maskEllipse = document.getElementById('cursor-hole');
+
+        // State
+        this.mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+        this.lastMouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
         this.velocity = 0;
-        this.currentMaskSize = 250; // Base size
+        this.angle = 0;
         this.isMagnetic = false;
 
-        // Bind the loop
+        // Config
+        this.baseRadius = 250; // Match CSS --mask-size
+        this.maxStretch = 100;
+
+        // Bind Loop
         this.update = this.update.bind(this);
 
         window.addEventListener('mousemove', (e) => {
@@ -38,46 +46,58 @@ export default class Cursor {
     }
 
     update() {
-        // 1. Calculate Velocity for Liquid Effect
+        // 1. Calculate Physics
         const dx = this.mouse.x - this.lastMouse.x;
         const dy = this.mouse.y - this.lastMouse.y;
         const speed = Math.sqrt(dx * dx + dy * dy);
 
-        // Smooth the velocity value
+        // Smooth velocity for organic feel
         this.velocity = gsap.utils.interpolate(this.velocity, speed, 0.1);
 
-        // Calculate targeted mask size (faster = bigger/wobblier)
-        const targetMaskSize = 250 + (this.velocity * 1.5);
-        // Smoothly interpolate current size to target
-        this.currentMaskSize = gsap.utils.interpolate(this.currentMaskSize, targetMaskSize, 0.1);
-
-        // 2. Update CSS Variables for Mask
-        const corporateLayer = document.querySelector('.layer-corporate');
-        if (corporateLayer) {
-            corporateLayer.style.setProperty('--cursor-x', `${this.mouse.x}px`);
-            corporateLayer.style.setProperty('--cursor-y', `${this.mouse.y}px`);
-            corporateLayer.style.setProperty('--mask-size', `${this.currentMaskSize}px`);
+        // Update Angle if moving fast enough
+        if (speed > 2) {
+            const angleRad = Math.atan2(dy, dx);
+            this.angle = (angleRad * 180 / Math.PI);
         }
 
-        // 3. Update Visual Cursor Position
+        // 2. Liquid Distortion (Stretch based on speed)
+        // Stretch X (forward direction), Shrink Y (perpendicular)
+        const stretch = Math.min(this.velocity * 4, this.maxStretch);
+        const rx = this.baseRadius + stretch;
+        const ry = this.baseRadius - (stretch * 0.4);
+
+        // 3. Update SVG Mask (The Flashlight)
+        if (this.maskEllipse) {
+            // We move the center (cx, cy)
+            this.maskEllipse.setAttribute('cx', this.mouse.x);
+            this.maskEllipse.setAttribute('cy', this.mouse.y);
+
+            // We stretch the ellipse
+            this.maskEllipse.setAttribute('rx', rx);
+            this.maskEllipse.setAttribute('ry', ry);
+
+            // We rotate it to face movement direction (around its own center)
+            // transform="rotate(angle, cx, cy)"
+            this.maskEllipse.setAttribute('transform', `rotate(${this.angle}, ${this.mouse.x}, ${this.mouse.y})`);
+        }
+
+        // 4. Update Visual Cursor (Dot/Ring)
         if (!this.isMagnetic) {
-            // Use GSAP for smooth follow on RING, instant on DOT
             gsap.to(this.cursor, {
                 duration: 0.1,
                 '--cursor-x': `${this.mouse.x}px`,
                 '--cursor-y': `${this.mouse.y}px`,
-                ease: 'power2.out',
-                overwrite: 'auto'
+                overwrite: 'auto',
+                ease: 'power2.out'
             });
         }
 
-        // Update history
         this.lastMouse.x = this.mouse.x;
         this.lastMouse.y = this.mouse.y;
     }
 
     initHoverEffects() {
-        // Text Hover (Paragraphs, Spans - reading mode)
+        // Text Hover
         const textTargets = document.querySelectorAll('p, h1, h2, h3, span, li');
         textTargets.forEach(el => {
             el.addEventListener('mouseenter', () => this.cursor.classList.add('text-hover'));

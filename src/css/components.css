@@ -213,20 +213,15 @@
     font-family: 'Roboto', 'Arial', sans-serif;
     /* Boring but clean */
 
-    /* SHARP MASK (The Flashlight Hole) */
-    /* transparent = hole, black = visible */
-    /* var(--mask-size) will be dynamic via JS for liquid feel */
-    --mask-size: 250px;
-    mask-image: radial-gradient(circle var(--mask-size) at var(--cursor-x, 50%) var(--cursor-y, 50%),
-            transparent 0px,
-            transparent 100%,
-            black 100.5%
-            /* Sharp edge */
-        );
-    -webkit-mask-image: radial-gradient(circle var(--mask-size) at var(--cursor-x, 50%) var(--cursor-y, 50%),
-            transparent 0px,
-            transparent 100%,
-            black 100.5%);
+    /* SVG LIQUID MASK (The Flashlight) */
+    mask: url(#liquid-mask);
+    -webkit-mask: url(#liquid-mask);
+    mask-mode: luminance;
+    /* White = Visible, Black = Transparent */
+    -webkit-mask-mode: luminance;
+
+    /* Fallback for safety */
+    background: #f0f4f8;
 }
 
 /* Disable mask on mobile */
