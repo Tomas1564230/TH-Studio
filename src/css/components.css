@@ -43,6 +43,20 @@ body.cursor-hovering #cursor-ring {
     background: rgba(56, 189, 248, 0.04);
 }
 
+/* Scroll Progress Bar */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--amber), var(--accent));
+    transform-origin: left;
+    transform: scaleX(0);
+    z-index: 9999;
+    pointer-events: none;
+}
+
 /* Hero ambient blob */
 .hero-bg-blob {
     position: absolute;
@@ -407,13 +421,54 @@ section {
     overflow: hidden;
     text-decoration: none;
     color: inherit;
-    transition: border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+    /* Base hover transition for non-tilt */
+    transition: border-color .4s ease, transform .4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow .4s ease;
 }
 
+/* Fallback hover (overridden for desktop if data-tilt) */
 .bento-card:hover {
     border-color: rgba(56, 189, 248, .35);
     transform: translateY(-5px);
     box-shadow: 0 24px 64px rgba(0, 0, 0, .45);
+}
+
+/* Global Tilt Logic for Desktop */
+@media (hover: hover) and (pointer: fine) {
+    [data-tilt] {
+        transform-style: preserve-3d;
+        /* Dynamic transform applied by JS */
+        transform: perspective(1200px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateY(var(--hover-y, 0px));
+        will-change: transform;
+    }
+
+    [data-tilt]:hover {
+        /* Override base transition to be instant so JS doesn't lag */
+        transition: transform 0.1s linear, box-shadow 0.4s ease, border-color 0.4s ease;
+        --hover-y: -8px;
+        z-index: 10;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(56, 189, 248, 0.1);
+    }
+
+    [data-tilt].bento-card:hover,
+    [data-tilt].pricing-card:hover {
+        /* Override generic hover translation because data-tilt handles it with rotate */
+        transform: perspective(1200px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateY(-8px);
+    }
+}
+
+/* Injected Tilt Glare */
+.tilt-glare {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+    border-radius: inherit;
+    background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%),
+            rgba(255, 255, 255, 0.12) 0%,
+            transparent 50%);
+    opacity: var(--glare-o, 0);
+    transition: opacity 0.4s ease;
+    mix-blend-mode: overlay;
 }
 
 /* Browser bar inside bento card */
@@ -659,9 +714,26 @@ section {
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+
+    /* Mobile-native horizontal scroll snapping for pricing */
     .pricing-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(4, 90vw);
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 1rem;
+        padding-bottom: 2rem;
+        /* hide scrollbar */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .pricing-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .pricing-card {
+        scroll-snap-align: center;
     }
 }
 
@@ -674,12 +746,15 @@ section {
     flex-direction: column;
     gap: .875rem;
     position: relative;
-    transition: border-color var(--transition), transform var(--transition);
+    /* CSS transition fallback for mobile */
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease;
 }
 
-.pricing-card:hover {
-    border-color: var(--border-h);
-    transform: translateY(-4px);
+@media (hover: none) or (pointer: coarse) {
+    .pricing-card:hover {
+        border-color: var(--border-h);
+        transform: translateY(-4px);
+    }
 }
 
 /* Animated gradient border for featured card */

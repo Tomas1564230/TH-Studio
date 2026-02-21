@@ -68,6 +68,8 @@
 </head>
 
 <body>
+  <!-- Wow Factor: Scroll Progress Indicator -->
+  <div id="scroll-progress"></div>
 
   <div id="canvas-container"></div>
   <div id="glow"></div>
@@ -97,11 +99,11 @@
         <span style="white-space: nowrap;">Tvorím webstránky,</span><br>
         <span class="hero-title__accent">ktoré ti zarobia.</span>
       </h1>
-      <p class="hero-sub" data-animate>Pomôžem ti získať zákazníkov online. Rýchlo, osobne a s výsledkami viditeľnými do
-        týždňa.</p>
+      <p class="hero-sub" data-animate>Webstránky, ktoré nie sú len peknou vizitkou. Tvorím predajné automaty pre
+        lokálne firmy, remeselníkov a e-shopy. Bez zbytočných agentúrnych poplatkov.</p>
       <div class="hero-actions" data-animate>
         <a href="#prace" class="btn btn-primary" data-magnetic>Pozrieť moje práce</a>
-        <a href="#kontakt" class="btn btn-ghost" data-magnetic>Ozvi sa</a>
+        <a href="#kontakt" class="btn btn-ghost" data-magnetic>Bezplatná konzultácia</a>
       </div>
       <div class="hero-proof" data-animate>
         <div class="proof-item"><span class="proof-num">7</span><span class="proof-label">dní termín</span></div>
@@ -123,7 +125,8 @@
       <div class="bento-grid">
 
         <!-- Big card top-left -->
-        <a href="https://rehamax.sk/" target="_blank" rel="noopener" class="bento-card bento-card--big" data-animate>
+        <a href="https://rehamax.sk/" target="_blank" rel="noopener" class="bento-card bento-card--big" data-animate
+          data-tilt>
           <div class="bento-card__screen bento-card__screen--rehamax">
             <div class="bc-browser-bar">
               <span></span><span></span><span></span>
@@ -147,7 +150,7 @@
 
         <!-- Small card top-right -->
         <a href="https://www.donnabellapresov.sk/" target="_blank" rel="noopener" class="bento-card bento-card--small"
-          data-animate>
+          data-animate data-tilt>
           <div class="bento-card__screen bento-card__screen--donnadella">
             <div class="bc-browser-bar">
               <span></span><span></span><span></span>
@@ -169,7 +172,7 @@
 
         <!-- Small card bottom-left -->
         <a href="https://www.ekoprofitsk.sk/" target="_blank" rel="noopener" class="bento-card bento-card--small"
-          data-animate>
+          data-animate data-tilt>
           <div class="bento-card__screen bento-card__screen--ekoprofit">
             <div class="bc-browser-bar">
               <span></span><span></span><span></span>
@@ -191,7 +194,7 @@
 
         <!-- Big card bottom-right -->
         <a href="https://www.pedopsychiatria.sk/" target="_blank" rel="noopener" class="bento-card bento-card--big"
-          data-animate>
+          data-animate data-tilt>
           <div class="bento-card__screen bento-card__screen--psychiatria">
             <div class="bc-browser-bar">
               <span></span><span></span><span></span>
@@ -221,7 +224,7 @@
   <section id="sluzby" class="section-alt">
     <div class="container">
       <p class="eyebrow" data-animate>Služby</p>
-      <h2 class="section-title" data-animate>Tri veci,<br>ktoré robím dobre.</h2>
+      <h2 class="section-title" data-animate>Nekomplikujem to.<br>Tu je to, s čím ti viem pomôcť.</h2>
       <div class="services-grid">
         <div class="service-card" data-animate>
           <div class="service-num">01</div>
@@ -251,7 +254,7 @@
       <h2 class="section-title" data-animate>Ceny vidíš vopred.<br>Žiadne prekvapenia.</h2>
       <div class="pricing-grid">
 
-        <div class="pricing-card" data-animate>
+        <div class="pricing-card" data-animate data-tilt>
           <div class="pricing-icon">🔧</div>
           <h3>Úprava webstránky</h3>
           <div class="pricing-price">od <strong>25 €</strong><span>/hod.</span></div>
@@ -265,7 +268,7 @@
           <a href="#kontakt" class="btn btn-outline">Overiť dostupnosť</a>
         </div>
 
-        <div class="pricing-card pricing-card--featured" data-animate>
+        <div class="pricing-card pricing-card--featured" data-animate data-tilt>
           <div class="pricing-badge">Najobľúbenejšie</div>
           <div class="pricing-icon">🌐</div>
           <h3>Nová firemná webstránka</h3>
@@ -281,7 +284,7 @@
           <a href="#kontakt" class="btn btn-primary" data-magnetic>Chcem webstránku</a>
         </div>
 
-        <div class="pricing-card" data-animate>
+        <div class="pricing-card" data-animate data-tilt>
           <div class="pricing-icon">🛒</div>
           <h3>Tvorba e-shopu</h3>
           <div class="pricing-price">od <strong>600 €</strong></div>
@@ -295,7 +298,7 @@
           <a href="#kontakt" class="btn btn-outline">Overiť dostupnosť</a>
         </div>
 
-        <div class="pricing-card" data-animate>
+        <div class="pricing-card" data-animate data-tilt>
           <div class="pricing-icon">⚙️</div>
           <h3>Úprava e-shopu</h3>
           <div class="pricing-price">od <strong>30 €</strong><span>/hod.</span></div>
@@ -320,9 +323,9 @@
     <div class="container about-container">
       <div class="about-text">
         <p class="eyebrow" data-animate>O mne</p>
-        <h2 class="section-title" data-animate>Volám sa Tomáš.<br>Robím weby<br>pre skutočných ľudí.</h2>
-        <p class="body-text" data-animate>Som freelance web developer. Pracujem priamo s klientmi, bez prostredníkov a
-          skrytých poplatkov. Keď niečo potrebuješ, píšeš mne, nie nejakej recepcii.</p>
+        <h2 class="section-title" data-animate>Žiadny žargón.<br>Ziadne poplatky navyše.<br>Iba fungujúci web.</h2>
+        <p class="body-text" data-animate>Som freelance web developer. Pracujem priamo s klientmi, bez prostredníkov.
+          Keď niečo potrebuješ, píšeš priamo mne, nie nejakej agentúrnej recepcii.</p>
         <p class="body-text" data-animate>Špecializujem sa na WordPress webstránky a e-shopy pre malé slovenské firmy,
           reštaurácie, kliniky a rodinné podniky.</p>
         <div class="about-stats" data-animate>
@@ -365,8 +368,8 @@
       <div class="contact-info">
         <p class="eyebrow" data-animate>Kontakt</p>
         <h2 class="section-title" data-animate>Ozvi sa.<br>Odpoviem do 24 hodín.</h2>
-        <p class="body-text" data-animate>Napíš mi čo potrebuješ a ja sa ozvem s nezáväznou ponukou. Bez záväzkov, bez
-          salespitchu.</p>
+        <p class="body-text" data-animate>Napíš mi čo potrebuješ a ja sa ozvem s nezáväznou ponukou. Dbám na súkromie —
+          žiadny spam, iba rýchle nacenenie tvojho projektu.</p>
         <div class="contact-links" data-animate>
           <a href="mailto:Husivarga1412@gmail.com" class="contact-link">
             <span>✉</span>Husivarga1412@gmail.com

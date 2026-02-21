@@ -68,6 +68,8 @@ export default class Cursor {
         this.initScrollAnimations();
         this.initHamburger();
         this.initContactForm();
+        this.initScrollProgress();
+        this.initTiltCards();
     }
 
     initRingLoop() {
@@ -108,6 +110,57 @@ export default class Cursor {
         hoverEls.forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hovering'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hovering'));
+        });
+    }
+
+    initScrollProgress() {
+        const progressBar = document.getElementById('scroll-progress');
+        if (!progressBar) return;
+
+        const updateProgress = () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = scrollTop / docHeight;
+            progressBar.style.transform = `scaleX(${scrollPercent})`;
+        };
+
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        window.addEventListener('resize', updateProgress, { passive: true });
+        updateProgress();
+    }
+
+    initTiltCards() {
+        // Disable on touch devices (mobile)
+        if (window.matchMedia('(pointer: coarse)').matches) return;
+
+        const tiltCards = document.querySelectorAll('[data-tilt]');
+        tiltCards.forEach(card => {
+            // Inject glare element
+            const glare = document.createElement('div');
+            glare.className = 'tilt-glare';
+            card.prepend(glare);
+
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width;
+                const y = (e.clientY - rect.top) / rect.height;
+                const multiplier = 6;
+
+                const rotateX = (0.5 - y) * multiplier;
+                const rotateY = (x - 0.5) * multiplier;
+
+                card.style.setProperty('--tilt-x', `${rotateX}deg`);
+                card.style.setProperty('--tilt-y', `${rotateY}deg`);
+                glare.style.setProperty('--glare-x', `${x * 100}%`);
+                glare.style.setProperty('--glare-y', `${y * 100}%`);
+                glare.style.opacity = '1';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.setProperty('--tilt-x', `0deg`);
+                card.style.setProperty('--tilt-y', `0deg`);
+                glare.style.opacity = '0';
+            });
         });
     }
 
