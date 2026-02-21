@@ -166,11 +166,24 @@ section {
 }
 
 .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    text-decoration: none;
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.6rem;
+    font-size: 1.35rem;
     font-weight: 800;
     color: var(--text);
-    letter-spacing: -.06em;
+    letter-spacing: -.03em;
+    transition: opacity var(--transition);
+}
+
+.nav-logo:hover {
+    opacity: 0.85;
+}
+
+.nav-logo svg {
+    flex-shrink: 0;
 }
 
 .nav-links {
