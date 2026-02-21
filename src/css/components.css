@@ -650,7 +650,7 @@ section {
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
     margin-top: 3.5rem;
-    align-items: start;
+    align-items: stretch;
 }
 
 @media (max-width: 1100px) {
