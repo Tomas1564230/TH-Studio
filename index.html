@@ -100,16 +100,14 @@
     </div>
 
     <!-- SVG Mask Definition for Liquid Effect -->
-    <!-- Position absolute, width/height 100% to match screen coordinates -->
-    <svg id="mask-svg-layer" width="100%" height="100%"
-      style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: -9999;">
+    <svg id="mask-svg-layer" width="1920" height="1080"
+      style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: -9999; overflow: visible;">
       <defs>
-        <mask id="liquid-mask" maskUnits="userSpaceOnUse">
-          <!-- White = Visible (The Corporate Layer) -->
-          <rect x="0" y="0" width="100%" height="100%" fill="white" />
-          <!-- Black = Invisible (The Hole revealing Creative Layer) -->
-          <!-- We will animate cx, cy, rx, ry, and transform via JS -->
-          <ellipse id="cursor-hole" cx="50%" cy="50%" rx="150" ry="150" fill="black" />
+        <mask id="liquid-mask" maskUnits="userSpaceOnUse" mask-type="luminance">
+          <!-- White = Visible (Corporate layer shows through) -->
+          <rect id="mask-bg-rect" x="0" y="0" width="1920" height="1080" fill="white" />
+          <!-- Black = Hole revealing Creative layer. Start off-screen so corporate is fully visible. -->
+          <ellipse id="cursor-hole" cx="-9999" cy="-9999" rx="220" ry="220" fill="black" />
         </mask>
       </defs>
     </svg>
