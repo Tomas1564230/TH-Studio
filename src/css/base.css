@@ -39,24 +39,6 @@ body {
   position: relative;
 }
 
-/* Premium subtle tech grid */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-  /* Distinct blueprint/crosshair grid */
-  background-image:
-    linear-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(56, 189, 248, 0.08) 1px, transparent 1px);
-  background-size: 80px 80px;
-  background-position: center top;
-  /* Mask it so it only shows behind the main content area */
-  -webkit-mask-image: radial-gradient(ellipse at top center, black 0%, transparent 70%);
-  mask-image: radial-gradient(ellipse at top center, black 0%, transparent 70%);
-}
-
 a {
   color: inherit;
   text-decoration: none;
