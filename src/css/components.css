@@ -40,29 +40,39 @@
 
 /* ---- DUAL LAYER ARCHITECTURE ---- */
 
-/* Corporate: background, always visible */
+/* Both layers: position fixed, translated in sync by LenisScroll.js */
 .layer-corporate {
-    position: relative;
-    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
+    z-index: 1;
+    will-change: transform;
     background: #f0f4f8;
     color: #1e293b;
     font-family: 'Roboto', 'Arial', sans-serif;
+    /* Corporate is always fully visible — NO clip, NO mask */
 }
 
-/* Creative: on top, clipped to reveal area */
 .layer-creative {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
     z-index: 20;
-    overflow-y: auto;
+    will-change: transform;
     pointer-events: none;
-    /* clicks fall through to corporate by default */
+    /* pass clicks through by default */
     clip-path: url(#reveal-clip);
     -webkit-clip-path: url(#reveal-clip);
+}
+
+/* Scroll Proxy: invisible element that gives the page its scrollable height */
+#scroll-proxy {
+    position: relative;
+    z-index: -999;
+    pointer-events: none;
+    visibility: hidden;
 }
 
 /* Allow clicks on interactive creative elements inside the reveal area */
