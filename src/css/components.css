@@ -122,7 +122,8 @@
 }
 
 .btn-primary {
-    background: var(--color-accent);
+    background: #FBBF24;
+    /* Amber — warm CTA converts better on cold palette */
     color: #0F172A;
 }
 
@@ -245,8 +246,8 @@
     /* Matches .hero-title */
     line-height: 1.1;
     margin-bottom: 2rem;
-    color: #0f172a;
-    /* Slate 900 */
+    color: #1B3A6B;
+    /* Institutional Blue — triggers bank/trust reflex */
     letter-spacing: -0.01em;
     font-weight: 700;
 }
