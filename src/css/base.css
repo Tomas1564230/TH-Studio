@@ -46,14 +46,15 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: -1;
+  /* Distinct blueprint/crosshair grid */
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 50px 50px;
+    linear-gradient(rgba(56, 189, 248, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.08) 1px, transparent 1px);
+  background-size: 80px 80px;
   background-position: center top;
-  /* Mask it to gently fade towards the bottom and sides */
-  -webkit-mask-image: radial-gradient(ellipse at top center, black 0%, transparent 80%);
-  mask-image: radial-gradient(ellipse at top center, black 0%, transparent 80%);
+  /* Mask it so it only shows behind the main content area */
+  -webkit-mask-image: radial-gradient(ellipse at top center, black 0%, transparent 70%);
+  mask-image: radial-gradient(ellipse at top center, black 0%, transparent 70%);
 }
 
 a {
