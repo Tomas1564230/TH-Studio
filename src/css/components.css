@@ -73,7 +73,7 @@ body.cursor-hovering #cursor-ring {
 
 /* ─── Layout ─── */
 .container {
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
     padding: 0 5%;
     position: relative;
@@ -81,12 +81,12 @@ body.cursor-hovering #cursor-ring {
 }
 
 .container--center {
-    max-width: 720px;
+    max-width: 860px;
     text-align: center;
 }
 
 section {
-    padding: 110px 5%;
+    padding: 110px 0;
     position: relative;
 }
 

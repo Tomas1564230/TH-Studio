@@ -180,16 +180,47 @@ export default class Cursor {
     initContactForm() {
         const form = document.getElementById('contact-form');
         if (!form) return;
-        form.addEventListener('submit', (e) => {
+        const btn = form.querySelector('button[type="submit"]');
+
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const btn = form.querySelector('button[type="submit"]');
-            btn.textContent = 'Odoslané ✓';
-            btn.style.background = '#22c55e';
-            setTimeout(() => {
-                btn.textContent = 'Odoslať správu';
-                btn.style.background = '';
-                form.reset();
-            }, 3000);
+
+            // Fallback to mailto if Formspree not yet configured
+            if (form.action.includes('REPLACE_WITH_YOUR_ID')) {
+                const subject = encodeURIComponent(form.querySelector('[name=subject]')?.value || 'Dopyt z webu');
+                const body = encodeURIComponent(form.querySelector('[name=message]')?.value || '');
+                window.location.href = `mailto:Husivarga1412@gmail.com?subject=${subject}&body=${body}`;
+                return;
+            }
+
+            btn.textContent = 'Odosielam...';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { Accept: 'application/json' },
+                });
+                if (res.ok) {
+                    btn.textContent = 'Odoslané ✓';
+                    btn.style.background = '#22c55e';
+                    form.reset();
+                    setTimeout(() => {
+                        btn.textContent = 'Odoslať správu';
+                        btn.style.background = '';
+                        btn.disabled = false;
+                    }, 4000);
+                } else { throw new Error(); }
+            } catch {
+                btn.textContent = 'Chyba — skús znova';
+                btn.style.background = '#ef4444';
+                btn.disabled = false;
+                setTimeout(() => {
+                    btn.textContent = 'Odoslať správu';
+                    btn.style.background = '';
+                }, 3000);
+            }
         });
     }
 }
