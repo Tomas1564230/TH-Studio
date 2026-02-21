@@ -60,6 +60,8 @@
     left: 0;
     width: 100%;
     z-index: 20;
+    background: #0A0F1C;
+    /* Dark navy — shows inside the clip-path window */
     will-change: transform;
     pointer-events: none;
     /* pass clicks through by default */
