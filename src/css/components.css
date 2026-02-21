@@ -780,14 +780,15 @@ section {
     font-size: .875rem;
     color: var(--muted);
     line-height: 1.65;
-    flex: 1;
+    flex: 0 0 auto;
 }
 
 .pricing-card ul {
     display: flex;
     flex-direction: column;
     gap: .4rem;
-    flex: 1;
+    flex: 1 1 auto;
+    margin-bottom: 1.5rem;
 }
 
 .pricing-card li {
