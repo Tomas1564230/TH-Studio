@@ -4,451 +4,378 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tvorba Web stránok a E-shopov | Tomáš Husivarga</title>
+  <title>Tvorba Webov & E-shopov | Tomáš Husivarga</title>
   <meta name="description"
-    content="Freelance tvorba web stránok a e-shopov pre slovenské firmy. Pomôžem ti získať zákazníkov online. Od 300€.">
-  <meta property="og:title" content="Tvorba Web stránok | TH Studio" />
+    content="Freelance tvorba web stránok a e-shopov pre slovenské firmy. Rýchlo, osobne, bez skrytých nákladov. Od 300€.">
+  <meta property="og:title" content="Tomáš Husivarga — Freelance Web Vývojár" />
   <meta property="og:description" content="Vytváram weby, ktoré ti predávajú." />
   <meta property="og:type" content="website" />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;700;800&family=Roboto:wght@400;500;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
     rel="stylesheet">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="/src/css/style.css" />
 </head>
 
 <body>
 
-  <!-- WebGL aurora background (behind everything) -->
+  <!-- WebGL aurora background -->
   <div id="canvas-container"></div>
 
-  <!-- ═══════════════════════════════════════════════════
-       DUAL-LAYER WRAPPER
-       Creative is `position:relative` → defines scroll height.
-       Corporate is `position:absolute; top:0` → overlays it.
-       They scroll together as one unit in normal browser scroll.
-       Corp is CLIPPED by the SVG inverse clip-path,
-       revealing the creative layer through the cursor "window".
-       ═══════════════════════════════════════════════════ -->
-  <div id="dual">
-
-    <!-- ── CREATIVE LAYER (behind, always visible) ── -->
-    <div id="layer-creative">
-
-      <nav class="nav nav--creative">
-        <a href="#" class="nav__logo nav__logo--creative">TH</a>
-        <ul class="nav__links">
-          <li><a href="#services">Čo robím</a></li>
-          <li><a href="#pricing">Ceny</a></li>
-          <li><a href="#about">O mne</a></li>
-          <li><a href="#contact">Kontakt</a></li>
-        </ul>
-      </nav>
-
-      <section class="section section--hero">
-        <div class="section__inner section__inner--center">
-          <p class="eyebrow eyebrow--creative">Freelance vývojár · Slovensko</p>
-          <h1 class="headline headline--creative">Vytváram weby,<br>ktoré ti predávajú.</h1>
-          <p class="subhead subhead--creative">Pomôžem ti získať zákazníkov online — bez zbytočnej omáčky a skrytých
-            nákladov.</p>
-          <div class="cta-row">
-            <a href="#pricing" class="btn btn--amber" data-magnetic>Čo pre teba robím</a>
-            <a href="#contact" class="btn btn--outline-light" data-magnetic>Ozvem sa ti</a>
-          </div>
-          <div class="hero-proof">
-            <span>✦ 7-dňový termín</span>
-            <span>✦ Osobný prístup</span>
-            <span>✦ Bez skrytých poplatkov</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="services" class="section">
-        <div class="section__inner">
-          <p class="eyebrow eyebrow--creative">Čo robím</p>
-          <h2 class="section-title section-title--creative">Tri veci,<br>ktoré robím dobre.</h2>
-          <div class="grid grid--3">
-            <div class="card card--creative" data-magnetic>
-              <span class="card__num card__num--creative">01</span>
-              <h3 class="card__title card__title--creative">Web Dizajn & Vývoj</h3>
-              <p class="card__text card__text--creative">Urobím ti web na mieru. Žiadne šablóny — len tvoj príbeh, dobre
-                navrhnutý a rýchlo načítaný na každom zariadení.</p>
-            </div>
-            <div class="card card--creative" data-magnetic>
-              <span class="card__num card__num--creative">02</span>
-              <h3 class="card__title card__title--creative">E-shop Riešenia</h3>
-              <p class="card__text card__text--creative">Dám ti e-shop kde sa nakupuje ľahko. Platobné brány, správa
-                produktov — nastavím všetko tak, aby ti sám zarábalo.</p>
-            </div>
-            <div class="card card--creative" data-magnetic>
-              <span class="card__num card__num--creative">03</span>
-              <h3 class="card__title card__title--creative">Úpravy & Optimalizácia</h3>
-              <p class="card__text card__text--creative">Máš web čo nefunguje? Opravím chyby, zrýchlim načítanie a
-                pomôžem ti dostať sa vyššie na Googli. Platíš hodinovo.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="pricing" class="section section--alt-creative">
-        <div class="section__inner">
-          <p class="eyebrow eyebrow--creative">Ceny</p>
-          <h2 class="section-title section-title--creative">Žiadne prekvapenia.<br>Ceny vidíš vopred.</h2>
-          <div class="grid grid--4">
-            <div class="card card--creative card--pricing">
-              <div class="card__icon">🔧</div>
-              <h3 class="card__title card__title--creative">Úprava webu</h3>
-              <div class="card__price card__price--creative">od <strong>25 €</strong><span>/hod.</span></div>
-              <p class="card__text card__text--creative">Zmeny obsahu, oprava chýb, nové sekcie. Platíš len za čas
-                skutočne strávený prácou.</p>
-              <ul class="card__list card__list--creative">
-                <li>Zmena obsahu a textov</li>
-                <li>Oprava chýb a bugov</li>
-                <li>Zmena dizajnu sekcií</li>
-                <li>Plugin aktualizácie</li>
-              </ul>
-              <a href="#contact" class="btn btn--card-creative" data-magnetic>Dohodnutie ceny</a>
-            </div>
-            <div class="card card--creative card--pricing card--featured-creative">
-              <div class="card__badge card__badge--creative">Najobľúbenejší</div>
-              <div class="card__icon">🌐</div>
-              <h3 class="card__title card__title--creative">Nová firemná stránka</h3>
-              <div class="card__price card__price--creative">od <strong>300 €</strong></div>
-              <p class="card__text card__text--creative">Kompletná web stránka pre tvoj biznis. Moderný dizajn,
-                mobile-first, SEO optimalizácia.</p>
-              <ul class="card__list card__list--creative">
-                <li>Dizajn a vývoj na mieru</li>
-                <li>Responzívny dizajn</li>
-                <li>Základné SEO</li>
-                <li>Kontaktný formulár</li>
-              </ul>
-              <a href="#contact" class="btn btn--amber" data-magnetic>Chcem nový web</a>
-            </div>
-            <div class="card card--creative card--pricing">
-              <div class="card__icon">🛒</div>
-              <h3 class="card__title card__title--creative">Tvorba e-shopu</h3>
-              <div class="card__price card__price--creative">od <strong>600 €</strong></div>
-              <p class="card__text card__text--creative">Kompletný e-shop kde zákazníci nakúpia bez problémov. Platobné
-                brány, správa produktov.</p>
-              <ul class="card__list card__list--creative">
-                <li>WooCommerce / vlastné riešenie</li>
-                <li>Platobné brány (Stripe, PayPal)</li>
-                <li>Automatické notifikácie</li>
-                <li>Správa produktov</li>
-              </ul>
-              <a href="#contact" class="btn btn--card-creative" data-magnetic>Chcem e-shop</a>
-            </div>
-            <div class="card card--creative card--pricing">
-              <div class="card__icon">⚙️</div>
-              <h3 class="card__title card__title--creative">Úprava e-shopu</h3>
-              <div class="card__price card__price--creative">od <strong>30 €</strong><span>/hod.</span></div>
-              <p class="card__text card__text--creative">WooCommerce úpravy, nové platobné metódy, optimalizácia.
-                Transparentná hodinová sadzba.</p>
-              <ul class="card__list card__list--creative">
-                <li>WooCommerce konfigurácia</li>
-                <li>Nové platobné metódy</li>
-                <li>Výkonnostná optimalizácia</li>
-                <li>Riešenie problémov</li>
-              </ul>
-              <a href="#contact" class="btn btn--card-creative" data-magnetic>Dohodnutie ceny</a>
-            </div>
-          </div>
-          <p class="section-note section-note--creative">💬 Nie si si istý čo potrebuješ? <a href="#contact">Napíš
-              mi</a> — spoločne to zistíme.</p>
-        </div>
-      </section>
-
-      <section id="about" class="section">
-        <div class="section__inner section__inner--split">
-          <div class="about__body">
-            <p class="eyebrow eyebrow--creative">O mne</p>
-            <h2 class="section-title section-title--creative">Volám sa Tomáš.<br>Robím weby pre ľudí,<br>nie pre
-              agentúry.</h2>
-            <p class="body-text body-text--creative">Som freelance vývojár. Pracujem priamo s klientmi — bez zbytočných
-              vrstiev, bez skrytých nákladov a bez zbytočného čakania.</p>
-            <p class="body-text body-text--creative">Špecializujem sa na weby a e-shopy pre malé slovenské firmy,
-              reštaurácie, kliniky a rodinné podniky.</p>
-            <div class="stats">
-              <div class="stat"><b class="stat__n stat__n--creative">7</b><span class="stat__l stat__l--creative">dní
-                  priemerný termín</span></div>
-              <div class="stat"><b class="stat__n stat__n--creative">10+</b><span
-                  class="stat__l stat__l--creative">dokončených projektov</span></div>
-              <div class="stat"><b class="stat__n stat__n--creative">100%</b><span
-                  class="stat__l stat__l--creative">spokojných klientov</span></div>
-            </div>
-            <blockquote class="review review--creative">
-              <p>"Spokojný s kvalitou práce, rýchlosťou dodania, komunikáciou aj doladením detailov."</p>
-              <cite>— overená recenzia, jaspravim.sk</cite>
-            </blockquote>
-          </div>
-          <div class="about__tags">
-            <span class="tag tag--creative">WordPress</span>
-            <span class="tag tag--creative">WooCommerce</span>
-            <span class="tag tag--creative">Divi Builder</span>
-            <span class="tag tag--creative">HTML / CSS</span>
-            <span class="tag tag--creative">JavaScript</span>
-            <span class="tag tag--creative">SEO</span>
-            <span class="tag tag--creative">Google Analytics</span>
-            <span class="tag tag--creative">Elementor</span>
-            <span class="tag tag--creative">Stripe / PayPal</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="section section--alt-creative">
-        <div class="section__inner section__inner--contact">
-          <div class="contact__info">
-            <p class="eyebrow eyebrow--creative">Kontakt</p>
-            <h2 class="section-title section-title--creative">Rozprávajme sa.<br>Prvý krok je jednoduchý.</h2>
-            <p class="body-text body-text--creative">Napíš mi čo potrebuješ a ja ti odpoviem do 24 hodín. Bez záväzkov.
-            </p>
-            <div class="contact__links">
-              <a href="mailto:tomas@thstudio.sk"
-                class="contact__link contact__link--creative"><span>✉</span>tomas@thstudio.sk</a>
-              <a href="https://www.jaspravim.sk/profil/tomas1412" target="_blank" rel="noopener"
-                class="contact__link contact__link--creative"><span>🔗</span>jaspravim.sk / tomas1412</a>
-            </div>
-          </div>
-          <form class="form form--creative" id="contact-form-creative">
-            <div class="form__row">
-              <input type="text" placeholder="Tvoje meno" class="input input--creative" required />
-              <input type="email" placeholder="Tvoj email" class="input input--creative" required />
-            </div>
-            <input type="text" placeholder="Čo potrebuješ? (napr. nový web, e-shop...)" class="input input--creative"
-              required />
-            <textarea placeholder="Stručne popiš čo robíš a čo očakávaš..." class="input input--creative textarea"
-              required></textarea>
-            <button type="submit" class="btn btn--amber" data-magnetic>Odoslať správu →</button>
-          </form>
-        </div>
-      </section>
-
-      <footer class="footer footer--creative">
-        <div class="footer__inner">
-          <span class="footer__brand footer__brand--creative">TH Studio</span>
-          <span class="footer__copy footer__copy--creative">© 2025 Tomáš Husivarga · Freelance vývojár ·
-            Slovensko</span>
-          <a href="#" class="footer__top footer__top--creative">Späť hore ↑</a>
-        </div>
-      </footer>
-
-    </div><!-- /#layer-creative -->
-
-
-    <!-- ── CORPORATE LAYER (absolute overlay, inverse-clipped) ── -->
-    <div id="layer-corporate" aria-hidden="true">
-
-      <nav class="nav nav--corpo">
-        <a href="#" class="nav__logo nav__logo--corpo">DS&amp;I Consulting</a>
-        <ul class="nav__links nav__links--corpo">
-          <li><a href="#">Riešenia</a></li>
-          <li><a href="#">Cenník</a></li>
-          <li><a href="#">O nás</a></li>
-          <li><a href="#">Kontakt</a></li>
-        </ul>
-      </nav>
-
-      <section class="section section--hero">
-        <div class="section__inner section__inner--center">
-          <p class="eyebrow eyebrow--corpo">Digitálna transformácia pre Váš biznis</p>
-          <h1 class="headline headline--corpo">Digitálne Systémy<br>a Infraštruktúra</h1>
-          <p class="subhead subhead--corpo">Poskytujeme Vám certifikované riešenia pre správu dát, webovú infraštruktúru
-            a podnikovú integráciu.</p>
-          <div class="cta-row">
-            <button class="btn btn--corpo-primary">Dohodnúť konzultáciu</button>
-            <button class="btn btn--corpo-ghost">Zistiť viac</button>
-          </div>
-          <div class="hero-proof hero-proof--corpo">
-            <span>✦ ISO certified</span>
-            <span>✦ Enterprise grade</span>
-            <span>✦ SLA zaručené</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section__inner">
-          <p class="eyebrow eyebrow--corpo">Naše Riešenia</p>
-          <h2 class="section-title section-title--corpo">Tri piliere<br>Vašej digitálnej stability.</h2>
-          <div class="grid grid--3">
-            <div class="card card--corpo">
-              <span class="card__num card__num--corpo">01</span>
-              <h3 class="card__title card__title--corpo">Web Infraštruktúra</h3>
-              <p class="card__text card__text--corpo">Navrhujeme a implementujeme škálovateľné webové riešenia pre Vašu
-                organizáciu s dôrazom na bezpečnosť a výkon.</p>
-            </div>
-            <div class="card card--corpo">
-              <span class="card__num card__num--corpo">02</span>
-              <h3 class="card__title card__title--corpo">E-commerce Systémy</h3>
-              <p class="card__text card__text--corpo">Dodáme Vám platformu pre online predaj s integráciou platobných
-                brán a automatizovanou správou objednávok.</p>
-            </div>
-            <div class="card card--corpo">
-              <span class="card__num card__num--corpo">03</span>
-              <h3 class="card__title card__title--corpo">Optimalizácia & Podpora</h3>
-              <p class="card__text card__text--corpo">Zabezpečíme Vám pravidelnú údržbu, bezpečnostné aktualizácie a
-                technickú optimalizáciu Vašich systémov.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section--alt-corpo">
-        <div class="section__inner">
-          <p class="eyebrow eyebrow--corpo">Cenník Služieb</p>
-          <h2 class="section-title section-title--corpo">Transparentné ceny<br>pre každý projekt.</h2>
-          <div class="grid grid--4">
-            <div class="card card--corpo card--pricing">
-              <div class="card__icon">🔧</div>
-              <h3 class="card__title card__title--corpo">Úprava Webu</h3>
-              <div class="card__price card__price--corpo">od <strong>25 €</strong><span>/hod.</span></div>
-              <p class="card__text card__text--corpo">Úpravy existujúcich webov, oprava chýb, zmena obsahu a rozšírenie
-                funkcionality podľa Vašich požiadaviek.</p>
-              <ul class="card__list card__list--corpo">
-                <li>Zmena obsahu a textov</li>
-                <li>Oprava technických chýb</li>
-                <li>Úprava dizajnových prvkov</li>
-                <li>Aktualizácia komponentov</li>
-              </ul>
-              <button class="btn btn--card-corpo">Nezáväzná konzultácia</button>
-            </div>
-            <div class="card card--corpo card--pricing card--featured-corpo">
-              <div class="card__badge card__badge--corpo">Najžiadanejší</div>
-              <div class="card__icon">🌐</div>
-              <h3 class="card__title card__title--corpo">Firemná Stránka</h3>
-              <div class="card__price card__price--corpo">od <strong>300 €</strong></div>
-              <p class="card__text card__text--corpo">Kompletná prezentačná webová stránka s moderným dizajnom
-                optimalizovaným pre vyhľadávače.</p>
-              <ul class="card__list card__list--corpo">
-                <li>Dizajn a vývoj na mieru</li>
-                <li>Responzívny layout</li>
-                <li>Základná SEO optimalizácia</li>
-                <li>Kontaktný formulár</li>
-              </ul>
-              <button class="btn btn--card-corpo btn--card-corpo-featured">Objednať projekt</button>
-            </div>
-            <div class="card card--corpo card--pricing">
-              <div class="card__icon">🛒</div>
-              <h3 class="card__title card__title--corpo">Tvorba E-shopu</h3>
-              <div class="card__price card__price--corpo">od <strong>600 €</strong></div>
-              <p class="card__text card__text--corpo">Kompletná e-commerce platforma s platobnou bránou, správou
-                produktov a automatizovaným systémom objednávok.</p>
-              <ul class="card__list card__list--corpo">
-                <li>WooCommerce integrácia</li>
-                <li>Platobné brány (Stripe, PayPal)</li>
-                <li>Automatické notifikácie</li>
-                <li>Správa produktov a zásob</li>
-              </ul>
-              <button class="btn btn--card-corpo">Nezáväzná konzultácia</button>
-            </div>
-            <div class="card card--corpo card--pricing">
-              <div class="card__icon">⚙️</div>
-              <h3 class="card__title card__title--corpo">Úprava E-shopu</h3>
-              <div class="card__price card__price--corpo">od <strong>30 €</strong><span>/hod.</span></div>
-              <p class="card__text card__text--corpo">Rozšírenie a optimalizácia e-commerce systému vrátane WooCommerce
-                konfigurácií a výkonnostných úprav.</p>
-              <ul class="card__list card__list--corpo">
-                <li>WooCommerce konfigurácia</li>
-                <li>Nové platobné metódy</li>
-                <li>Výkonnostná optimalizácia</li>
-                <li>Riešenie technických problémov</li>
-              </ul>
-              <button class="btn btn--card-corpo">Nezáväzná konzultácia</button>
-            </div>
-          </div>
-          <p class="section-note section-note--corpo">Pre vypracovanie presnej cenovej ponuky nás kontaktujte — každý
-            projekt posúdime individuálne.</p>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section__inner section__inner--split">
-          <div class="about__body">
-            <p class="eyebrow eyebrow--corpo">O Spoločnosti</p>
-            <h2 class="section-title section-title--corpo">Digitálni partneri<br>pre Váš dlhodobý<br>úspech.</h2>
-            <p class="body-text body-text--corpo">Poskytujeme profesionálne webové a digitálne služby pre slovenské
-              firmy s dôrazom na kvalitu, transparentnosť a dlhodobé partnerstvo.</p>
-            <p class="body-text body-text--corpo">Každý projekt riešime individuálne s dôrazom na Vaše konkrétne
-              obchodné ciele a udržateľnosť Vašej digitálnej prítomnosti.</p>
-            <div class="stats">
-              <div class="stat"><b class="stat__n stat__n--corpo">7</b><span class="stat__l stat__l--corpo">dní
-                  priemerný termín</span></div>
-              <div class="stat"><b class="stat__n stat__n--corpo">10+</b><span
-                  class="stat__l stat__l--corpo">dokončených projektov</span></div>
-              <div class="stat"><b class="stat__n stat__n--corpo">100%</b><span
-                  class="stat__l stat__l--corpo">spokojnosť klientov</span></div>
-            </div>
-            <blockquote class="review review--corpo">
-              <p>"Spokojný s kvalitou práce, rýchlosťou dodania, komunikáciou aj doladením detailov."</p>
-              <cite>— overená recenzia, jaspravim.sk</cite>
-            </blockquote>
-          </div>
-          <div class="about__tags">
-            <span class="tag tag--corpo">WordPress</span>
-            <span class="tag tag--corpo">WooCommerce</span>
-            <span class="tag tag--corpo">Divi Builder</span>
-            <span class="tag tag--corpo">HTML / CSS</span>
-            <span class="tag tag--corpo">JavaScript</span>
-            <span class="tag tag--corpo">SEO</span>
-            <span class="tag tag--corpo">Google Analytics</span>
-            <span class="tag tag--corpo">Elementor</span>
-            <span class="tag tag--corpo">Stripe / PayPal</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section--alt-corpo">
-        <div class="section__inner section__inner--contact">
-          <div class="contact__info">
-            <p class="eyebrow eyebrow--corpo">Kontakt</p>
-            <h2 class="section-title section-title--corpo">Kontaktujte nás<br>pre cenovú ponuku.</h2>
-            <p class="body-text body-text--corpo">Vyplňte formulár alebo nás kontaktujte priamo. Odpovieme Vám do 24
-              hodín s nezáväznou cenovou ponukou.</p>
-            <div class="contact__links">
-              <a href="mailto:tomas@thstudio.sk"
-                class="contact__link contact__link--corpo"><span>✉</span>tomas@thstudio.sk</a>
-              <a href="https://www.jaspravim.sk/profil/tomas1412" target="_blank" rel="noopener"
-                class="contact__link contact__link--corpo"><span>🔗</span>jaspravim.sk / tomas1412</a>
-            </div>
-          </div>
-          <form class="form form--corpo" id="contact-form-corpo">
-            <div class="form__row">
-              <input type="text" placeholder="Vaše meno a priezvisko" class="input input--corpo" />
-              <input type="email" placeholder="Váš e-mail" class="input input--corpo" />
-            </div>
-            <input type="text" placeholder="Predmet správy" class="input input--corpo" />
-            <textarea placeholder="Popíšte nám Váš projekt a požiadavky..."
-              class="input input--corpo textarea"></textarea>
-            <button type="submit" class="btn btn--corpo-primary">Odoslať dopyt</button>
-          </form>
-        </div>
-      </section>
-
-      <footer class="footer footer--corpo">
-        <div class="footer__inner">
-          <span class="footer__brand footer__brand--corpo">DS&amp;I Consulting</span>
-          <span class="footer__copy footer__copy--corpo">© 2025 · Digitálne riešenia pre Slovenský trh</span>
-          <a href="#" class="footer__top footer__top--corpo">Späť hore ↑</a>
-        </div>
-      </footer>
-
-    </div><!-- /#layer-corporate -->
-
-  </div><!-- /#dual -->
-
-  <!-- Small cursor dot -->
+  <!-- Cursor glow -->
+  <div id="glow"></div>
   <div id="cursor-dot"></div>
 
-  <!-- SVG inverse clip-path (covers the corporate layer, revealing creative through the "hole") -->
-  <svg id="clip-svg" aria-hidden="true">
-    <defs>
-      <clipPath id="cursor-clip" clipPathUnits="userSpaceOnUse">
-        <!-- JS writes: outer rect (even-odd) + ellipse holes = shows corp everywhere except the hole -->
-        <path id="clip-path-shape" fill-rule="evenodd" d="" />
-      </clipPath>
-    </defs>
-  </svg>
+  <!-- ═══════════════════
+       NAVIGATION
+       ═══════════════════ -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">TH</a>
+    <ul class="nav-links">
+      <li><a href="#prace">Moje práce</a></li>
+      <li><a href="#sluzby">Čo robím</a></li>
+      <li><a href="#ceny">Ceny</a></li>
+      <li><a href="#o-mne">O mne</a></li>
+      <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══════════════════
+       HERO
+       ═══════════════════ -->
+  <section id="hero">
+    <div class="container container--center">
+      <p class="eyebrow" data-animate>Freelance vývojár · Slovensko</p>
+      <h1 class="hero-title" data-animate>Vytváram weby,<br>ktoré ti predávajú.</h1>
+      <p class="hero-sub" data-animate>Pomôžem ti získať zákazníkov online — rýchlo, osobne a bez zbytočnej omáčky.</p>
+      <div class="hero-actions" data-animate>
+        <a href="#ceny" class="btn btn-primary" data-magnetic>Čo pre teba robím</a>
+        <a href="#kontakt" class="btn btn-ghost" data-magnetic>Napíš mi</a>
+      </div>
+      <div class="hero-proof" data-animate>
+        <span>✦ Termín do 7 dní</span>
+        <span>✦ Osobný prístup</span>
+        <span>✦ Bez skrytých poplatkov</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════
+       WORK SHOWCASE
+       ═══════════════════ -->
+  <section id="prace">
+    <div class="container">
+      <p class="eyebrow" data-animate>Moje práce</p>
+      <h2 class="section-title" data-animate>Weby, ktoré som robil<br>pre skutočných ľudí.</h2>
+      <div class="work-grid">
+
+        <a href="https://rehamax.sk/" target="_blank" rel="noopener" class="work-card" data-animate>
+          <div class="work-card__preview">
+            <div class="work-card__browser">
+              <div class="work-card__dots"><span></span><span></span><span></span></div>
+              <div class="work-card__url">rehamax.sk</div>
+            </div>
+            <div class="work-card__screen work-card__screen--rehamax">
+              <div class="work-card__mock-hero">
+                <div class="wm-logo">Rehamax</div>
+                <div class="wm-title">Rehabilitácia<br>v Bratislave</div>
+                <div class="wm-sub">Pomáhame vám znovu sa hýbať bez bolesti</div>
+                <div class="wm-btn"></div>
+              </div>
+            </div>
+          </div>
+          <div class="work-card__info">
+            <div class="work-card__tags">
+              <span>WordPress</span><span>Divi</span><span>SEO</span>
+            </div>
+            <h3>Rehamax — Rehabilitačné centrum</h3>
+            <p>Prezentačný web pre rehabilitačnú kliniku v Bratislave. Dôraz na dôveru, kontaktný formulár a SEO pre
+              lokálne vyhľadávanie.</p>
+            <span class="work-card__link">Pozrieť živý web →</span>
+          </div>
+        </a>
+
+        <a href="https://www.pedopsychiatria.sk/" target="_blank" rel="noopener" class="work-card" data-animate>
+          <div class="work-card__preview">
+            <div class="work-card__browser">
+              <div class="work-card__dots"><span></span><span></span><span></span></div>
+              <div class="work-card__url">pedopsychiatria.sk</div>
+            </div>
+            <div class="work-card__screen work-card__screen--psychiatria">
+              <div class="work-card__mock-hero">
+                <div class="wm-logo">Safe Place Clinic</div>
+                <div class="wm-title">Bezpečné miesto<br>pre duševné zdravie</div>
+                <div class="wm-sub">MUDr. Leszja Geci — detská psychiatria s ľudskou tvárou</div>
+                <div class="wm-btn"></div>
+              </div>
+            </div>
+          </div>
+          <div class="work-card__info">
+            <div class="work-card__tags">
+              <span>WordPress</span><span>Online kurzy</span><span>LMS</span>
+            </div>
+            <h3>Safe Place Clinic — Pedopsychiatria</h3>
+            <p>Web pre detskú psychiatrickú kliniku vrátane sekcie online kurzov. Empatický dizajn, ktorý buduje dôveru
+              rodičov.</p>
+            <span class="work-card__link">Pozrieť živý web →</span>
+          </div>
+        </a>
+
+        <a href="https://www.donnabellapresov.sk/" target="_blank" rel="noopener" class="work-card" data-animate>
+          <div class="work-card__preview">
+            <div class="work-card__browser">
+              <div class="work-card__dots"><span></span><span></span><span></span></div>
+              <div class="work-card__url">donnabellapresov.sk</div>
+            </div>
+            <div class="work-card__screen work-card__screen--donnadella">
+              <div class="work-card__mock-hero">
+                <div class="wm-logo">DonnaBella</div>
+                <div class="wm-title">Objavte Luxusnú<br>Starostlivosť</div>
+                <div class="wm-sub">LPG Endermologia — profesionálne ošetrenia v Prešove</div>
+                <div class="wm-btn"></div>
+              </div>
+            </div>
+          </div>
+          <div class="work-card__info">
+            <div class="work-card__tags">
+              <span>WordPress</span><span>Divi</span><span>Rezervácie</span>
+            </div>
+            <h3>DonnaBella — Beauty Salon</h3>
+            <p>Luxusný prezentačný web s cenníkom ošetrení, rezervačným systémom a galériou. Elegantný dizajn
+              zodpovedajúci prémiom segmentu.</p>
+            <span class="work-card__link">Pozrieť živý web →</span>
+          </div>
+        </a>
+
+        <a href="https://www.ekoprofitsk.sk/" target="_blank" rel="noopener" class="work-card" data-animate>
+          <div class="work-card__preview">
+            <div class="work-card__browser">
+              <div class="work-card__dots"><span></span><span></span><span></span></div>
+              <div class="work-card__url">ekoprofitsk.sk</div>
+            </div>
+            <div class="work-card__screen work-card__screen--ekoprofit">
+              <div class="work-card__mock-hero">
+                <div class="wm-logo">Eko-Profit SK</div>
+                <div class="wm-title">Účtovníctvo<br>a poradenstvo</div>
+                <div class="wm-sub">Spoľahlivý partner pre vaše financie od roku 2003</div>
+                <div class="wm-btn"></div>
+              </div>
+            </div>
+          </div>
+          <div class="work-card__info">
+            <div class="work-card__tags">
+              <span>WordPress</span><span>WooCommerce</span><span>SEO</span>
+            </div>
+            <h3>Eko-Profit SK — Účtovnícka kancelária</h3>
+            <p>Prezentačný web pre zavedenú účtovnícku kanceláriu. Profesionálny, dôveryhodný dizajn s dôrazom na
+              konverziu.</p>
+            <span class="work-card__link">Pozrieť živý web →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════
+       SERVICES
+       ═══════════════════ -->
+  <section id="sluzby" class="section-alt">
+    <div class="container">
+      <p class="eyebrow" data-animate>Čo robím</p>
+      <h2 class="section-title" data-animate>Tri veci,<br>ktoré robím dobre.</h2>
+      <div class="services-grid">
+        <div class="service-card" data-animate>
+          <div class="service-num">01</div>
+          <h3>Web Dizajn & Vývoj</h3>
+          <p>Urobím ti web na mieru. Žiadne šablóny ‒ len tvoj príbeh, dobre navrhnutý a rýchlo načítaný na každom
+            zariadení.</p>
+        </div>
+        <div class="service-card" data-animate>
+          <div class="service-num">02</div>
+          <h3>E-shop Riešenia</h3>
+          <p>Dám ti e-shop kde sa nakupuje ľahko. Platobné brány, správa produktov, automatické e-maily ‒ všetko
+            nastavím tak, aby ti sám zarábalo.</p>
+        </div>
+        <div class="service-card" data-animate>
+          <div class="service-num">03</div>
+          <h3>Úpravy & Optimalizácia</h3>
+          <p>Máš web čo nefunguje? Opravím chyby, zrýchlim načítanie a pomôžem ti dostať sa vyššie na Googli. Platíš
+            hodinovo, nič navyše.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════
+       PRICING
+       ═══════════════════ -->
+  <section id="ceny">
+    <div class="container">
+      <p class="eyebrow" data-animate>Ceny</p>
+      <h2 class="section-title" data-animate>Žiadne prekvapenia.<br>Ceny vidíš vopred.</h2>
+      <div class="pricing-grid">
+
+        <div class="pricing-card" data-animate>
+          <div class="pricing-icon">🔧</div>
+          <h3>Úprava webu</h3>
+          <div class="pricing-price">od <strong>25 €</strong><span>/hod.</span></div>
+          <p>Zmeny obsahu, oprava chýb, nové sekcie. Platíš len za čas skutočne strávený prácou.</p>
+          <ul>
+            <li>Zmena obsahu a textov</li>
+            <li>Oprava chýb a bugov</li>
+            <li>Zmena dizajnu sekcií</li>
+            <li>Plugin aktualizácie</li>
+          </ul>
+          <a href="#kontakt" class="btn btn-outline">Napíš mi</a>
+        </div>
+
+        <div class="pricing-card pricing-card--featured" data-animate>
+          <div class="pricing-badge">Najobľúbenejší</div>
+          <div class="pricing-icon">🌐</div>
+          <h3>Nová firemná stránka</h3>
+          <div class="pricing-price">od <strong>300 €</strong></div>
+          <p>Kompletná web stránka pre tvoj biznis. Moderný dizajn, mobile-first, SEO základ.</p>
+          <ul>
+            <li>Dizajn a vývoj na mieru</li>
+            <li>Responzívny dizajn</li>
+            <li>SEO základ</li>
+            <li>Kontaktný formulár</li>
+            <li>Do 7 pracovných dní</li>
+          </ul>
+          <a href="#kontakt" class="btn btn-primary" data-magnetic>Chcem nový web</a>
+        </div>
+
+        <div class="pricing-card" data-animate>
+          <div class="pricing-icon">🛒</div>
+          <h3>Tvorba e-shopu</h3>
+          <div class="pricing-price">od <strong>600 €</strong></div>
+          <p>Kompletný e-shop kde zákazníci nakúpia bez problémov. Platobné brány, správa produktov.</p>
+          <ul>
+            <li>WooCommerce riešenie</li>
+            <li>Platobné brány (Stripe, PayPal)</li>
+            <li>Správa produktov</li>
+            <li>Automatické notifikácie</li>
+          </ul>
+          <a href="#kontakt" class="btn btn-outline">Chcem e-shop</a>
+        </div>
+
+        <div class="pricing-card" data-animate>
+          <div class="pricing-icon">⚙️</div>
+          <h3>Úprava e-shopu</h3>
+          <div class="pricing-price">od <strong>30 €</strong><span>/hod.</span></div>
+          <p>WooCommerce úpravy, nové platobné metódy, optimalizácia. Transparentná hodinová sadzba.</p>
+          <ul>
+            <li>WooCommerce konfigurácia</li>
+            <li>Nové platobné metódy</li>
+            <li>Výkonnostná optimalizácia</li>
+            <li>Riešenie problémov</li>
+          </ul>
+          <a href="#kontakt" class="btn btn-outline">Napíš mi</a>
+        </div>
+
+      </div>
+      <p class="pricing-note" data-animate>Nie si si istý čo potrebuješ? <a href="#kontakt">Napíš mi</a> — spoločne to
+        zistíme. Nezáväzne.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════
+       ABOUT
+       ═══════════════════ -->
+  <section id="o-mne" class="section-alt">
+    <div class="container about-container">
+      <div class="about-text">
+        <p class="eyebrow" data-animate>O mne</p>
+        <h2 class="section-title" data-animate>Volám sa Tomáš.<br>Robím weby pre ľudí,<br>nie pre agentúry.</h2>
+        <p class="body-text" data-animate>Som freelance vývojár. Pracujem priamo s klientmi — bez zbytočných vrstiev,
+          bez skrytých nákladov a bez zbytočného čakania na odpoveď.</p>
+        <p class="body-text" data-animate>Špecializujem sa na WordPress weby a e-shopy pre malé slovenské firmy,
+          reštaurácie, kliniky a rodinné podniky. Vždy vieš s kým pracuješ a čo sa deje.</p>
+        <div class="about-stats" data-animate>
+          <div class="stat">
+            <span class="stat-num">7</span>
+            <span class="stat-label">dní priemerný termín</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">10+</span>
+            <span class="stat-label">dokončených projektov</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">spokojných klientov</span>
+          </div>
+        </div>
+        <blockquote class="review" data-animate>
+          <p>"Spokojný s kvalitou práce, rýchlosťou dodania, komunikáciou aj doladením detailov."</p>
+          <cite>— overená recenzia, jaspravim.sk</cite>
+        </blockquote>
+      </div>
+      <div class="about-skills" data-animate>
+        <span class="skill-tag">WordPress</span>
+        <span class="skill-tag">WooCommerce</span>
+        <span class="skill-tag">Divi Builder</span>
+        <span class="skill-tag">Elementor</span>
+        <span class="skill-tag">HTML / CSS</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">SEO</span>
+        <span class="skill-tag">Google Analytics</span>
+        <span class="skill-tag">Stripe / PayPal</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════
+       CONTACT
+       ═══════════════════ -->
+  <section id="kontakt">
+    <div class="container contact-container">
+      <div class="contact-info">
+        <p class="eyebrow" data-animate>Kontakt</p>
+        <h2 class="section-title" data-animate>Rozprávajme sa.<br>Prvý krok je jednoduchý.</h2>
+        <p class="body-text" data-animate>Napíš mi čo potrebuješ a ja ti odpoviem do 24 hodín. Bez záväzkov, bez
+          salespitchu.</p>
+        <div class="contact-links" data-animate>
+          <a href="mailto:tomas@thstudio.sk" class="contact-link">
+            <span class="contact-icon">✉</span>tomas@thstudio.sk
+          </a>
+          <a href="https://www.jaspravim.sk/profil/tomas1412" target="_blank" rel="noopener" class="contact-link">
+            <span class="contact-icon">🔗</span>jaspravim.sk / tomas1412
+          </a>
+        </div>
+      </div>
+      <form class="contact-form" id="contact-form" data-animate>
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Tvoje meno" class="form-input" required />
+          <input type="email" name="email" placeholder="Tvoj email" class="form-input" required />
+        </div>
+        <input type="text" name="subject" placeholder="Čo potrebuješ? (napr. nový web, e-shop...)" class="form-input"
+          required />
+        <textarea name="message" placeholder="Stručne popiš čo robíš a čo očakávaš..." class="form-input form-textarea"
+          required></textarea>
+        <button type="submit" class="btn btn-primary" data-magnetic>Odoslať správu →</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ═══════════════════
+       FOOTER
+       ═══════════════════ -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <span class="footer-brand">TH Studio</span>
+      <span class="footer-copy">© 2025 Tomáš Husivarga · Freelance vývojár · Slovensko</span>
+      <a href="#" class="footer-top">Späť hore ↑</a>
+    </div>
+  </footer>
 
   <script type="module" src="/src/js/main.js"></script>
 </body>
