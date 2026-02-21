@@ -31,11 +31,32 @@ html {
 
 body {
   font-family: 'Inter', sans-serif;
-  background: var(--bg);
+  background-color: var(--bg);
   color: var(--text);
   line-height: 1.65;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+  /* Premium subtle tech grid */
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center top;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  /* Fade grid out at top and bottom to blend with content */
+  background: linear-gradient(to bottom,
+      var(--bg) 0%,
+      transparent 15%,
+      transparent 85%,
+      var(--bg) 100%);
 }
 
 a {
