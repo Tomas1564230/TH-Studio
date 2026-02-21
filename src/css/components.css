@@ -684,22 +684,39 @@ section {
 
 /* Animated gradient border for featured card */
 .pricing-card--featured {
-    background: #0b1120;
-    /* Solid dark background to block the gradient behind */
-    border: 1px solid transparent;
-    background-clip: padding-box;
+    background: transparent;
+    border: none;
     position: relative;
+    z-index: 1;
+    /* Creates stacking context within the animation */
 }
 
+/* 1. Gradient border drawn first */
 .pricing-card--featured::before {
     content: '';
     position: absolute;
     inset: -1px;
-    z-index: -1;
+    z-index: -2;
     border-radius: calc(var(--radius) + 1px);
     background: linear-gradient(135deg, var(--amber), var(--accent), var(--amber));
     background-size: 300% 300%;
     animation: border-spin 3s linear infinite;
+}
+
+/* 2. Solid dark background drawn over gradient, leaving 1px edge */
+.pricing-card--featured::after {
+    content: '';
+    position: absolute;
+    inset: 0px;
+    z-index: -1;
+    border-radius: var(--radius);
+    background: #0b1120;
+}
+
+/* 3. Text content drawn above the ::after background */
+.pricing-card--featured>* {
+    position: relative;
+    z-index: 2;
 }
 
 @keyframes border-spin {
