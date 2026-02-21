@@ -31,13 +31,12 @@ function scramble(el) {
    ────────────────────────────────────── */
 function countUp(el) {
     const target = parseInt(el.dataset.count, 10);
-    const suffix = el.dataset.suffix || '';
     const dur = 1400; // ms
     const start = performance.now();
     const tick = (now) => {
         const t = Math.min((now - start) / dur, 1);
         const ease = 1 - Math.pow(1 - t, 3);
-        el.textContent = Math.round(ease * target) + suffix;
+        el.textContent = Math.round(ease * target);
         if (t < 1) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);

@@ -684,7 +684,8 @@ section {
 
 /* Animated gradient border for featured card */
 .pricing-card--featured {
-    background: rgba(251, 191, 36, .04);
+    background: #0b1120;
+    /* Solid dark background to block the gradient behind */
     border: 1px solid transparent;
     background-clip: padding-box;
     position: relative;
