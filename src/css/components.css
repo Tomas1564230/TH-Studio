@@ -404,24 +404,42 @@ section {
 
 .bento-grid {
     display: grid;
-    grid-template-columns: 1.4fr 1fr;
+    grid-template-columns: repeat(12, 1fr);
     grid-template-rows: auto auto;
     gap: 1.25rem;
     margin-top: 3.5rem;
 }
 
-/* big cards take full row height, small cards stack */
-.bento-card--big {
-    grid-row: span 1;
+/* Staggered row layout: Long - Short, Short - Long */
+.bento-grid>.bento-card:nth-child(1) {
+    grid-column: span 7;
 }
 
-.bento-card--small {
-    grid-row: span 1;
+/* Top left: Long */
+.bento-grid>.bento-card:nth-child(2) {
+    grid-column: span 5;
 }
+
+/* Top right: Short */
+.bento-grid>.bento-card:nth-child(3) {
+    grid-column: span 5;
+}
+
+/* Bottom left: Short */
+.bento-grid>.bento-card:nth-child(4) {
+    grid-column: span 7;
+}
+
+/* Bottom right: Long */
+
 
 @media (max-width: 900px) {
     .bento-grid {
         grid-template-columns: 1fr;
+    }
+
+    .bento-grid>.bento-card {
+        grid-column: 1 / -1 !important;
     }
 }
 
