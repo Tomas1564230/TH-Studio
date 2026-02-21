@@ -3,13 +3,13 @@
    ===================================================== */
 :root {
   --bg: #080C18;
-  --bg-card: rgba(255, 255, 255, 0.04);
-  --bg-card-h: rgba(255, 255, 255, 0.07);
-  --border: rgba(255, 255, 255, 0.08);
-  --border-h: rgba(56, 189, 248, 0.35);
+  --bg-card: rgba(255, 255, 255, 0.05);
+  --bg-card-h: rgba(255, 255, 255, 0.09);
+  --border: rgba(255, 255, 255, 0.14);
+  --border-h: rgba(56, 189, 248, 0.45);
   --text: #F8FAFC;
-  --muted: #94A3B8;
-  --dim: #475569;
+  --muted: #CBD5E1;
+  --dim: #94A3B8;
   --accent: #38BDF8;
   --amber: #FBBF24;
   --nav-h: 68px;

@@ -250,7 +250,7 @@ section {
     padding: .75rem 1.25rem;
     border-radius: 50px;
     border: 1px solid var(--border);
-    color: var(--muted);
+    color: var(--text);
     font-weight: 600;
     font-size: .85rem;
     text-align: center;
@@ -277,7 +277,7 @@ section {
     font-weight: 800;
     line-height: 1.06;
     margin-bottom: 1.5rem;
-    background: linear-gradient(145deg, #F8FAFC 20%, #64748B 100%);
+    background: linear-gradient(145deg, #FFFFFF 25%, #94A3B8 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -308,7 +308,7 @@ section {
     flex-wrap: wrap;
     font-size: .8rem;
     font-weight: 500;
-    color: var(--dim);
+    color: var(--muted);
     letter-spacing: .04em;
 }
 
@@ -733,8 +733,8 @@ section {
 }
 
 .stat-label {
-    font-size: .75rem;
-    color: var(--dim);
+    font-size: .8rem;
+    color: var(--muted);
     text-transform: uppercase;
     letter-spacing: .08em;
 }
@@ -757,7 +757,7 @@ section {
 
 .review cite {
     font-size: .8rem;
-    color: var(--dim);
+    color: var(--muted);
     font-style: normal;
 }
 
