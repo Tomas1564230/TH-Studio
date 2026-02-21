@@ -81,7 +81,7 @@ body.cursor-hovering #cursor-ring {
 }
 
 .container--center {
-    max-width: 860px;
+    max-width: 1040px;
     text-align: center;
 }
 
@@ -143,7 +143,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 5%;
+    padding: 0 max(5%, calc((100% - 1280px) / 2));
     background: rgba(8, 12, 24, 0.8);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
