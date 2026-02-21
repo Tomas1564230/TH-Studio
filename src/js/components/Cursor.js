@@ -10,10 +10,15 @@
  */
 import gsap from 'gsap';
 
+const OUTER_RECT = 'M -9999 -9999 H 99999 V 99999 H -9999 Z';
+
 export default class Cursor {
     constructor() {
         this.clipShape = document.getElementById('clip-path-shape');
         this.dot = document.getElementById('cursor-dot');
+
+        // Init: corporate fully visible (no holes yet = entire outer rect clipped area shown)
+        if (this.clipShape) this.clipShape.setAttribute('d', OUTER_RECT);
 
         /* Mouse state */
         this.mx = -9999; this.my = -9999;  // current mouse (viewport)
@@ -47,9 +52,9 @@ export default class Cursor {
         document.addEventListener('mouseleave', () => {
             this.entered = false;
             this.trail = [];
-            // Move hole off-screen
+            // Restore to full cover: corporate shows everywhere (no holes)
             if (this.clipShape) {
-                this.clipShape.setAttribute('d', '');
+                this.clipShape.setAttribute('d', OUTER_RECT);
             }
         });
 
