@@ -222,11 +222,8 @@
     color: #1e293b;
     font-family: 'Roboto', 'Arial', sans-serif;
 
-    /* SVG LIQUID MASK (The Flashlight) */
-    mask: url(#liquid-mask);
-    -webkit-mask: url(#liquid-mask);
-    mask-mode: alpha;
-    -webkit-mask-mode: alpha;
+    /* mask-image is set dynamically by Cursor.js (radial-gradient ellipse) */
+    /* This avoids cross-browser SVG fragment URL issues */
 }
 
 /* Disable mask on mobile */
