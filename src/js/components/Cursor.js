@@ -1,19 +1,69 @@
 /**
- * Cursor.js — Glow spotlight + magnetic buttons.
- * Simple. Just CSS variable updates on mousemove.
+ * Cursor.js — glow, cursor ring, scramble text, counters, magnetic, hamburger, form.
  */
 import gsap from 'gsap';
 
+/* ──────────────────────────────────────
+   TEXT SCRAMBLE
+   ────────────────────────────────────── */
+const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%';
+
+function scramble(el) {
+    const final = el.dataset.text || el.textContent;
+    let frame = 0;
+    const totalFrames = 30;
+    const interval = setInterval(() => {
+        el.textContent = final.split('').map((ch, i) => {
+            if (ch === ' ' || ch === '\n') return ch;
+            if (frame / totalFrames > i / final.length) return ch;
+            return CHARS[Math.floor(Math.random() * CHARS.length)];
+        }).join('');
+        if (frame >= totalFrames) {
+            el.textContent = final;
+            clearInterval(interval);
+        }
+        frame++;
+    }, 28);
+}
+
+/* ──────────────────────────────────────
+   COUNT-UP
+   ────────────────────────────────────── */
+function countUp(el) {
+    const target = parseInt(el.dataset.count, 10);
+    const suffix = el.dataset.suffix || '';
+    const dur = 1400; // ms
+    const start = performance.now();
+    const tick = (now) => {
+        const t = Math.min((now - start) / dur, 1);
+        const ease = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.round(ease * target) + suffix;
+        if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+}
+
+/* ──────────────────────────────────────
+   CURSOR CLASS
+   ────────────────────────────────────── */
 export default class Cursor {
     constructor() {
-        this.dot = document.getElementById('cursor-dot');
+        this.ring = document.getElementById('cursor-ring');
+
+        // Smoothed ring position
+        this.rx = window.innerWidth / 2;
+        this.ry = window.innerHeight / 2;
+        this.mx = this.rx;
+        this.my = this.ry;
 
         window.addEventListener('mousemove', (e) => {
-            // Glow follows mouse via CSS custom properties
+            this.mx = e.clientX;
+            this.my = e.clientY;
             document.documentElement.style.setProperty('--mx', `${e.clientX}px`);
             document.documentElement.style.setProperty('--my', `${e.clientY}px`);
         });
 
+        this.initRingLoop();
         this.initMagnetic();
         this.initNavScroll();
         this.initScrollAnimations();
@@ -21,24 +71,44 @@ export default class Cursor {
         this.initContactForm();
     }
 
+    initRingLoop() {
+        const lerp = (a, b, t) => a + (b - a) * t;
+        const tick = () => {
+            this.rx = lerp(this.rx, this.mx, 0.1);
+            this.ry = lerp(this.ry, this.my, 0.1);
+            if (this.ring) {
+                this.ring.style.left = `${this.rx}px`;
+                this.ring.style.top = `${this.ry}px`;
+            }
+            requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+    }
+
     initMagnetic() {
         document.querySelectorAll('[data-magnetic]').forEach(el => {
-            const move = (e) => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hovering'));
+            el.addEventListener('mouseleave', () => {
+                document.body.classList.remove('cursor-hovering');
+                gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.4)' });
+            });
+            el.addEventListener('mousemove', (e) => {
                 const r = el.getBoundingClientRect();
                 const cx = r.left + r.width / 2;
                 const cy = r.top + r.height / 2;
                 gsap.to(el, {
                     x: (e.clientX - cx) * 0.3,
                     y: (e.clientY - cy) * 0.3,
-                    duration: 0.25, overwrite: 'auto',
+                    duration: 0.22, overwrite: 'auto',
                 });
-            };
-            const leave = () => {
-                gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.4)' });
-                el.removeEventListener('mousemove', move);
-            };
-            el.addEventListener('mouseenter', () => el.addEventListener('mousemove', move));
-            el.addEventListener('mouseleave', leave);
+            });
+        });
+
+        // Also add cursor hover class for all interactive elements
+        const hoverEls = document.querySelectorAll('a, button, .bento-card, .service-card, .pricing-card, .skill-tag');
+        hoverEls.forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hovering'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hovering'));
         });
     }
 
@@ -47,28 +117,54 @@ export default class Cursor {
         if (!nav) return;
         window.addEventListener('scroll', () => {
             nav.style.background = window.scrollY > 40
-                ? 'rgba(8, 12, 24, 0.95)'
-                : 'rgba(8, 12, 24, 0.75)';
+                ? 'rgba(8, 12, 24, 0.97)'
+                : 'rgba(8, 12, 24, 0.8)';
         }, { passive: true });
     }
 
     initScrollAnimations() {
         const els = document.querySelectorAll('[data-animate]');
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry, i) => {
-                    if (entry.isIntersecting) {
-                        // Stagger siblings
-                        const siblings = [...entry.target.closest('section')?.querySelectorAll('[data-animate]') || []];
-                        const idx = siblings.indexOf(entry.target);
-                        setTimeout(() => entry.target.classList.add('visible'), idx * 80);
-                        observer.unobserve(entry.target);
-                    }
-                });
-            },
-            { threshold: 0.12 }
-        );
+        const scrambleEls = document.querySelectorAll('.scramble');
+        const counterEls = document.querySelectorAll('[data-count]');
+        const triggered = new Set();
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting || triggered.has(entry.target)) return;
+                triggered.add(entry.target);
+
+                // Stagger siblings within same section
+                const section = entry.target.closest('section');
+                const siblings = section ? [...section.querySelectorAll('[data-animate]')] : [entry.target];
+                const idx = siblings.indexOf(entry.target);
+                const delay = idx * 75;
+
+                setTimeout(() => entry.target.classList.add('visible'), delay);
+                observer.unobserve(entry.target);
+            });
+        }, { threshold: 0.1 });
+
+        // Scramble observer (fires once for headline)
+        const scrambleObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                setTimeout(() => scramble(entry.target), 200);
+                scrambleObserver.unobserve(entry.target);
+            });
+        }, { threshold: 0.5 });
+
+        // Counter observer
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                countUp(entry.target);
+                counterObserver.unobserve(entry.target);
+            });
+        }, { threshold: 0.8 });
+
         els.forEach(el => observer.observe(el));
+        scrambleEls.forEach(el => scrambleObserver.observe(el));
+        counterEls.forEach(el => counterObserver.observe(el));
     }
 
     initHamburger() {
@@ -90,7 +186,7 @@ export default class Cursor {
             btn.textContent = 'Odoslané ✓';
             btn.style.background = '#22c55e';
             setTimeout(() => {
-                btn.textContent = 'Odoslať správu →';
+                btn.textContent = 'Odoslať správu';
                 btn.style.background = '';
                 form.reset();
             }, 3000);
