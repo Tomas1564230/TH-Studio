@@ -4,23 +4,10 @@ export default class Cursor {
     constructor() {
         this.cursor = document.querySelector('.cursor');
         this.dot = document.querySelector('.cursor-dot');
-        this.ring = document.querySelector('.cursor-ring');
 
-        // Fallback cursor
-        if (!this.cursor) {
-            this.cursor = document.createElement('div');
-            this.cursor.className = 'cursor';
-            this.dot = document.createElement('div');
-            this.dot.className = 'cursor-dot';
-            this.ring = document.createElement('div');
-            this.ring.className = 'cursor-ring';
-            this.cursor.appendChild(this.dot);
-            this.cursor.appendChild(this.ring);
-            document.body.appendChild(this.cursor);
-        }
-
-        // Corporate layer element (the mask target)
-        this.corpLayer = document.querySelector('.layer-corporate');
+        // SVG ClipPath elements (creative layer reveal)
+        this.clipPath = document.getElementById('reveal-clip');
+        this.mainCircle = document.getElementById('cursor-main');
 
         // State
         this.mouse = { x: -9999, y: -9999 };
@@ -31,27 +18,47 @@ export default class Cursor {
         this.hasEntered = false;
 
         // Config
-        this.baseRadius = 220;  // px — size of the reveal circle
-        this.maxStretch = 120;  // max liquid stretch on fast movement
+        this.baseRadius = 200;  // Flashlight radius
+        this.maxStretch = 120;  // Max liquid stretch
+        this.maxTrail = 20;   // Trail length (number of ghost circles)
+        this.trailPoints = [];   // History of mouse positions
 
+        // Create trail circle elements in SVG clipPath
+        this.trailCircles = [];
+        if (this.clipPath) {
+            for (let i = 0; i < this.maxTrail; i++) {
+                const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                c.setAttribute('cx', '-9999');
+                c.setAttribute('cy', '-9999');
+                c.setAttribute('r', '0');
+                this.clipPath.insertBefore(c, this.mainCircle); // trail behind main
+                this.trailCircles.push(c);
+            }
+        }
+
+        // Bind loop
         this.update = this.update.bind(this);
 
         window.addEventListener('mousemove', (e) => {
-            if (!this.hasEntered) {
-                this.hasEntered = true;
-            }
+            this.hasEntered = true;
             this.mouse.x = e.clientX;
             this.mouse.y = e.clientY;
         });
 
-        // Full cover when mouse leaves page
         document.addEventListener('mouseleave', () => {
-            if (this.corpLayer) {
-                this.corpLayer.style.clipPath = 'ellipse(9999px 9999px at 50% 50%)';
-            }
             this.hasEntered = false;
-            this.mouse.x = -9999;
-            this.mouse.y = -9999;
+            // Snap main circle off-screen
+            if (this.mainCircle) {
+                this.mainCircle.setAttribute('cx', '-9999');
+                this.mainCircle.setAttribute('cy', '-9999');
+                this.mainCircle.setAttribute('r', '0');
+            }
+            this.trailCircles.forEach(c => {
+                c.setAttribute('cx', '-9999');
+                c.setAttribute('cy', '-9999');
+                c.setAttribute('r', '0');
+            });
+            this.trailPoints = [];
         });
 
         gsap.ticker.add(this.update);
@@ -59,56 +66,63 @@ export default class Cursor {
     }
 
     update() {
-        if (!this.corpLayer) return;
+        if (!this.hasEntered) return;
 
-        // Before mouse enters: keep corporate fully visible
-        if (!this.hasEntered) {
-            this.corpLayer.style.clipPath = 'ellipse(9999px 9999px at 50% 50%)';
-            return;
-        }
-
-        // 1. Physics
+        // --- Physics ---
         const dx = this.mouse.x - this.lastMouse.x;
         const dy = this.mouse.y - this.lastMouse.y;
         const speed = Math.sqrt(dx * dx + dy * dy);
-        this.velocity = gsap.utils.interpolate(this.velocity, speed, 0.1);
+
+        this.velocity = gsap.utils.interpolate(this.velocity, speed, 0.12);
 
         if (speed > 2) {
             this.angle = Math.atan2(dy, dx) * 180 / Math.PI;
         }
 
-        // 2. Liquid distortion
-        const stretch = Math.min(this.velocity * 4, this.maxStretch);
-        const rx = Math.round(this.baseRadius + stretch);
-        const ry = Math.round(Math.max(this.baseRadius - stretch * 0.4, 60));
+        // --- Liquid Distortion ---
+        const stretch = Math.min(this.velocity * 3.5, this.maxStretch);
+        const rx = this.baseRadius + stretch;
+        const ry = Math.max(this.baseRadius - stretch * 0.45, 70);
 
-        // 3. Apply inverse clip-path to corporate layer
-        // clip-path: ellipse(rx ry at cx cy) — the HOLE in the corporate facade
-        // NOTE: clip-path clips what's INSIDE the shape to be VISIBLE.
-        // We want the OPPOSITE (outside visible, inside transparent = hole).
-        // We achieve this by masking the CREATIVE layer to ONLY show inside the ellipse,
-        // and keeping the corporate layer ALWAYS visible but with mask-image instead.
-        // 
-        // FINAL APPROACH: Use mask-image on corporate layer (CSS, not SVG URL).
-        // mask-image: radial-gradient(ellipse at pos, transparent HOLE, black SOLID)
-        // Then rotate via a wrapper or use clip-path on the creative layer inverse.
-        //
-        // Simplest working solution: clip-path on corp layer with a "reveal" region.
-        // clip-path shows INSIDE → we need to EXCLUDE the ellipse from corporate.
-        // We'll use a path() if needed, but for now let's use the mask-image CSS approach:
+        // --- Trail ---
+        // Push current position to front of history array
+        this.trailPoints.unshift({ x: this.mouse.x, y: this.mouse.y });
+        if (this.trailPoints.length > this.maxTrail) {
+            this.trailPoints.pop();
+        }
 
-        const cx = this.mouse.x;
-        const cy = this.mouse.y;
+        // Update trail circles (older = smaller = more faded)
+        this.trailCircles.forEach((circle, i) => {
+            const pt = this.trailPoints[i];
+            if (pt) {
+                const ratio = 1 - (i + 1) / (this.maxTrail + 1);
+                const trailRx = rx * ratio * 0.85;
+                const trailRy = ry * ratio * 0.85;
+                circle.setAttribute('cx', pt.x);
+                circle.setAttribute('cy', pt.y);
+                // Use rx as a proxy radius (trail circles are just circles, not ellipses — simpler + faster)
+                circle.setAttribute('r', trailRx);
+            } else {
+                circle.setAttribute('cx', '-9999');
+                circle.setAttribute('cy', '-9999');
+                circle.setAttribute('r', '0');
+            }
+        });
 
-        // CSS mask-image approach (no SVG URL, no cross-origin issues)
-        // transparent = hole (shows creative underneath), black = corporate visible
-        this.corpLayer.style.maskImage =
-            `radial-gradient(${rx}px ${ry}px at ${cx}px ${cy}px, transparent 99%, black 100%)`;
-        this.corpLayer.style.webkitMaskImage =
-            `radial-gradient(${rx}px ${ry}px at ${cx}px ${cy}px, transparent 99%, black 100%)`;
+        // --- Main cursor circle (ellipse with rotation) ---
+        if (this.mainCircle) {
+            this.mainCircle.setAttribute('cx', this.mouse.x);
+            this.mainCircle.setAttribute('cy', this.mouse.y);
+            // Use transform to make it an ellipse via scale trick
+            // scale(rx/r, ry/r) around cx,cy — cleaner than switching element type
+            this.mainCircle.setAttribute('r', this.baseRadius);
+            this.mainCircle.setAttribute('transform',
+                `translate(${this.mouse.x}, ${this.mouse.y}) rotate(${this.angle}) scale(${rx / this.baseRadius}, ${ry / this.baseRadius}) translate(${-this.mouse.x}, ${-this.mouse.y})`
+            );
+        }
 
-        // 4. Visual cursor
-        if (!this.isMagnetic) {
+        // --- Visual Cursor Dot ---
+        if (this.cursor && !this.isMagnetic) {
             gsap.set(this.cursor, {
                 '--cursor-x': `${this.mouse.x}px`,
                 '--cursor-y': `${this.mouse.y}px`,
@@ -120,22 +134,18 @@ export default class Cursor {
     }
 
     initHoverEffects() {
-        document.querySelectorAll('p, h1, h2, h3, li').forEach(el => {
-            el.addEventListener('mouseenter', () => this.cursor.classList.add('text-hover'));
-            el.addEventListener('mouseleave', () => this.cursor.classList.remove('text-hover'));
-        });
-
+        // Magnetic buttons
         document.querySelectorAll('[data-magnetic]').forEach(el => {
             const onMove = (e) => this.magnetizeElement(e, el);
             el.addEventListener('mouseenter', () => {
                 this.isMagnetic = true;
-                this.cursor.classList.add('magnetic');
+                this.cursor?.classList.add('magnetic');
                 el.addEventListener('mousemove', onMove);
             });
             el.addEventListener('mouseleave', () => {
                 this.isMagnetic = false;
-                this.cursor.classList.remove('magnetic');
-                gsap.to(el, { x: 0, y: 0, duration: 0.4, ease: 'elastic.out(1, 0.4)' });
+                this.cursor?.classList.remove('magnetic');
+                gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.4)' });
                 el.removeEventListener('mousemove', onMove);
             });
         });

@@ -1,0 +1,246 @@
+{
+    "freelancers": [
+        {
+            "website": "codeable.io",
+            "services": [
+                {
+                    "service": "WordPress Development",
+                    "price": "$80 - $120 USD / hour",
+                    "details": "Pre-vetted experts. Projects are estimated by experts and presented as a single fixed price to the client (which includes the 17.5% service fee). Minimum project size typically applies."
+                }
+            ]
+        },
+        {
+            "website": "elementor.com/experts",
+            "services": [
+                {
+                    "service": "Elementor Web Design & Development",
+                    "price": "Varies by expert",
+                    "details": "Marketplace for Elementor experts. Prices are not standardized and depend on the individual freelancer's rates and project scope."
+                }
+            ]
+        },
+        {
+            "website": "fiverr.com",
+            "services": [
+                {
+                    "service": "WordPress Customization / Setup",
+                    "price": "$100 - $3,000+ USD",
+                    "details": "Project-based pricing. Basic setups can be cheap ($50-$100), while full custom sites or e-commerce can range from $1,000 to over $3,000."
+                }
+            ]
+        },
+        {
+            "website": "freelancer.com",
+            "services": [
+                {
+                    "service": "WordPress Development",
+                    "price": "$20 - $100 USD / hour",
+                    "details": "Marketplace with bidding system. Rates vary widely based on developer location and experience. Fixed price projects are also common."
+                }
+            ]
+        },
+        {
+            "website": "jaspravim.sk",
+            "services": [
+                {
+                    "service": "WordPress Adjustments",
+                    "price": "From €20 / hour",
+                    "details": "Fast adjustments and small tasks."
+                },
+                {
+                    "service": "Company / One-page Website",
+                    "price": "From €249",
+                    "details": "Basic corporate or landing page setup."
+                },
+                {
+                    "service": "WordPress Security & Speed",
+                    "price": "€39 - €199",
+                    "details": "Acceleration from €39, infection cleaning from €199."
+                }
+            ]
+        },
+        {
+            "website": "jobbers.io",
+            "services": [
+                {
+                    "service": "Freelance Services",
+                    "price": "Negotiable / Varies",
+                    "details": "0% commission platform for freelancers. Professionals keep 100% of their earnings. Pricing is direct between client and freelancer."
+                }
+            ]
+        },
+        {
+            "website": "lemon.io",
+            "services": [
+                {
+                    "service": "Vetted WordPress/Web Developers",
+                    "price": "$55 - $95 USD / hour",
+                    "details": "Network of vetted developers. Startups/Clients are matched with developers. Rates depend on seniority and tech stack."
+                }
+            ]
+        },
+        {
+            "website": "toptal.com",
+            "services": [
+                {
+                    "service": "Elite WordPress Developers",
+                    "price": "$60 - $200+ USD / hour",
+                    "details": "Top 3% of freelance talent. Rates are higher due to rigorous vetting. Part-time or full-time engagement models available."
+                }
+            ]
+        },
+        {
+            "website": "upwork.com",
+            "services": [
+                {
+                    "service": "WordPress Development",
+                    "price": "$15 - $150+ USD / hour",
+                    "details": "Broad marketplace. Entry level: $15-30/hr; Intermediate: $35-75/hr; Expert/Agency: $80-150+/hr. Fixed price projects also available."
+                }
+            ]
+        },
+        {
+            "website": "wordpress.net",
+            "services": [
+                {
+                    "service": "Job Board Listings",
+                    "price": "Negotiable / Salary-based",
+                    "details": "Official WordPress job board. Employers post jobs (free). Rates are negotiated or salary-based depending on the listing (project vs full-time)."
+                }
+            ]
+        },
+        {
+            "website": "wphired.com",
+            "services": [
+                {
+                    "service": "WordPress Job Postings",
+                    "price": "Negotiable",
+                    "details": "Niche job board for WordPress talent. Pricing depends on the individual job offer from the employer."
+                }
+            ]
+        }
+    ],
+    "firms": [
+        {
+            "website": "alvacommerce.com",
+            "services": [
+                {
+                    "service": "E-commerce & Web Development",
+                    "price": "Prices not publicly listed",
+                    "details": "Focus on Magento and E-commerce flows. Contact for quote."
+                }
+            ]
+        },
+        {
+            "website": "bighornwebsolutions.com",
+            "services": [
+                {
+                    "service": "Web Solutions",
+                    "price": "Prices not publicly listed",
+                    "details": "Contact for quote."
+                }
+            ]
+        },
+        {
+            "website": "brackets.sk",
+            "services": [
+                {
+                    "service": "Web & App Development",
+                    "price": "Prices not publicly listed",
+                    "details": "Custom software development. Contact for custom pricing."
+                }
+            ]
+        },
+        {
+            "website": "digital-solutions.studio",
+            "services": [
+                {
+                    "service": "Digital Product Development",
+                    "price": "Prices not publicly listed",
+                    "details": "Contact for quote."
+                }
+            ]
+        },
+        {
+            "website": "grownapps.sk",
+            "services": [
+                {
+                    "service": "Web & Mobile Apps",
+                    "price": "Prices not publicly listed",
+                    "details": "Contact for quote."
+                }
+            ]
+        },
+        {
+            "website": "logamic.sk",
+            "services": [
+                {
+                    "service": "Software Development",
+                    "price": "Prices not publicly listed",
+                    "details": "Focus on agile development and team augmentation. Contact for rate card."
+                }
+            ]
+        },
+        {
+            "website": "panaxeo.com",
+            "services": [
+                {
+                    "service": "Software Innovation & Development",
+                    "price": "Prices not publicly listed",
+                    "details": "High-end custom software development. Contact for quote."
+                }
+            ]
+        },
+        {
+            "website": "rarecrew.com",
+            "services": [
+                {
+                    "service": "IT Solutions & Outsourcing",
+                    "price": "Prices not publicly listed",
+                    "details": "Contact for quote."
+                }
+            ]
+        },
+        {
+            "website": "vivantina.sk",
+            "services": [
+                {
+                    "service": "Web Design & Marketing",
+                    "price": "Prices not publicly listed",
+                    "details": "Full service digital agency. Contact for project estimation."
+                }
+            ]
+        },
+        {
+            "website": "webikon.sk",
+            "services": [
+                {
+                    "service": "Web Development",
+                    "price": "Prices not publicly listed",
+                    "details": "Contact for quote."
+                }
+            ]
+        },
+        {
+            "website": "webyst.sk",
+            "services": [
+                {
+                    "service": "Web Creation",
+                    "price": "Prices not publicly listed",
+                    "details": "Custom websites and e-shops. Contact for specific pricing."
+                }
+            ]
+        },
+        {
+            "website": "wisdomfactory.sk",
+            "services": [
+                {
+                    "service": "Software Engineering",
+                    "price": "Prices not publicly listed",
+                    "details": "Contact for quote."
+                }
+            ]
+        }
+    ]
+}
