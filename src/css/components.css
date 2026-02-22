@@ -1173,9 +1173,15 @@ section {
     color: var(--text);
 }
 
+.footer-left {
+    position: relative;
+    z-index: 10;
+}
+
 .footer-copy {
     font-size: .8rem;
-    color: var(--muted);
+    color: rgba(148, 163, 184, 0.5);
+    /* Muted slate blue */
 }
 
 .footer-top {
