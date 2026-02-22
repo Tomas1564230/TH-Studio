@@ -39,16 +39,16 @@ body {
   position: relative;
 }
 
-body::before {
+.bg-grid {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: -1;
-  /* Very faint grid pattern */
+  /* Faint grid pattern */
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 80px 80px;
   background-position: center top;
   -webkit-mask-image: radial-gradient(ellipse at top center, black 0%, transparent 70%);
