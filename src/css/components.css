@@ -1054,6 +1054,59 @@ section {
     color: var(--accent);
 }
 
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-link svg {
+    width: 20px;
+    height: 20px;
+    z-index: 2;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s;
+}
+
+.social-link::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
+}
+
+.social-link:hover {
+    color: var(--bg);
+    border-color: var(--accent);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px -10px rgba(56, 189, 248, 0.5);
+}
+
+.social-link:hover::before {
+    transform: translateY(0);
+}
+
+.social-link:hover svg {
+    transform: scale(1.15);
+}
+
 .contact-form {
     display: flex;
     flex-direction: column;
