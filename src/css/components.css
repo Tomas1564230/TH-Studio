@@ -1187,10 +1187,10 @@ section {
 .cookie-banner {
     position: fixed;
     bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%) translateY(150%);
-    width: 90%;
-    max-width: 650px;
+    right: 24px;
+    transform: translateY(150%);
+    width: calc(100% - 48px);
+    max-width: 420px;
     background: rgba(15, 23, 42, 0.95);
     backdrop-filter: blur(16px);
     border: 1px solid var(--border);
@@ -1202,7 +1202,7 @@ section {
 }
 
 .cookie-banner.visible {
-    transform: translateX(-50%) translateY(0);
+    transform: translateY(0);
 }
 
 .cookie-content p {
