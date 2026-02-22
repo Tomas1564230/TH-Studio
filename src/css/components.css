@@ -411,22 +411,22 @@ section {
 }
 
 /* Staggered row layout: Long - Short, Short - Long */
-.bento-grid>.bento-card:nth-child(1) {
+.bento-grid>.bento-wrapper:nth-child(1) {
     grid-column: span 7;
 }
 
 /* Top left: Long */
-.bento-grid>.bento-card:nth-child(2) {
+.bento-grid>.bento-wrapper:nth-child(2) {
     grid-column: span 5;
 }
 
 /* Top right: Short */
-.bento-grid>.bento-card:nth-child(3) {
+.bento-grid>.bento-wrapper:nth-child(3) {
     grid-column: span 5;
 }
 
 /* Bottom left: Short */
-.bento-grid>.bento-card:nth-child(4) {
+.bento-grid>.bento-wrapper:nth-child(4) {
     grid-column: span 7;
 }
 
@@ -438,14 +438,22 @@ section {
         grid-template-columns: 1fr;
     }
 
-    .bento-grid>.bento-card {
+    .bento-grid>.bento-wrapper {
         grid-column: 1 / -1 !important;
     }
+}
+
+.bento-wrapper {
+    display: flex;
+    flex-direction: column;
 }
 
 .bento-card {
     display: flex;
     flex-direction: column;
+    flex: 1;
+    /* allow it to grow to wrapper height */
+    width: 100%;
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 18px;
@@ -763,9 +771,14 @@ section {
         display: none;
     }
 
-    .pricing-card {
+    .pricing-wrapper {
         scroll-snap-align: center;
     }
+}
+
+.pricing-wrapper {
+    display: flex;
+    flex-direction: column;
 }
 
 .pricing-card {
@@ -775,6 +788,8 @@ section {
     border-radius: var(--radius);
     display: flex;
     flex-direction: column;
+    flex: 1;
+    width: 100%;
     gap: .875rem;
     position: relative;
     /* CSS transition fallback for mobile */

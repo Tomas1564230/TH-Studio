@@ -189,7 +189,7 @@ export default class Cursor {
                 const section = entry.target.closest('section');
                 const siblings = section ? [...section.querySelectorAll('[data-animate]')] : [entry.target];
                 const idx = siblings.indexOf(entry.target);
-                const delay = idx * 75;
+                const delay = idx * 120; // Increased from 75ms to 120ms for better cascade effect
 
                 setTimeout(() => entry.target.classList.add('visible'), delay);
                 observer.unobserve(entry.target);
