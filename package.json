@@ -16,5 +16,18 @@
     "barba.js": "^1.0.0",
     "gsap": "^3.14.2",
     "three": "^0.183.0"
-  }
+  },
+  "description": "",
+  "main": "vite.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tomas1564230/TH-Studio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tomas1564230/TH-Studio/issues"
+  },
+  "homepage": "https://github.com/Tomas1564230/TH-Studio#readme"
 }
