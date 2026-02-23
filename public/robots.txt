@@ -1,4 +1,4 @@
 User-agent: *
-Allow: /
+Disallow:
 
 Sitemap: https://tomas1564230.github.io/TH-Studio/sitemap.xml
