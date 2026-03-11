@@ -432,6 +432,14 @@ section {
 
 /* Bottom right: Long */
 
+.bento-grid>.bento-wrapper:nth-child(5) {
+    grid-column: span 12;
+}
+
+/* Full-width card modifier */
+.bento-card--wide .bento-card__screen {
+    min-height: 240px;
+}
 
 @media (max-width: 900px) {
     .bento-grid {
@@ -590,6 +598,10 @@ section {
     background: linear-gradient(145deg, #0a2518 0%, #1e6b40 100%);
 }
 
+.bento-card__screen--carepoint .bc-content {
+    background: linear-gradient(145deg, #0b2e6e 0%, #1755c9 55%, #0ea5c9 100%);
+}
+
 /* Browser bars inherit content colour */
 .bento-card__screen--rehamax .bc-browser-bar {
     background: rgba(5, 18, 45, .9);
@@ -605,6 +617,10 @@ section {
 
 .bento-card__screen--ekoprofit .bc-browser-bar {
     background: rgba(4, 14, 8, .9);
+}
+
+.bento-card__screen--carepoint .bc-browser-bar {
+    background: rgba(5, 18, 50, .9);
 }
 
 .bc-logo {
