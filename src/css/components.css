@@ -1285,3 +1285,120 @@ section {
         text-align: center;
     }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PORTFOLIO SLIDER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Outer wrapper — provides the relative stacking context for arrows */
+.bento-slider-wrapper {
+    position: relative;
+    margin-top: 3.5rem;    /* replaces .bento-grid's margin-top */
+}
+
+/* Viewport that clips horizontally scrolling pages */
+.bento-slider-clip {
+    overflow: hidden;
+    position: relative;
+}
+
+/* Flex row containing all pages side-by-side */
+.bento-slider-track {
+    display: flex;
+    align-items: flex-start;   /* pages keep their natural height */
+    will-change: transform;
+    /* transition is applied by JS; no default here */
+}
+
+/* Each page IS a .bento-grid — inherited CSS grid rules apply unchanged.
+   Width is set in pixels by JS (offsetWidth of clip).                   */
+.bento-page {
+    flex: 0 0 auto;
+    margin-top: 0;             /* cancel .bento-grid's own margin-top     */
+}
+
+/* ─── Arrow buttons ─── */
+.bento-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: border-color .25s ease, background .25s ease, opacity .25s ease, transform .25s ease;
+}
+
+.bento-nav-btn:hover {
+    border-color: var(--accent);
+    background: rgba(56, 189, 248, .08);
+    transform: translateY(-50%) scale(1.08);
+}
+
+.bento-nav-btn:disabled {
+    opacity: .25;
+    cursor: default;
+    pointer-events: none;
+}
+
+.bento-nav-btn--prev {
+    left: -1.5rem;
+    transform: translateY(-50%);
+}
+
+.bento-nav-btn--prev:hover {
+    transform: translateY(-50%) scale(1.08);
+}
+
+.bento-nav-btn--next {
+    right: -1.5rem;
+    transform: translateY(-50%);
+}
+
+.bento-nav-btn--next:hover {
+    transform: translateY(-50%) scale(1.08);
+}
+
+/* ─── Dot navigation ─── */
+.bento-nav-dots {
+    display: flex;
+    gap: .6rem;
+    justify-content: center;
+    margin-top: 2.5rem;
+}
+
+.bento-nav-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background .25s ease, transform .25s ease;
+}
+
+.bento-nav-dot:hover:not(.active) {
+    background: var(--muted);
+    transform: scale(1.2);
+}
+
+.bento-nav-dot.active {
+    background: var(--accent);
+    transform: scale(1.4);
+}
+
+/* ─── Mobile: hide arrow buttons (JS never inits on mobile anyway) ─── */
+@media (max-width: 900px) {
+    .bento-nav-btn {
+        display: none;
+    }
+}

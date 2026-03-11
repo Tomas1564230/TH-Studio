@@ -1,10 +1,12 @@
 import '../css/style.css';
 import Cursor from './components/Cursor.js';
 import Scene from './gl/Scene.js';
+import PortfolioSlider from './components/PortfolioSlider.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   new Cursor();
   new Scene();
+  new PortfolioSlider('.bento-grid').init();
   // Cookie Banner Logic
   const cookieBanner = document.getElementById('cookie-banner');
   const btnAccept = document.getElementById('cookie-accept');
