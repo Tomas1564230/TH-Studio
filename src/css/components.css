@@ -1296,10 +1296,23 @@ section {
     margin-top: 3.5rem;    /* replaces .bento-grid's margin-top */
 }
 
-/* Viewport that clips horizontally scrolling pages */
+/* Viewport that clips horizontally scrolling pages.
+   overflow:hidden is applied only during animation (via JS toggle of
+   --animating class) so hover box-shadows are never permanently clipped. */
 .bento-slider-clip {
-    overflow: hidden;
     position: relative;
+    overflow: visible;
+}
+
+.bento-slider-clip--animating {
+    overflow: hidden;
+}
+
+/* Invisible placeholder slot — keeps the grid layout intact when a page
+   has fewer than ITEMS_PER_PAGE real cards. */
+.bento-placeholder {
+    visibility: hidden;
+    pointer-events: none;
 }
 
 /* Flex row containing all pages side-by-side */
@@ -1350,7 +1363,7 @@ section {
 }
 
 .bento-nav-btn--prev {
-    left: -1.5rem;
+    left: -3rem;
     transform: translateY(-50%);
 }
 
@@ -1359,7 +1372,7 @@ section {
 }
 
 .bento-nav-btn--next {
-    right: -1.5rem;
+    right: -3rem;
     transform: translateY(-50%);
 }
 

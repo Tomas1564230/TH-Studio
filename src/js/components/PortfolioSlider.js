@@ -66,7 +66,8 @@ export default class PortfolioSlider {
     // Slider is for desktop only – on mobile the grid stacks vertically.
     if (window.matchMedia('(max-width: 900px)').matches) return;
 
-    const wrappers = [...grid.querySelectorAll(':scope > .bento-wrapper')];
+    // Reverse so newest item (last in HTML) appears first in the slider
+    const wrappers = [...grid.querySelectorAll(':scope > .bento-wrapper')].reverse();
     if (wrappers.length <= ITEMS_PER_PAGE) return; // Nothing to slide
 
     // Split into page groups of ITEMS_PER_PAGE
@@ -113,6 +114,14 @@ export default class PortfolioSlider {
         wrapper.classList.add('visible');
         page.appendChild(wrapper);
       });
+
+      // Fix 2: fill remaining slots with invisible placeholders so every page
+      // has exactly ITEMS_PER_PAGE grid children → consistent bento layout.
+      for (let j = items.length; j < ITEMS_PER_PAGE; j++) {
+        const ph = mkEl('div', 'bento-wrapper bento-placeholder');
+        ph.setAttribute('aria-hidden', 'true');
+        page.appendChild(ph);
+      }
 
       this._track.appendChild(page);
       return page;
@@ -204,6 +213,12 @@ export default class PortfolioSlider {
       this._track.style.transition = 'none';
       this._track.style.transform = `translateX(-${next * clipW}px)`;
 
+      // Only the active page renders; others are hidden so the overflow:visible
+      // clip doesn't expose them at rest.
+      this._pageEls.forEach((p, i) => {
+        p.style.visibility = i === next ? 'visible' : 'hidden';
+      });
+
       // Ensure all card states are clean
       toCards.forEach((c) => {
         c.style.transition = 'none';
@@ -212,6 +227,14 @@ export default class PortfolioSlider {
       });
     } else {
       // ── Animated slide ─────────────────────────────────────────────────
+
+      // Fix 4: enable overflow:hidden only while pages are sliding so that
+      // hover box-shadows are visible at rest (clip has overflow:visible normally).
+      this._clip.classList.add('bento-slider-clip--animating');
+
+      // Make all pages temporarily visible so incoming and outgoing can both
+      // animate. They will be re-hidden after animation completes.
+      this._pageEls.forEach((p) => (p.style.visibility = 'visible'));
 
       // 1. Pre-position incoming cards offset in the arrival direction
       toCards.forEach((c) => {
@@ -240,10 +263,16 @@ export default class PortfolioSlider {
             card.style.opacity = '1';
           });
 
-          // Unlock after the longest running animation finishes
+          // Unlock and restore overflow:visible after animation completes.
+          // Hide all pages except the now-active one so the overflow:visible
+          // clip doesn't expose their content at rest.
           const totalMs = SLIDE_MS + toCards.length * STAGGER_MS;
           setTimeout(() => {
             this._locked = false;
+            this._clip.classList.remove('bento-slider-clip--animating');
+            this._pageEls.forEach((p, i) => {
+              p.style.visibility = i === this._current ? 'visible' : 'hidden';
+            });
           }, totalMs);
         });
       });
