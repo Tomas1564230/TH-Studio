@@ -575,70 +575,84 @@ section {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    padding: 1.5rem;
+    align-items: center;
     text-align: center;
-    color: rgba(255, 255, 255, .92);
+    padding: 1.5rem;
+    position: relative;
+    background-size: cover !important;
+    background-position: top center !important;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Subtle brand overlay to unify screenshots with portfolio aesthetic */
+.bc-content::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10, 25, 47, 0.85) 0%, rgba(10, 25, 47, 0.4) 100%);
+    z-index: 1;
+}
+
+.bc-logo, .bc-h, .bc-p, .bc-btn {
+    position: relative;
+    z-index: 2;
+}
+
+.bento-card:hover .bc-content {
+    transform: scale(1.03);
 }
 
 .bento-card__screen--rehamax .bc-content {
-    background: linear-gradient(145deg, #0f3460 0%, #16637a 100%);
+    background: url('../assets/projects/rehamax-shot.png');
 }
 
 .bento-card__screen--psychiatria .bc-content {
-    background: linear-gradient(145deg, #2d1b4e 0%, #6a3093 100%);
+    background: url('../assets/projects/psychiatria-shot.png');
 }
 
 .bento-card__screen--donnadella .bc-content {
-    background: linear-gradient(145deg, #2c0a14 0%, #7b1e3c 100%);
+    background: url('../assets/projects/donnabella-shot.png');
 }
 
 .bento-card__screen--ekoprofit .bc-content {
-    background: linear-gradient(145deg, #0a2518 0%, #1e6b40 100%);
+    background: url('../assets/projects/ekoprofit-shot.png');
 }
 
 .bento-card__screen--carepoint .bc-content {
-    background: linear-gradient(145deg, #0b2e6e 0%, #1755c9 55%, #0ea5c9 100%);
-}
-
-/* Browser bars inherit content colour */
-.bento-card__screen--rehamax .bc-browser-bar {
-    background: rgba(5, 18, 45, .9);
-}
-
-.bento-card__screen--psychiatria .bc-browser-bar {
-    background: rgba(18, 8, 30, .9);
-}
-
-.bento-card__screen--donnadella .bc-browser-bar {
-    background: rgba(20, 4, 10, .9);
-}
-
-.bento-card__screen--ekoprofit .bc-browser-bar {
-    background: rgba(4, 14, 8, .9);
-}
-
-.bento-card__screen--carepoint .bc-browser-bar {
-    background: rgba(5, 18, 50, .9);
+    background: url('../assets/projects/carepoint-shot.png');
 }
 
 .bento-card__screen--humienok .bc-content {
-    background: linear-gradient(145deg, #a51d21 0%, #e31e24 60%, #f7931a 100%);
-}
-
-.bento-card__screen--humienok .bc-browser-bar {
-    background: rgba(40, 5, 5, .9);
+    background: url('../assets/projects/humienok-shot.png');
 }
 
 .bento-card__screen--spiremage .bc-content {
-    background: linear-gradient(145deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-    box-shadow: inset 0 0 40px rgba(56, 189, 248, 0.2);
+    background: url('../assets/projects/spiremage-shot.png');
+    box-shadow: inset 0 0 40px rgba(56, 189, 248, 0.15);
 }
 
-.bento-card__screen--spiremage .bc-browser-bar {
-    background: rgba(10, 10, 30, .9);
+/* Specific overlays to match project themes slightly */
+.bento-card__screen--humienok .bc-content::before {
+    background: linear-gradient(180deg, rgba(40, 5, 5, 0.8) 0%, rgba(165, 29, 33, 0.3) 100%);
 }
+
+.bento-card__screen--spiremage .bc-content::before {
+    background: linear-gradient(180deg, rgba(10, 10, 30, 0.85) 0%, rgba(22, 33, 62, 0.4) 100%);
+}
+
+.bento-card__screen--carepoint .bc-content::before {
+    background: linear-gradient(180deg, rgba(5, 18, 50, 0.85) 0%, rgba(23, 85, 201, 0.3) 100%);
+}
+
+/* Browser bars inherit base project color */
+.bento-card__screen--rehamax .bc-browser-bar { background: #05122d; }
+.bento-card__screen--psychiatria .bc-browser-bar { background: #12081e; }
+.bento-card__screen--donnadella .bc-browser-bar { background: #14040a; }
+.bento-card__screen--ekoprofit .bc-browser-bar { background: #040e08; }
+.bento-card__screen--carepoint .bc-browser-bar { background: #051232; }
+.bento-card__screen--humienok .bc-browser-bar { background: #280505; }
+.bento-card__screen--spiremage .bc-browser-bar { background: #0a0a1e; }
 
 .bc-logo {
     font-size: .6rem;
