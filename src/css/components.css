@@ -590,17 +590,29 @@ section {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(10, 25, 47, 0.85) 0%, rgba(10, 25, 47, 0.4) 100%);
+    background: linear-gradient(180deg, rgba(10, 25, 47, 0.75) 0%, rgba(10, 25, 47, 0.2) 100%);
     z-index: 1;
+    transition: opacity 0.4s ease;
 }
 
 .bc-logo, .bc-h, .bc-p, .bc-btn {
     position: relative;
     z-index: 2;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.bento-card:hover .bc-content::before {
+    opacity: 0.4; /* Reveal more of the screenshot on hover */
+}
+
+.bento-card:hover .bc-logo, 
+.bento-card:hover .bc-h, 
+.bento-card:hover .bc-p {
+    transform: translateY(-5px);
 }
 
 .bento-card:hover .bc-content {
-    transform: scale(1.03);
+    transform: scale(1.05);
 }
 
 .bento-card__screen--rehamax .bc-content {
@@ -634,15 +646,15 @@ section {
 
 /* Specific overlays to match project themes slightly */
 .bento-card__screen--humienok .bc-content::before {
-    background: linear-gradient(180deg, rgba(40, 5, 5, 0.8) 0%, rgba(165, 29, 33, 0.3) 100%);
+    background: linear-gradient(180deg, rgba(40, 5, 5, 0.75) 0%, rgba(165, 29, 33, 0.15) 100%);
 }
 
 .bento-card__screen--spiremage .bc-content::before {
-    background: linear-gradient(180deg, rgba(10, 10, 30, 0.85) 0%, rgba(22, 33, 62, 0.4) 100%);
+    background: linear-gradient(180deg, rgba(10, 10, 30, 0.75) 0%, rgba(22, 33, 62, 0.2) 100%);
 }
 
 .bento-card__screen--carepoint .bc-content::before {
-    background: linear-gradient(180deg, rgba(5, 18, 50, 0.85) 0%, rgba(23, 85, 201, 0.3) 100%);
+    background: linear-gradient(180deg, rgba(5, 18, 50, 0.75) 0%, rgba(23, 85, 201, 0.15) 100%);
 }
 
 /* Browser bars inherit base project color */
