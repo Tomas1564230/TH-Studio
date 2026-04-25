@@ -623,6 +623,14 @@ section {
     background: rgba(5, 18, 50, .9);
 }
 
+.bento-card__screen--humienok .bc-content {
+    background: linear-gradient(145deg, #a51d21 0%, #e31e24 60%, #f7931a 100%);
+}
+
+.bento-card__screen--humienok .bc-browser-bar {
+    background: rgba(40, 5, 5, .9);
+}
+
 .bc-logo {
     font-size: .6rem;
     font-weight: 700;
