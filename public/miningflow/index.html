@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiningFlow | Ťažba kryptomien jednoducho</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Mobile Menu Drawer -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <span style="font-weight: 800; font-size: 1.2rem;">MENU</span>
+                <span class="material-symbols-rounded" id="closeMenu" style="cursor: pointer;">close</span>
+            </div>
+            <ul class="drawer-links">
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="#hosting">Hosting</a></li>
+                <li><a href="#mining">Mining</a></li>
+                <li><a href="contact.html">Kontakt</a></li>
+            </ul>
+        </div>
+        <div class="drawer-contact">
+            <p><strong>Kontakt</strong></p>
+            <p>info@miningflow.eu</p>
+            <p>+421 905 014 475</p>
+        </div>
+    </div>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container" style="display: flex; justify-content: space-between;">
+            <div style="display: flex; gap: 1.5rem;">
+                <span>info@miningflow.eu</span>
+                <span>+421 905 014 475</span>
+            </div>
+            <div style="display: flex; gap: 1rem;">
+                <span class="text-orange" style="cursor: pointer;">SK</span>
+                <span style="cursor: pointer;">EN</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header-mobile-sticky">
+        <div class="container nav-wrapper">
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span class="material-symbols-rounded menu-toggle" id="openMenu">menu</span>
+                <div class="logo">
+                    <a href="index.html" style="display: flex; align-items: center; gap: 10px;">
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 32px; height: 32px;">
+                            <rect x="6" y="10" width="18" height="28" rx="3" fill="#ffffff" />
+                            <rect x="10" y="14" width="10" height="4" rx="1" fill="#0f0f1a" />
+                            <rect x="10" y="22" width="10" height="4" rx="1" fill="#0f0f1a" />
+                            <path d="M20 16H40" stroke="#f7931a" stroke-width="4" stroke-linecap="round"/>
+                            <path d="M20 24H34" stroke="#f7931a" stroke-width="4" stroke-linecap="round"/>
+                            <path d="M20 32H42" stroke="#f7931a" stroke-width="4" stroke-linecap="round"/>
+                        </svg>
+                        <span style="font-weight: 800; font-size: 1.3rem; letter-spacing: -0.5px;">MINING<span class="text-orange">FLOW</span></span>
+                    </a>
+                </div>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="#hosting">Hosting</a></li>
+                    <li><a href="#mining">Mining</a></li>
+                    <li><a href="contact.html">Kontakt</a></li>
+                </ul>
+            </nav>
+            <div class="desktop-icons">
+                <span class="material-symbols-rounded icon">search</span>
+                <span class="material-symbols-rounded icon">shopping_cart</span>
+                <span class="material-symbols-rounded icon">account_circle</span>
+            </div>
+            <!-- Mobile Specific Icons requested in docx -->
+            <div class="mobile-icons-only">
+                <span class="material-symbols-rounded icon">mail</span>
+                <span class="material-symbols-rounded icon">call</span>
+                <span class="material-symbols-rounded icon">shopping_cart</span>
+                <span class="material-symbols-rounded icon">search</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Ťažba <span class="text-orange">kryptomien</span> jednoducho</h1>
+                <p>Dodávame najlepšie ASIC minery na trhu s plným servisom, hostingom a technickou podporou v srdci Európy.</p>
+                <div style="display: flex; gap: 1rem;">
+                    <a href="shop.html" class="btn btn-primary">Pozrieť ponuku</a>
+                    <a href="#contact" class="btn btn-outline">Kontaktujte nás</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Miners Section -->
+    <section class="section">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem;">
+                <div>
+                    <h2 style="font-size: 2.5rem;">Najlepšie minery</h2>
+                    <p style="color: var(--clr-text-muted);">Aktuálna ponuka najvýkonnejšieho hardvéru na trhu.</p>
+                </div>
+                <a href="shop.html" class="btn btn-dark">Zobraziť všetky modely</a>
+            </div>
+
+            <div class="grid products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <span class="card-badge">Bestseller</span>
+                    <div class="product-image">
+                        <span class="material-symbols-rounded" style="font-size: 5rem; color: #cbd5e1;">memory</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Antminer S21</h3>
+                        <p class="product-specs">BTC • 200 TH/s • 3500W</p>
+                        <div class="product-footer">
+                            <div class="price-wrapper">
+                                <div class="price">4 500 €</div>
+                                <span>Bez DPH</span>
+                            </div>
+                            <span class="material-symbols-rounded" style="color: var(--clr-orange); font-size: 2rem; cursor: pointer;">favorite_border</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <span class="card-badge" style="background: #ef4444;">High Performance</span>
+                    <div class="product-image">
+                        <span class="material-symbols-rounded" style="font-size: 5rem; color: #cbd5e1;">memory</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Antminer S21 Hydro</h3>
+                        <p class="product-specs">BTC • 335 TH/s • 5360W</p>
+                        <div class="product-footer">
+                            <div class="price-wrapper">
+                                <div class="price">6 200 €</div>
+                                <span>Bez DPH</span>
+                            </div>
+                            <span class="material-symbols-rounded" style="color: var(--clr-orange); font-size: 2rem; cursor: pointer;">favorite_border</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="material-symbols-rounded" style="font-size: 5rem; color: #cbd5e1;">memory</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Whatsminer M60S</h3>
+                        <p class="product-specs">BTC • 186 TH/s • 3440W</p>
+                        <div class="product-footer">
+                            <div class="price-wrapper">
+                                <div class="price">3 900 €</div>
+                                <span>Bez DPH</span>
+                            </div>
+                            <span class="material-symbols-rounded" style="color: var(--clr-orange); font-size: 2rem; cursor: pointer;">favorite_border</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <span class="card-badge" style="background: #3b82f6;">LTC/DOGE</span>
+                    <div class="product-image">
+                        <span class="material-symbols-rounded" style="font-size: 5rem; color: #cbd5e1;">memory</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Antminer L7</h3>
+                        <p class="product-specs">LTC+DOGE • 9.5 GH/s • 3425W</p>
+                        <div class="product-footer">
+                            <div class="price-wrapper">
+                                <div class="price">5 100 €</div>
+                                <span>Bez DPH</span>
+                            </div>
+                            <span class="material-symbols-rounded" style="color: var(--clr-orange); font-size: 2rem; cursor: pointer;">favorite_border</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- (Repeating for 8 items effectively) -->
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="material-symbols-rounded" style="font-size: 5rem; color: #cbd5e1;">memory</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>IceRiver KS3</h3>
+                        <p class="product-specs">KAS • 8 TH/s • 3200W</p>
+                        <div class="product-footer">
+                            <div class="price-wrapper">
+                                <div class="price">12 400 €</div>
+                                <span>Bez DPH</span>
+                            </div>
+                            <span class="material-symbols-rounded" style="color: var(--clr-orange); font-size: 2rem; cursor: pointer;">favorite_border</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="material-symbols-rounded" style="font-size: 5rem; color: #cbd5e1;">memory</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Antminer S19 XP</h3>
+                        <p class="product-specs">BTC • 141 TH/s • 3010W</p>
+                        <div class="product-footer">
+                            <div class="price-wrapper">
+                                <div class="price">2 800 €</div>
+                                <span>Bez DPH</span>
+                            </div>
+                            <span class="material-symbols-rounded" style="color: var(--clr-orange); font-size: 2rem; cursor: pointer;">favorite_border</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="material-symbols-rounded" style="font-size: 5rem; color: #cbd5e1;">memory</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Whatsminer M50</h3>
+                        <p class="product-specs">BTC • 118 TH/s • 3304W</p>
+                        <div class="product-footer">
+                            <div class="price-wrapper">
+                                <div class="price">1 500 €</div>
+                                <span>Bez DPH</span>
+                            </div>
+                            <span class="material-symbols-rounded" style="color: var(--clr-orange); font-size: 2rem; cursor: pointer;">favorite_border</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="material-symbols-rounded" style="font-size: 5rem; color: #cbd5e1;">memory</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Antminer T21</h3>
+                        <p class="product-specs">BTC • 190 TH/s • 3610W</p>
+                        <div class="product-footer">
+                            <div class="price-wrapper">
+                                <div class="price">3 200 €</div>
+                                <span>Bez DPH</span>
+                            </div>
+                            <span class="material-symbols-rounded" style="color: var(--clr-orange); font-size: 2rem; cursor: pointer;">favorite_border</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Blocks Section (Full Width Overlay) -->
+    <section class="section-full bg-light-orange">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2 style="font-size: 2.5rem; color: var(--clr-text-dark);">Prečo si vybrať <span class="text-orange">MiningFlow</span>?</h2>
+                <p style="color: #64748b;">Komplexné riešenia pre ťažbu kryptomien na jednom mieste.</p>
+            </div>
+            
+            <div class="grid features-grid">
+                <div class="feature-card">
+                    <div class="icon-wrapper">
+                        <span class="material-symbols-rounded">local_shipping</span>
+                    </div>
+                    <h4 style="color: var(--clr-text-dark);">Rýchle dodanie</h4>
+                    <p style="color: #64748b; font-size: 0.9rem;">Väčšinu minerov máme skladom v Bratislave alebo zabezpečujeme rýchlu dopravu priamo od výrobcov.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="icon-wrapper">
+                        <span class="material-symbols-rounded">shield</span>
+                    </div>
+                    <h4 style="color: var(--clr-text-dark);">Bezpečnosť</h4>
+                    <p style="color: #64748b; font-size: 0.9rem;">Garantujeme legálny dovoz, preclenie a plnú záruku na všetky naše zariadenia.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon-wrapper">
+                        <span class="material-symbols-rounded">dns</span>
+                    </div>
+                    <h4 style="color: var(--clr-text-dark);">Hosting v EÚ</h4>
+                    <p style="color: #64748b; font-size: 0.9rem;">Ponúkame umiestnenie vašich minerov v profesionálnych dátových centrách s lacnou energiou.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon-wrapper">
+                        <span class="material-symbols-rounded">support_agent</span>
+                    </div>
+                    <h4 style="color: var(--clr-text-dark);">Odborná podpora</h4>
+                    <p style="color: #64748b; font-size: 0.9rem;">Náš tím expertov vám pomôže s nastavením, optimalizáciou a servisom 24/7.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="grid footer-grid">
+                <div class="footer-col">
+                    <div class="logo">
+                        <a href="#" style="display: flex; align-items: center; gap: 10px;">
+                            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 30px; height: 30px;">
+                                <rect x="6" y="10" width="18" height="28" rx="3" fill="#ffffff" />
+                                <rect x="10" y="14" width="10" height="4" rx="1" fill="#0f0f1a" />
+                                <rect x="10" y="22" width="10" height="4" rx="1" fill="#0f0f1a" />
+                                <path d="M20 16H40" stroke="#f7931a" stroke-width="4" stroke-linecap="round"/>
+                                <path d="M20 24H34" stroke="#f7931a" stroke-width="4" stroke-linecap="round"/>
+                                <path d="M20 32H42" stroke="#f7931a" stroke-width="4" stroke-linecap="round"/>
+                            </svg>
+                            <span style="font-weight: 800; font-size: 1.2rem; color: white;">MINING<span class="text-orange">FLOW</span></span>
+                        </a>
+                    </div>
+                    <p style="color: var(--clr-text-muted); font-size: 0.9rem; margin-top: 1rem;">Líder v oblasti dodávok a hostingu krypto-technológií v strednej Európe.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Rýchle odkazy</h4>
+                    <ul class="footer-links">
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="#">Hosting</a></li>
+                        <li><a href="#">Mining</a></li>
+                        <li><a href="contact.html">Kontakt</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Informácie</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Obchodné podmienky</a></li>
+                        <li><a href="#">Ochrana osobných údajov</a></li>
+                        <li><a href="#">GDPR</a></li>
+                        <li><a href="#">Reklamačný poriadok</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Sledujte nás</h4>
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                        <!-- Social Icons Placeholders -->
+                        <div style="width: 40px; height: 40px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; border-radius: 50%;">F</div>
+                        <div style="width: 40px; height: 40px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; border-radius: 50%;">I</div>
+                        <div style="width: 40px; height: 40px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; border-radius: 50%;">L</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                &copy; 2026 PVSolars k.s. | Všetky práva vyhradené. Vytvorené s vášňou pre krypto.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const openMenu = document.getElementById('openMenu');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        const menuOverlay = document.getElementById('menuOverlay');
+
+        openMenu.addEventListener('click', () => {
+            mobileDrawer.classList.add('active');
+            menuOverlay.classList.add('active');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileDrawer.classList.remove('active');
+            menuOverlay.classList.remove('active');
+        });
+
+        menuOverlay.addEventListener('click', () => {
+            mobileDrawer.classList.remove('active');
+            menuOverlay.classList.remove('active');
+        });
+    </script>
+
+</body>
+</html>

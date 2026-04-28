@@ -1524,4 +1524,27 @@ section {
     .bento-nav-btn {
         display: none;
     }
-}
+}
+/* MiningFlow.eu - Bitcoin Orange Theme */
+.bento-card__screen--miningflow .bc-content {
+    background: url("../assets/projects/miningflow-shot.png");
+}
+.bento-card__screen--miningflow .bc-content::before {
+    background: linear-gradient(180deg, rgba(20, 10, 0, 0.75) 0%, rgba(247, 147, 26, 0.15) 100%);
+}
+.bento-card__screen--miningflow .bc-browser-bar { background: #0f0f1a; }
+
+
+/* MiningFlow.eu - Bitcoin Orange Theme */
+.bento-card__screen--miningflow .bc-content {
+    background: url("../assets/projects/miningflow-shot.png");
+}
+
+.bento-card__screen--miningflow .bc-content::before {
+    background: linear-gradient(180deg, rgba(20, 10, 0, 0.75) 0%, rgba(247, 147, 26, 0.15) 100%);
+}
+
+.bento-card__screen--miningflow .bc-browser-bar {
+    background: #0f0f1a;
+}
+
