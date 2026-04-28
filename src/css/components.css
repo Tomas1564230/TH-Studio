@@ -1534,5 +1534,9 @@ section {
 }
 .bento-card__screen--miningflow .bc-browser-bar { background: #0f0f1a; }
 
+.bento-card--wide {
+    grid-column: span 12 !important;
+}
+
 
 
