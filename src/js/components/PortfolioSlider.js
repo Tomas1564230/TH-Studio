@@ -145,12 +145,12 @@ export default class PortfolioSlider {
     this._dotsEl = mkEl('div', 'bento-nav-dots');
     const isEn = document.documentElement.lang === 'en';
     this._dotsEl.setAttribute('role', 'tablist');
-    this._dotsEl.setAttribute('aria-label', isEn ? 'Portfolio groups' : 'Portfólio skupiny');
+    this._dotsEl.setAttribute('aria-label', isEn ? 'Portfolio Groups — navigation' : 'Portfólio skupiny — navigácia');
 
     this._dotBtns = this._groups.map((_, i) => {
       const btn = mkEl('button', 'bento-nav-dot');
       btn.setAttribute('role', 'tab');
-      btn.setAttribute('aria-label', isEn ? `Group ${i + 1}` : `Skupina ${i + 1}`);
+      btn.setAttribute('aria-label', isEn ? `Group ${i + 1} — portfolio page` : `Skupina ${i + 1} — strana portfólia`);
       btn.addEventListener('click', () => this._show(i));
       this._dotsEl.appendChild(btn);
       return btn;
@@ -171,11 +171,11 @@ export default class PortfolioSlider {
       'aria-label',
       dir === 'prev'
         ? isEn
-          ? 'Previous group'
-          : 'Predchádzajúca skupina'
+          ? 'Previous group — portfolio'
+          : 'Predchádzajúca skupina — portfólio'
         : isEn
-        ? 'Next group'
-        : 'Nasledujúca skupina',
+        ? 'Next group — portfolio'
+        : 'Nasledujúca skupina — portfólio',
     );
     const pts = dir === 'prev' ? '15 18 9 12 15 6' : '9 18 15 12 9 6';
     btn.innerHTML =

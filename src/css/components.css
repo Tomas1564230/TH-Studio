@@ -1493,22 +1493,33 @@ section {
 }
 
 .bento-nav-dot {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform .25s ease;
+}
+
+.bento-nav-dot::before {
+    content: '';
     width: 8px;
     height: 8px;
     border-radius: 50%;
     background: var(--border);
-    border: none;
-    cursor: pointer;
-    padding: 0;
     transition: background .25s ease, transform .25s ease;
 }
 
-.bento-nav-dot:hover:not(.active) {
+.bento-nav-dot:hover:not(.active)::before {
     background: var(--muted);
     transform: scale(1.2);
 }
 
-.bento-nav-dot.active {
+.bento-nav-dot.active::before {
     background: var(--accent);
     transform: scale(1.4);
 }
