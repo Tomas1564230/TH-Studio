@@ -1567,6 +1567,35 @@ section {
     background: linear-gradient(90deg, var(--border), transparent);
 }
 
+.reviews-slider-wrapper {
+    position: relative;
+    margin-top: 1rem;
+}
+
+.reviews-slider-wrapper::before,
+.reviews-slider-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 3.5rem; /* match padding-bottom of reviews-scroll */
+    width: 120px;
+    z-index: 2;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.reviews-slider-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, var(--bg) 0%, transparent 100%);
+    opacity: var(--fade-left, 0);
+}
+
+.reviews-slider-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, var(--bg) 0%, transparent 100%);
+    opacity: var(--fade-right, 1);
+}
+
 .reviews-scroll {
     display: flex;
     gap: 1.5rem;
@@ -1575,6 +1604,15 @@ section {
     scroll-snap-type: x mandatory;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none;  /* IE and Edge */
+    cursor: grab;
+    user-select: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.reviews-scroll.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    scroll-behavior: auto;
 }
 
 .reviews-scroll::-webkit-scrollbar {
@@ -1653,6 +1691,12 @@ section {
     align-items: center;
     gap: 0.6rem;
     margin-top: 0.5rem;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.review-platform:hover {
+    color: var(--accent);
 }
 
 .review-platform::before {
@@ -1669,6 +1713,10 @@ section {
     font-weight: 900;
 }
 
+.reviews-dots {
+    margin-top: 0.5rem;
+}
+
 @media (max-width: 768px) {
     .reviews-scroll {
         gap: 1rem;
@@ -1678,5 +1726,14 @@ section {
     
     .review-card {
         padding: 1.75rem;
+    }
+
+    .reviews-slider-wrapper .bento-nav-btn {
+        display: none;
+    }
+
+    .reviews-slider-wrapper::before,
+    .reviews-slider-wrapper::after {
+        width: 60px;
     }
 }

@@ -1,6 +1,7 @@
 import '../css/style.css';
 import Cursor from './components/Cursor.js';
 import PortfolioSlider from './components/PortfolioSlider.js';
+import ReviewsSlider from './components/ReviewsSlider.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   new Cursor();
@@ -11,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   new PortfolioSlider('.bento-grid').init();
+  new ReviewsSlider().init();
   // Cookie Banner Logic
   const cookieBanner = document.getElementById('cookie-banner');
   const btnAccept = document.getElementById('cookie-accept');
