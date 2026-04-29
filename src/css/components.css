@@ -877,11 +877,13 @@ section {
 
     /* Mobile-native horizontal scroll snapping for pricing */
     .pricing-grid {
-        grid-template-columns: repeat(4, 90vw);
+        grid-template-columns: repeat(4, 85vw);
         overflow-x: auto;
         scroll-snap-type: x mandatory;
+        scroll-padding: 0 20px;
         gap: 1rem;
-        padding-bottom: 2rem;
+        padding: 0 20px 2.5rem;
+        margin: 0 -5%;
         /* hide scrollbar */
         -ms-overflow-style: none;
         scrollbar-width: none;
@@ -992,6 +994,20 @@ section {
 
 .pricing-icon {
     font-size: 1.75rem;
+}
+
+@media (max-width: 768px) {
+    .pricing-card {
+        align-items: center;
+        text-align: center;
+        padding: 2.25rem 1.5rem;
+    }
+
+    .pricing-card ul {
+        align-self: stretch;
+        text-align: left;
+        margin: 0.5rem 0 1rem;
+    }
 }
 
 .pricing-card h3 {
@@ -1748,6 +1764,201 @@ section {
     content: '✓';
     display: flex;
     align-items: center;
+    margin-bottom: 2.5rem;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.reviews-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border), transparent);
+}
+
+.reviews-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.reviews-badge {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0.6rem 1.25rem;
+    border-radius: 100px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background 0.3s ease;
+    cursor: default;
+}
+
+.reviews-badge:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
+}
+
+.reviews-badge-stars {
+    color: #f59e0b; /* Amber 500 */
+    font-size: 1rem;
+    letter-spacing: 1px;
+    filter: drop-shadow(0 0 5px rgba(245, 158, 11, 0.3));
+}
+
+.reviews-badge-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+}
+
+.reviews-badge-rating {
+    font-weight: 600;
+    color: #fff;
+}
+
+.reviews-badge-count {
+    color: rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    padding-left: 0.75rem;
+}
+
+.reviews-slider-wrapper {
+    position: relative;
+    margin-top: 1.5rem;
+}
+
+.reviews-scroll {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding: 1.5rem 80px 4rem;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 80px;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    cursor: grab;
+    user-select: none;
+    -webkit-overflow-scrolling: touch;
+    
+    /* Smooth transparency mask for the edges */
+    mask-image: linear-gradient(to right, 
+        transparent 0%, 
+        black 80px, 
+        black calc(100% - 80px), 
+        transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(to right, 
+        transparent 0%, 
+        black 80px, 
+        black calc(100% - 80px), 
+        transparent 100%
+    );
+}
+
+.reviews-scroll.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+}
+
+.reviews-scroll::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.review-card {
+    flex: 0 0 clamp(290px, 85vw, 420px);
+    scroll-snap-align: start;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    padding: 2.25rem;
+    border-radius: 24px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent);
+    background: rgba(56, 189, 248, 0.06);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.review-author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.review-author {
+    font-weight: 700;
+    color: var(--text);
+    font-size: 1.15rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.review-date {
+    font-size: 0.75rem;
+    color: var(--dim);
+}
+
+.review-rating {
+    color: var(--amber);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.3));
+}
+
+.review-text {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--muted);
+    font-style: italic;
+    flex-grow: 1;
+    position: relative;
+}
+
+.review-platform {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--dim);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.review-platform:hover {
+    color: var(--accent);
+}
+
+.review-platform::before {
+    content: '✓';
+    display: flex;
+    align-items: center;
     justify-content: center;
     width: 16px;
     height: 16px;
@@ -1763,25 +1974,37 @@ section {
 }
 
 @media (max-width: 768px) {
+    section {
+        overflow-x: hidden;
+    }
+
+    .section-title {
+        font-size: 2rem !important;
+        margin-bottom: 1.5rem !important;
+        text-align: center !important;
+        max-width: 100%;
+    }
+
+    .section-title br {
+        display: none !important;
+    }
+
+    .eyebrow {
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+
     .reviews-section-header {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        text-align: center;
         gap: 1.25rem;
         margin-bottom: 1.5rem;
     }
 
     .reviews-badge {
         padding: 0.5rem 1rem;
-    }
-
-    .reviews-scroll {
-        gap: 1rem;
-        padding-left: 0;
-        padding-right: 0;
-    }
-    
-    .review-card {
-        padding: 1.75rem;
+        justify-content: center;
     }
 
     .reviews-slider-wrapper .bento-nav-btn {
@@ -1789,10 +2012,16 @@ section {
     }
 
     .reviews-scroll {
-        mask-image: linear-gradient(to right, transparent 0%, black 40px, black calc(100% - 40px), transparent 100%);
-        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40px, black calc(100% - 40px), transparent 100%);
-        scroll-padding: 0 40px;
-        padding-left: 40px;
-        padding-right: 40px;
+        gap: 1rem;
+        padding-left: 20px;
+        padding-right: 20px;
+        scroll-padding: 0 20px;
+        mask-image: linear-gradient(to right, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20px, black calc(100% - 20px), transparent 100%);
+    }
+
+    .bento-nav-dots, .reviews-dots {
+        gap: 0.75rem !important;
+        margin-top: 1.5rem;
     }
 }
