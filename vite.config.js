@@ -31,6 +31,9 @@ export default defineConfig({
   server: {
     host: true, // Expose to network
   },
+  esbuild: {
+    drop: ['console', 'debugger'],
+  },
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
@@ -39,6 +42,12 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         en: resolve(__dirname, 'en/index.html'),
         gdpr: resolve(__dirname, 'gdpr.html'),
+      },
+      output: {
+        manualChunks: {
+          three: ['three'],
+          gsap: ['gsap'],
+        },
       },
     },
   }

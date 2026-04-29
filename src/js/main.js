@@ -1,11 +1,15 @@
 import '../css/style.css';
 import Cursor from './components/Cursor.js';
-import Scene from './gl/Scene.js';
 import PortfolioSlider from './components/PortfolioSlider.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   new Cursor();
-  new Scene();
+  
+  // Lazy load heavy Three.js scene to improve TBT and FCP
+  import('./gl/Scene.js').then(({ default: Scene }) => {
+    new Scene();
+  });
+
   new PortfolioSlider('.bento-grid').init();
   // Cookie Banner Logic
   const cookieBanner = document.getElementById('cookie-banner');

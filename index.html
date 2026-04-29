@@ -68,10 +68,11 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="/src/css/style.css" />
+    rel="stylesheet" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="/src/css/style.css" fetchpriority="high" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/TH-Studio/favicon.svg">
@@ -122,20 +123,20 @@
   <section id="hero">
     <div class="hero-bg-blob" aria-hidden="true"></div>
     <div class="container container--center">
-      <p class="eyebrow" data-animate>Freelance web developer · Slovensko</p>
-      <h1 class="hero-title" data-animate>
+      <p class="eyebrow">Freelance web developer · Slovensko</p>
+      <h1 class="hero-title">
         <span style="white-space: nowrap;">Tvorím webstránky,</span><br>
         <span class="hero-title__accent">ktoré ti zarobia.</span>
       </h1>
-      <p class="hero-sub" data-animate>Webstránky, ktoré nie sú len peknou vizitkou. Tvorba moderných webov a e-shopov,
+      <p class="hero-sub">Webstránky, ktoré nie sú len peknou vizitkou. Tvorba moderných webov a e-shopov,
         ktoré reálne získavajú zákazníkov. Rýchlo, kvalitne a bez zbytočnej agentúrnej réžie.</p>
-      <div class="hero-actions" data-animate>
+      <div class="hero-actions">
         <a href="#prace" class="btn btn-primary" data-magnetic title="Pozrieť portfólio projektov">Pozrieť moje
           práce</a>
         <a href="#kontakt" class="btn btn-ghost" data-magnetic title="Bezplatná konzultácia – kontaktovať">Bezplatná
           konzultácia</a>
       </div>
-      <div class="hero-proof" data-animate>
+      <div class="hero-proof">
         <div class="proof-item"><span class="proof-num">7</span><span class="proof-label">dní na dodanie</span></div>
         <div class="proof-divider"></div>
         <div class="proof-item"><span class="proof-num">50+</span><span class="proof-label">projektov</span></div>
