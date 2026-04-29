@@ -64,16 +64,16 @@ export default class Cursor {
 
         this.initRingLoop();
         this.initMagnetic();
-        this.initNavScroll();
         this.initScrollAnimations();
         this.initHamburger();
         this.initContactForm();
-        this.initScrollProgress();
         this.initTiltCards();
     }
 
     initRingLoop() {
         const lerp = (a, b, t) => a + (b - a) * t;
+        const nav = document.getElementById('nav');
+        const progressBar = document.getElementById('scroll-progress');
         
         // Use GSAP ticker to unify with the WebGL scene and other animations
         gsap.ticker.add(() => {
@@ -84,20 +84,39 @@ export default class Cursor {
                 // translate3d forces GPU acceleration and avoids layout reflows
                 this.ring.style.transform = `translate3d(${this.rx}px, ${this.ry}px, 0) translate(-50%, -50%)`;
             }
+
+            // Unify scroll-based logic to avoid multiple scroll listeners and layout thrashing
+            const sy = window.scrollY;
+            if (nav) {
+                nav.style.background = sy > 40 ? 'rgba(8, 12, 24, 0.97)' : 'rgba(8, 12, 24, 0.8)';
+            }
+            if (progressBar) {
+                const docHeight = document.body.scrollHeight - window.innerHeight;
+                const scrollPercent = docHeight > 0 ? sy / docHeight : 0;
+                progressBar.style.transform = `scaleX(${scrollPercent})`;
+            }
         });
     }
 
     initMagnetic() {
         document.querySelectorAll('[data-magnetic]').forEach(el => {
-            el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hovering'));
+            let rect = null;
+
+            el.addEventListener('mouseenter', () => {
+                document.body.classList.add('cursor-hovering');
+                rect = el.getBoundingClientRect(); // Cache once on enter
+            });
+
             el.addEventListener('mouseleave', () => {
                 document.body.classList.remove('cursor-hovering');
                 gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.4)' });
+                rect = null;
             });
+
             el.addEventListener('mousemove', (e) => {
-                const r = el.getBoundingClientRect();
-                const cx = r.left + r.width / 2;
-                const cy = r.top + r.height / 2;
+                if (!rect) rect = el.getBoundingClientRect();
+                const cx = rect.left + rect.width / 2;
+                const cy = rect.top + rect.height / 2;
                 gsap.to(el, {
                     x: (e.clientX - cx) * 0.3,
                     y: (e.clientY - cy) * 0.3,
@@ -114,21 +133,7 @@ export default class Cursor {
         });
     }
 
-    initScrollProgress() {
-        const progressBar = document.getElementById('scroll-progress');
-        if (!progressBar) return;
 
-        const updateProgress = () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.body.scrollHeight - window.innerHeight;
-            const scrollPercent = scrollTop / docHeight;
-            progressBar.style.transform = `scaleX(${scrollPercent})`;
-        };
-
-        window.addEventListener('scroll', updateProgress, { passive: true });
-        window.addEventListener('resize', updateProgress, { passive: true });
-        updateProgress();
-    }
 
     initTiltCards() {
         // Disable on touch devices (mobile)
@@ -141,8 +146,14 @@ export default class Cursor {
             glare.className = 'tilt-glare';
             card.prepend(glare);
 
+            let rect = null;
+
+            card.addEventListener('mouseenter', () => {
+                rect = card.getBoundingClientRect(); // Cache once
+            });
+
             card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
+                if (!rect) rect = card.getBoundingClientRect();
                 const x = (e.clientX - rect.left) / rect.width;
                 const y = (e.clientY - rect.top) / rect.height;
                 const multiplier = 6;
@@ -161,19 +172,12 @@ export default class Cursor {
                 card.style.setProperty('--tilt-x', `0deg`);
                 card.style.setProperty('--tilt-y', `0deg`);
                 glare.style.opacity = '0';
+                rect = null;
             });
         });
     }
 
-    initNavScroll() {
-        const nav = document.getElementById('nav');
-        if (!nav) return;
-        window.addEventListener('scroll', () => {
-            nav.style.background = window.scrollY > 40
-                ? 'rgba(8, 12, 24, 0.97)'
-                : 'rgba(8, 12, 24, 0.8)';
-        }, { passive: true });
-    }
+
 
     initScrollAnimations() {
         const els = document.querySelectorAll('[data-animate]');
@@ -183,41 +187,39 @@ export default class Cursor {
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (!entry.isIntersecting || triggered.has(entry.target)) return;
-                triggered.add(entry.target);
+                if (!entry.isIntersecting) return;
 
-                // Stagger siblings within same section
-                const section = entry.target.closest('section');
-                const siblings = section ? [...section.querySelectorAll('[data-animate]')] : [entry.target];
-                const idx = siblings.indexOf(entry.target);
-                const delay = idx * 120; // Increased from 75ms to 120ms for better cascade effect
+                // Handle fade-in animations
+                if (entry.target.hasAttribute('data-animate') && !triggered.has(entry.target)) {
+                    triggered.add(entry.target);
+                    const section = entry.target.closest('section');
+                    const siblings = section ? [...section.querySelectorAll('[data-animate]')] : [entry.target];
+                    const idx = siblings.indexOf(entry.target);
+                    const delay = idx * 120;
+                    setTimeout(() => entry.target.classList.add('visible'), delay);
+                }
 
-                setTimeout(() => entry.target.classList.add('visible'), delay);
-                observer.unobserve(entry.target);
+                // Handle text scramble
+                if (entry.target.classList.contains('scramble')) {
+                    setTimeout(() => scramble(entry.target), 200);
+                    observer.unobserve(entry.target);
+                }
+
+                // Handle counters
+                if (entry.target.hasAttribute('data-count')) {
+                    countUp(entry.target);
+                    observer.unobserve(entry.target);
+                }
+
+                if (triggered.has(entry.target) && !entry.target.classList.contains('scramble') && !entry.target.hasAttribute('data-count')) {
+                    observer.unobserve(entry.target);
+                }
             });
         }, { threshold: 0.1 });
 
-        // Scramble observer (fires once for headline)
-        const scrambleObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                setTimeout(() => scramble(entry.target), 200);
-                scrambleObserver.unobserve(entry.target);
-            });
-        }, { threshold: 0.5 });
-
-        // Counter observer
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                countUp(entry.target);
-                counterObserver.unobserve(entry.target);
-            });
-        }, { threshold: 0.8 });
-
         els.forEach(el => observer.observe(el));
-        scrambleEls.forEach(el => scrambleObserver.observe(el));
-        counterEls.forEach(el => counterObserver.observe(el));
+        scrambleEls.forEach(el => observer.observe(el));
+        counterEls.forEach(el => observer.observe(el));
     }
 
     initHamburger() {

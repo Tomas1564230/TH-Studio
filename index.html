@@ -77,6 +77,22 @@
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/TH-Studio/favicon.svg">
   <link rel="shortcut icon" href="/TH-Studio/favicon.svg">
+
+  <!-- Critical Hero CSS -->
+  <style>
+    :root { --bg: #080C18; --text: #F8FAFC; --accent: #38BDF8; --amber: #FBBF24; --nav-h: 68px; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; }
+    #hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: calc(var(--nav-h) + 60px) 5% 80px; text-align: center; position: relative; }
+    .hero-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2.8rem, 6.5vw, 5.5rem); font-weight: 800; line-height: 1.06; margin-bottom: 1.5rem; color: #FFF; letter-spacing: -.03em; }
+    .hero-title__accent { background: linear-gradient(120deg, var(--accent) 0%, var(--amber) 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-sub { font-size: 1.15rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 2.5rem; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: .875rem 2rem; font-weight: 600; border-radius: 50px; text-decoration: none; transition: transform .2s; }
+    .btn-primary { background: var(--amber); color: #0D1117; }
+    .btn-ghost { border: 1px solid rgba(255,255,255,.22); color: var(--text); }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 5%; width: 100%; }
+    .container--center { max-width: 1040px; }
+  </style>
 </head>
 
 <body>
