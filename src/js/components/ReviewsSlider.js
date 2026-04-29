@@ -143,10 +143,5 @@ export default class ReviewsSlider {
 
     if (this.prevBtn) this.prevBtn.disabled = isAtStart;
     if (this.nextBtn) this.nextBtn.disabled = isAtEnd;
-
-    if (this.wrapper) {
-      this.wrapper.style.setProperty('--fade-left', isAtStart ? '0' : '1');
-      this.wrapper.style.setProperty('--fade-right', isAtEnd ? '0' : '1');
-    }
   }
 }
