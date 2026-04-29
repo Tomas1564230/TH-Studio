@@ -44,26 +44,44 @@ export default class ReviewsSlider {
    */
   _initDrag() {
     this.container.addEventListener('mousedown', (e) => {
+      // Only drag with left mouse button
+      if (e.button !== 0) return;
+      
       this.isDown = true;
+      this.hasMoved = false;
       this.container.classList.add('is-dragging');
       this.startX = e.pageX - this.container.offsetLeft;
       this.scrollLeft = this.container.scrollLeft;
     });
 
-    window.addEventListener('mouseleave', () => {
-      this._stopDragging();
-    });
+    // Prevent clicks on links or cards if we actually dragged
+    this.container.addEventListener('click', (e) => {
+      if (this.hasMoved) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
 
-    window.addEventListener('mouseup', () => {
-      this._stopDragging();
-    });
+    window.addEventListener('mouseleave', () => this._stopDragging());
+    window.addEventListener('mouseup', () => this._stopDragging());
 
     window.addEventListener('mousemove', (e) => {
       if (!this.isDown) return;
-      e.preventDefault();
+
       const x = e.pageX - this.container.offsetLeft;
-      const walk = (x - this.startX) * 2; // scroll speed multiplier
-      this.container.scrollLeft = this.scrollLeft - walk;
+      const dist = x - this.startX;
+
+      // Threshold to prevent tiny accidental movements from being counted as drag
+      if (!this.hasMoved && Math.abs(dist) > 8) {
+        this.hasMoved = true;
+      }
+
+      if (this.hasMoved) {
+        e.preventDefault();
+        // Reduced multiplier for more controlled movement
+        const walk = dist * 1.5;
+        this.container.scrollLeft = this.scrollLeft - walk;
+      }
     });
   }
 

@@ -1631,6 +1631,8 @@ section {
     overflow-x: auto;
     padding: 1.5rem 80px 4rem;
     scroll-snap-type: x mandatory;
+    scroll-padding: 0 80px;
+    scroll-behavior: smooth;
     scrollbar-width: none;
     -ms-overflow-style: none;
     cursor: grab;
@@ -1789,5 +1791,8 @@ section {
     .reviews-scroll {
         mask-image: linear-gradient(to right, transparent 0%, black 40px, black calc(100% - 40px), transparent 100%);
         -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40px, black calc(100% - 40px), transparent 100%);
+        scroll-padding: 0 40px;
+        padding-left: 40px;
+        padding-right: 40px;
     }
 }
