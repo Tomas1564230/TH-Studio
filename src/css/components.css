@@ -31,7 +31,9 @@
     z-index: 9999;
     top: 0;
     left: 0;
+    /* Transform handled by JS for movement, base translate centered */
     transform: translate(-50%, -50%);
+    will-change: transform;
     transition: width .25s ease, height .25s ease, border-color .25s, opacity .3s;
     mix-blend-mode: screen;
 }
@@ -225,11 +227,13 @@ section {
     align-items: center;
     justify-content: space-between;
     padding: 0 max(5%, calc((100% - 1280px) / 2));
-    background: rgba(8, 12, 24, 0.8);
-    backdrop-filter: blur(16px);
+    background: rgba(8, 12, 24, 0.85);
+    backdrop-filter: blur(10px); /* Reduced from 16px for performance */
+    -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
     z-index: 1000;
     transition: background var(--transition);
+    transform: translateZ(0); /* Promote to layer */
 }
 
 .nav-logo {
@@ -1335,11 +1339,12 @@ section {
     position: fixed;
     bottom: 24px;
     right: 24px;
-    transform: translateY(150%);
+    transform: translateY(150%) translateZ(0);
     width: calc(100% - 48px);
     max-width: 420px;
     background: rgba(15, 23, 42, 0.95);
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(10px); /* Reduced from 16px */
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 1.25rem 1.5rem;

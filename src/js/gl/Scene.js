@@ -17,7 +17,9 @@ export default class Scene {
             powerPreference: 'high-performance'
         });
 
-        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        // Cap pixel ratio at 1.5 instead of 2.0 to significantly reduce fragment shader load
+        // on high-DPI screens without noticeable loss in quality.
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.container.appendChild(this.renderer.domElement);
 

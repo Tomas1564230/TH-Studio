@@ -74,16 +74,17 @@ export default class Cursor {
 
     initRingLoop() {
         const lerp = (a, b, t) => a + (b - a) * t;
-        const tick = () => {
+        
+        // Use GSAP ticker to unify with the WebGL scene and other animations
+        gsap.ticker.add(() => {
             this.rx = lerp(this.rx, this.mx, 0.1);
             this.ry = lerp(this.ry, this.my, 0.1);
+            
             if (this.ring) {
-                this.ring.style.left = `${this.rx}px`;
-                this.ring.style.top = `${this.ry}px`;
+                // translate3d forces GPU acceleration and avoids layout reflows
+                this.ring.style.transform = `translate3d(${this.rx}px, ${this.ry}px, 0) translate(-50%, -50%)`;
             }
-            requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
+        });
     }
 
     initMagnetic() {
