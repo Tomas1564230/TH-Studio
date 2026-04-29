@@ -107,34 +107,36 @@
   <div id="cursor-ring"></div>
 
   <!-- NAV -->
-  <nav id="nav">
-    <a href="/TH-Studio/en/" class="nav-logo" aria-label="TH Studio Home" title="TH Studio – Home">
-      <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="100" height="100" rx="20" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" />
-        <defs>
-          <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="var(--accent)" />
-            <stop offset="100%" stop-color="var(--amber)" />
-          </linearGradient>
-        </defs>
-        <!-- T -->
-        <path d="M25 35 H75 V45 H55 V75 H45 V45 H25 V35 Z" fill="url(#logo-gradient)" />
-      </svg>
-      <span>TH Studio</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#prace" title="View my works and projects">Work</a></li>
-      <li><a href="#sluzby" title="My web services">Services</a></li>
-      <li><a href="#ceny" title="Website creation pricing">Pricing</a></li>
-      <li><a href="#o-mne" title="About me – Tomáš Husivarga">About</a></li>
-      <li><a href="/TH-Studio/" class="lang-switch" title="Prepnúť do Slovenčiny">SK</a></li>
-      <li><a href="#kontakt" class="nav-cta" title="Contact – free consultation">Get in touch</a></li>
-    </ul>
-    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+  <nav id="nav" class="nav">
+    <div class="nav-container">
+      <a href="/TH-Studio/en/" class="nav-logo" aria-label="TH Studio Home" title="TH Studio – Home">
+        <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
+          <rect width="100" height="100" rx="20" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" />
+          <defs>
+            <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="var(--accent)" />
+              <stop offset="100%" stop-color="var(--amber)" />
+            </linearGradient>
+          </defs>
+          <path d="M25 35 H75 V45 H55 V75 H45 V45 H25 V35 Z" fill="url(#logo-gradient)" />
+        </svg>
+        <span>TH Studio</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#prace" title="View my works and projects">Work</a></li>
+        <li><a href="#sluzby" title="My web services">Services</a></li>
+        <li><a href="#ceny" title="Website creation pricing">Pricing</a></li>
+        <li><a href="#o-mne" title="About me – Tomáš Husivarga">About</a></li>
+        <li><a href="/TH-Studio/" class="lang-switch" title="Prepnúť do Slovenčiny" aria-label="SK - Slovenský jazyk">SK</a></li>
+        <li><a href="#kontakt" class="nav-cta" title="Contact – free consultation">Get in touch</a></li>
+      </ul>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
+  <main id="main-content">
   <!-- HERO -->
   <section id="hero">
     <div class="hero-bg-blob" aria-hidden="true"></div>
@@ -179,9 +181,10 @@
                 <div class="bc-url">rehamax.sk</div>
               </div>
               <div class="bc-content">
+                <img src="/TH-Studio/src/assets/projects/rehamax-shot.png" alt="Rehamax website mockup" class="bc-img" loading="lazy" decoding="async">
                 <div class="bc-logo">Rehamax</div>
                 <div class="bc-h">Rehabilitation<br>in Bratislava</div>
-                <div class="bc-p">Helping you move again without pain</div>
+                <div class="bc-p">We help you move again without pain</div>
                 <div class="bc-btn"></div>
               </div>
             </div>
@@ -205,6 +208,7 @@
                 <div class="bc-url">donnabellapresov.sk</div>
               </div>
               <div class="bc-content">
+                <img src="/TH-Studio/src/assets/projects/donnabella-shot.png" alt="DonnaBella website mockup" class="bc-img" loading="lazy" decoding="async">
                 <div class="bc-logo">DonnaBella</div>
                 <div class="bc-h">Luxury<br>care</div>
                 <div class="bc-btn"></div>
@@ -229,6 +233,7 @@
                 <div class="bc-url">ekoprofitsk.sk</div>
               </div>
               <div class="bc-content">
+                <img src="/TH-Studio/src/assets/projects/ekoprofit-shot.png" alt="Eko-Profit SK website mockup" class="bc-img" loading="lazy" decoding="async">
                 <div class="bc-logo">Eko-Profit SK</div>
                 <div class="bc-h">Accounting<br>since 2003</div>
                 <div class="bc-btn"></div>
@@ -253,9 +258,10 @@
                 <div class="bc-url">pedopsychiatria.sk</div>
               </div>
               <div class="bc-content">
+                <img src="/TH-Studio/src/assets/projects/psychiatria-shot.png" alt="Safe Place Clinic website mockup" class="bc-img" loading="lazy" decoding="async">
                 <div class="bc-logo">Safe Place Clinic</div>
                 <div class="bc-h">Safe place<br>for mental health</div>
-                <div class="bc-p">MUDr. Leszja Geci — pediatric psychiatry</div>
+                <div class="bc-p">MUDr. Leszja Geci — child psychiatry</div>
                 <div class="bc-btn"></div>
               </div>
             </div>
@@ -279,9 +285,10 @@
                 <div class="bc-url">carepoint.sk</div>
               </div>
               <div class="bc-content">
+                <img src="/TH-Studio/src/assets/projects/carepoint-shot.png" alt="Carepoint website mockup" class="bc-img" loading="lazy" decoding="async">
                 <div class="bc-logo">CarePoint</div>
-                <div class="bc-h">Medical supplies<br>and food supplements</div>
-                <div class="bc-p">Certified products · B2B and B2C purchase · Fast shipping</div>
+                <div class="bc-h">Medical supplies<br>and supplements</div>
+                <div class="bc-p">Certified products · B2B and B2C · Fast shipping</div>
                 <div class="bc-btn"></div>
               </div>
             </div>
@@ -304,8 +311,9 @@
                 <div class="bc-url">humienok.sk</div>
               </div>
               <div class="bc-content">
+                <img src="/TH-Studio/src/assets/projects/humienok-shot.png" alt="Humienok website mockup" class="bc-img" loading="lazy" decoding="async">
                 <div class="bc-logo">Humienok</div>
-                <div class="bc-h">Premium jams,<br>syrups and honey</div>
+                <div class="bc-h">Premium jams,<br>syrups and honeys</div>
                 <div class="bc-p">Honest home production · Boutique e-shop · Mobile-first experience</div>
                 <div class="bc-btn"></div>
               </div>
@@ -329,9 +337,10 @@
                 <div class="bc-url">miningflow.eu</div>
               </div>
               <div class="bc-content">
+                <img src="/TH-Studio/src/assets/projects/miningflow-shot.png" alt="MiningFlow website mockup" class="bc-img" loading="lazy" decoding="async">
                 <div class="bc-logo">MiningFlow</div>
-                <div class="bc-h">Crypto Mining<br>Made Simple</div>
-                <div class="bc-p">ASIC Miners · Pro Hosting · Expert Support</div>
+                <div class="bc-h">Crypto mining<br>made easy</div>
+                <div class="bc-p">ASIC miners · Profi hosting · Expert service</div>
                 <div class="bc-btn"></div>
               </div>
             </div>
@@ -362,6 +371,7 @@
               <div class="bc-url">play.google.com/spiremage</div>
             </div>
             <div class="bc-content">
+              <img src="/TH-Studio/src/assets/projects/spiremage-shot.png" alt="SpireMage game mockup" class="bc-img" loading="lazy" decoding="async">
               <div class="bc-logo">Aether Bite Studio</div>
               <div class="bc-h">SpireMage:<br>Roguelite Climber</div>
               <div class="bc-p">Explosive magic platformer · Procedural Spire</div>
@@ -552,21 +562,21 @@
         <div class="social-icons" data-animate>
           <a href="https://www.facebook.com/tomas.husivarga" target="_blank" rel="noopener" class="social-link"
             aria-label="Facebook" title="Facebook – Tomáš Husivarga" data-magnetic>
-            <svg viewBox="0 0 24 24" fill="currentColor">
+            <svg viewBox="0 0 24 24" fill="currentColor" focusable="false" aria-hidden="true">
               <path
                 d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z" />
             </svg>
           </a>
           <a href="https://www.instagram.com/tom156412/" target="_blank" rel="noopener" class="social-link"
             aria-label="Instagram" title="Instagram – @tom156412" data-magnetic>
-            <svg viewBox="0 0 24 24" fill="currentColor">
+            <svg viewBox="0 0 24 24" fill="currentColor" focusable="false" aria-hidden="true">
               <path
                 d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6zm9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25zM12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
             </svg>
           </a>
           <a href="https://www.linkedin.com/in/tomas-husivarga-156578149/" target="_blank" rel="noopener"
-            class="social-link" aria-label="LinkedIn" title="LinkedIn – Tomáš Husivarga" data-magnetic>
-            <svg viewBox="0 0 24 24" fill="currentColor">
+            class="social-link" aria-label="LinkedIn — Tomáš Husivarga" title="LinkedIn – Tomáš Husivarga" data-magnetic>
+            <svg viewBox="0 0 24 24" fill="currentColor" focusable="false" aria-hidden="true">
               <path
                 d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
             </svg>
@@ -575,14 +585,14 @@
       </div>
       <form class="contact-form" id="contact-form" action="https://formspree.io/f/xnjbgzbv" method="POST" data-animate>
         <div class="form-row">
-          <input type="text" name="name" placeholder="Your name" class="form-input" required />
-          <input type="email" name="email" placeholder="Your email" class="form-input" required />
+          <input type="text" name="name" placeholder="Your name" class="form-input" required aria-label="Your name" />
+          <input type="email" name="email" placeholder="Your email" class="form-input" required aria-label="Your email" />
         </div>
         <input type="text" name="subject" placeholder="What do you need? (website, e-shop, edits...)"
-          class="form-input" required />
+          class="form-input" required aria-label="Subject — what do you need?" />
         <textarea name="message" placeholder="Briefly describe your project and what you expect from the web..."
-          class="form-input form-textarea" required></textarea>
-        <button type="submit" class="btn btn-primary" data-magnetic>Send message</button>
+          class="form-input form-textarea" required aria-label="Message — project description"></textarea>
+        <button type="submit" class="btn btn-primary" data-magnetic aria-label="Send message — from form">Send message</button>
       </form>
     </div>
   </section>
@@ -598,18 +608,19 @@
             style="text-decoration: underline; display: inline-block; margin-top: 0.2rem;">Privacy Policy</a>
         </span>
       </div>
-      <a href="#" class="footer-top" title="Back to top">Back to top ↑</a>
+      <a href="#" class="footer-top" title="Back to top" aria-label="Back to top ↑">Back to top ↑</a>
     </div>
   </footer>
+  </main>
 
   <!-- COOKIE BANNER -->
-  <div id="cookie-banner" class="cookie-banner" aria-hidden="true">
+  <div id="cookie-banner" class="cookie-banner">
     <div class="cookie-content">
       <p>I use cookies to make the web work properly and to know where you come from. No ads, only for traffic statistics. More information can be found in the <a href="/TH-Studio/gdpr.html"
           title="Privacy Policy – GDPR">Privacy Policy</a>.</p>
       <div class="cookie-actions">
-        <button id="cookie-accept" class="btn btn-primary btn-sm">I understand and agree</button>
-        <button id="cookie-decline" class="btn btn-ghost btn-sm">Essential only</button>
+        <button id="cookie-accept" class="btn btn-primary btn-sm" aria-label="Understand & Accept all cookies">Understand & Accept</button>
+        <button id="cookie-decline" class="btn btn-ghost btn-sm" aria-label="Necessary only cookies — decline optional">Necessary only</button>
       </div>
     </div>
   </div>

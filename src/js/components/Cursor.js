@@ -226,9 +226,15 @@ export default class Cursor {
         const btn = document.getElementById('hamburger');
         const links = document.querySelector('.nav-links');
         if (!btn || !links) return;
-        btn.addEventListener('click', () => links.classList.toggle('open'));
+        btn.addEventListener('click', () => {
+            const isOpen = links.classList.toggle('open');
+            btn.setAttribute('aria-expanded', isOpen);
+        });
         links.querySelectorAll('a').forEach(a =>
-            a.addEventListener('click', () => links.classList.remove('open'))
+            a.addEventListener('click', () => {
+                links.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+            })
         );
     }
 

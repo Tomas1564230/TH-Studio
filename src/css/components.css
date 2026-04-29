@@ -223,17 +223,24 @@ section {
     left: 0;
     right: 0;
     height: var(--nav-h);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 max(5%, calc((100% - 1280px) / 2));
     background: rgba(8, 12, 24, 0.85);
-    backdrop-filter: blur(10px); /* Reduced from 16px for performance */
+    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
     z-index: 1000;
     transition: background var(--transition);
-    transform: translateZ(0); /* Promote to layer */
+    transform: translateZ(0);
+}
+
+.nav-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 5%;
+    width: 100%;
 }
 
 .nav-logo {
@@ -651,8 +658,18 @@ section {
     text-align: center;
     padding: 1.5rem;
     position: relative;
-    background-size: cover !important;
-    background-position: top center !important;
+    overflow: hidden;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bc-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    z-index: 0;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -682,38 +699,11 @@ section {
     transform: translateY(-5px);
 }
 
-.bento-card:hover .bc-content {
-    transform: scale(1.05);
+.bento-card:hover .bc-img {
+    transform: scale(1.08);
 }
 
-.bento-card__screen--rehamax .bc-content {
-    background: url('../assets/projects/rehamax-shot.png');
-}
-
-.bento-card__screen--psychiatria .bc-content {
-    background: url('../assets/projects/psychiatria-shot.png');
-}
-
-.bento-card__screen--donnadella .bc-content {
-    background: url('../assets/projects/donnabella-shot.png');
-}
-
-.bento-card__screen--ekoprofit .bc-content {
-    background: url('../assets/projects/ekoprofit-shot.png');
-}
-
-.bento-card__screen--carepoint .bc-content {
-    background: url('../assets/projects/carepoint-shot.png');
-}
-
-.bento-card__screen--humienok .bc-content {
-    background: url('../assets/projects/humienok-shot.png');
-}
-
-.bento-card__screen--spiremage .bc-content {
-    background: url('../assets/projects/spiremage-shot.png');
-    box-shadow: inset 0 0 40px rgba(56, 189, 248, 0.15);
-}
+/* Removed background-image properties - now handled via <img> in HTML for lazy-loading */
 
 /* Specific overlays to match project themes slightly */
 .bento-card__screen--humienok .bc-content::before {
@@ -1325,8 +1315,7 @@ section {
 
 .footer-copy {
     font-size: .8rem;
-    color: rgba(148, 163, 184, 0.5);
-    /* Muted slate blue */
+    color: rgba(148, 163, 184, 0.85); /* Increased opacity for contrast compliance */
 }
 
 .footer-top {
