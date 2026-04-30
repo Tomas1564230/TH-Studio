@@ -222,13 +222,25 @@ export default class Cursor {
         const btn = document.getElementById('hamburger');
         const links = document.querySelector('.nav-links');
         if (!btn || !links) return;
+
         btn.addEventListener('click', () => {
             const isOpen = links.classList.toggle('open');
+            btn.classList.toggle('open', isOpen);
             btn.setAttribute('aria-expanded', isOpen);
+
+            if (isOpen) {
+                // Staggered entry for links and footer elements
+                gsap.fromTo(links.querySelectorAll('li, .nav-links-actions > a, .nav-mobile-socials > a'), 
+                    { opacity: 0, y: 20 },
+                    { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: 'power3.out', delay: 0.1 }
+                );
+            }
         });
+
         links.querySelectorAll('a').forEach(a =>
             a.addEventListener('click', () => {
                 links.classList.remove('open');
+                btn.classList.remove('open');
                 btn.setAttribute('aria-expanded', 'false');
             })
         );
