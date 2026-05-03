@@ -209,6 +209,18 @@ section {
     color: var(--text);
 }
 
+.portfolio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+.portfolio-header .section-title {
+    margin-bottom: 0;
+}
+
 .portfolio-count {
     display: inline-flex;
     align-items: center;
@@ -220,13 +232,19 @@ section {
     border-radius: 50px;
     font-size: clamp(1.2rem, 2.5vw, 1.5rem);
     font-weight: 700;
-    vertical-align: middle;
-    margin-left: 0.75rem;
-    position: relative;
-    top: -0.1em;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 4px 15px -5px rgba(56, 189, 248, 0.3);
+    margin-bottom: 0.5rem; /* align a bit with text baseline if flex-end */
+}
+
+@media (max-width: 768px) {
+    .portfolio-header {
+        align-items: center;
+    }
+    .portfolio-count {
+        margin-bottom: 0;
+    }
 }
 
 .portfolio-count::before {
