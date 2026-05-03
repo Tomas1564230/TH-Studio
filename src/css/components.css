@@ -1705,6 +1705,17 @@ section {
 }
 .bento-card__screen--miningflow .bc-browser-bar { background: #0f0f1a; }
 
+/* ECPro - AI/Cloud Software Development Theme */
+.bento-card__screen--ecpro .bc-content {
+    background: url("../assets/projects/ecpro-shot.webp");
+    background-size: cover;
+    background-position: top center;
+}
+.bento-card__screen--ecpro .bc-content::before {
+    background: linear-gradient(180deg, rgba(10, 15, 30, 0.75) 0%, rgba(30, 144, 255, 0.15) 100%);
+}
+.bento-card__screen--ecpro .bc-browser-bar { background: #0a0f1e; }
+
 .bento-card--wide {
     grid-column: span 12 !important;
 }
