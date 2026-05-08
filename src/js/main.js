@@ -18,6 +18,23 @@ document.addEventListener('DOMContentLoaded', () => {
     portfolioCounter.textContent = portfolioProjects.length;
   }
 
+  const projectMenus = document.querySelectorAll('.nav-projects details');
+  if (projectMenus.length > 0) {
+    document.addEventListener('click', (event) => {
+      projectMenus.forEach((menu) => {
+        if (!menu.contains(event.target)) {
+          menu.removeAttribute('open');
+        }
+      });
+    });
+
+    document.querySelectorAll('.nav-links a').forEach((link) => {
+      link.addEventListener('click', () => {
+        projectMenus.forEach((menu) => menu.removeAttribute('open'));
+      });
+    });
+  }
+
   // 1. Portfolio Slider (Desktop Grouping)
   new PortfolioSlider('.bento-grid').init();
 

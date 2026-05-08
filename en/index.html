@@ -84,7 +84,7 @@
     :root { --bg: #080C18; --text: #F8FAFC; --accent: #38BDF8; --amber: #FBBF24; --nav-h: 68px; }
     body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; }
     #hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: calc(var(--nav-h) + 60px) 5% 80px; text-align: center; position: relative; }
-    .hero-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(2.2rem, 6.5vw, 5.5rem); font-weight: 800; line-height: 1.06; margin-bottom: 1.5rem; color: #FFF; letter-spacing: -.03em; }
+    .hero-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.9rem, 4.4vw, 3.75rem); font-weight: 800; line-height: 1.12; margin-bottom: 1.5rem; color: #FFF; letter-spacing: -.01em; }
     .hero-title__accent { background: linear-gradient(120deg, var(--accent) 0%, var(--amber) 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
     .hero-sub { font-size: 1.15rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 2.5rem; max-width: 520px; margin-left: auto; margin-right: auto; }
     .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
@@ -124,7 +124,24 @@
         <span>TH Studio</span>
       </a>
       <ul class="nav-links" data-label="NAVIGATION">
-        <li><a href="#prace" data-number="01" title="View my work and projects" aria-label="Work — View my work">Work</a></li>
+        <li class="nav-projects">
+          <details>
+            <summary data-number="01" title="View my work and projects" aria-label="Work — choose a project">Work</summary>
+            <div class="nav-projects-menu">
+              <a href="#prace">All projects</a>
+              <a href="/TH-Studio/projects/rehamax.html">Rehamax</a>
+              <a href="/TH-Studio/projects/donnabella.html">DonnaBella</a>
+              <a href="/TH-Studio/projects/ekoprofit.html">Eko-Profit SK</a>
+              <a href="/TH-Studio/projects/safe-place-clinic.html">Safe Place Clinic</a>
+              <a href="/TH-Studio/projects/carepoint.html">Carepoint</a>
+              <a href="/TH-Studio/projects/humienok.html">Humienok</a>
+              <a href="/TH-Studio/projects/miningflow.html">MiningFlow</a>
+              <a href="/TH-Studio/projects/ecpro.html">ECPro</a>
+              <a href="/TH-Studio/projects/waventry.html">Waventry</a>
+              <a href="/TH-Studio/projects/viamax.html">Viamax</a>
+            </div>
+          </details>
+        </li>
         <li><a href="#sluzby" data-number="02" title="My web services" aria-label="Services — My services">Services</a></li>
         <li><a href="#ceny" data-number="03" title="Web development pricing" aria-label="Pricing — Price list">Pricing</a></li>
         <li><a href="#o-mne" data-number="04" title="About me — Tomáš Husivarga" aria-label="About — More about me">About</a></li>
