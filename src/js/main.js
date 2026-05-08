@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const projectMenus = document.querySelectorAll('.nav-projects');
   if (projectMenus.length > 0) {
     const desktopNav = window.matchMedia('(min-width: 769px)');
+    let projectMenuCloseTimer;
 
     projectMenus.forEach((menu) => {
       const toggle = menu.querySelector('.nav-projects-toggle');
@@ -28,17 +29,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
       menu.addEventListener('pointerenter', () => {
         if (desktopNav.matches) {
+          window.clearTimeout(projectMenuCloseTimer);
           menu.classList.add('is-open');
         }
       });
 
       menu.addEventListener('pointerleave', () => {
         if (desktopNav.matches) {
-          menu.classList.remove('is-open');
+          projectMenuCloseTimer = window.setTimeout(() => {
+            menu.classList.remove('is-open');
+          }, 180);
         }
       });
 
       toggle.addEventListener('click', () => {
+        window.clearTimeout(projectMenuCloseTimer);
         menu.classList.toggle('is-open');
       });
     });

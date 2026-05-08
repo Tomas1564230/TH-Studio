@@ -380,7 +380,7 @@ section {
 
 .nav-projects-menu {
     position: absolute;
-    top: calc(100% + .2rem);
+    top: 100%;
     left: 50%;
     transform: translateX(-50%) translateY(8px);
     width: min(78vw, 360px);
