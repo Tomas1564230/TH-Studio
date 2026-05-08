@@ -1,0 +1,57 @@
+Portfolio expansion todo status
+Updated: 2026-05-08
+
+Completed:
+
+* Homepage clarity improved:
+  * hero copy was tightened around WordPress websites and e-shops
+  * primary CTA remains easy to find
+  * headline/title sizing was reduced so it no longer dominates or cuts words
+* Portfolio projects were converted into case study pages:
+  * client problem / context
+  * what was implemented
+  * stack / technologies
+  * screenshots
+  * practical outcomes and project notes
+* Project cards now link to internal case study pages.
+* Project pages now include SEO metadata, canonical URLs, OpenGraph/Twitter tags, CreativeWork schema, and BreadcrumbList schema.
+* Project pages now use the same footer as the landing page.
+* Private source/log references were removed from project pages:
+  * no "Zdroj" labels
+  * no tracking/log file names
+  * no private source names
+* Main navigation was improved:
+  * "Prace" has a dropdown with quick project links
+  * mobile project menu is collapsible and collapsed by default
+  * dropdown closes when navigating elsewhere
+* Contact section was redesigned for better alignment and fit.
+* General UI polish was applied:
+  * tighter title hierarchy
+  * improved contact form spacing
+  * better project-page title sizing
+* SEO basics were completed:
+  * title tags
+  * meta descriptions
+  * OpenGraph tags
+  * Twitter cards
+  * canonical tags
+  * sitemap updates
+  * robots.txt remains included
+  * structured data for project pages
+* Production build passes.
+* Changes were pushed to GitHub.
+
+Skipped by later decision:
+
+* Separate SEO service landing pages.
+  Reason: user said to skip separate SEO pages.
+* Image optimization.
+  Reason: user said current images are good enough.
+* More advanced structured data per individual service/case-study detail.
+  Reason: basic useful schema is already present; advanced expansion was not requested after clarification.
+
+Remaining optional future work:
+
+* Add more real testimonials if available.
+* Add more detailed service copy later if separate service pages become worth doing.
+* Add more project-specific measured performance results if reliable before/after data exists.
