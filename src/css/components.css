@@ -336,32 +336,31 @@ section {
 }
 
 .nav-links a:hover,
-.nav-projects summary:hover {
+.nav-projects-toggle:hover {
     color: var(--text);
 }
 
 .nav-projects {
     position: relative;
+    padding: .75rem 0;
+    margin: -.75rem 0;
 }
 
-.nav-projects details {
-    position: relative;
-}
-
-.nav-projects summary {
+.nav-projects-toggle {
+    appearance: none;
+    border: 0;
+    background: transparent;
     list-style: none;
     font-size: .875rem;
     font-weight: 500;
     color: var(--muted);
     cursor: pointer;
+    padding: 0;
+    font-family: inherit;
     transition: color var(--transition);
 }
 
-.nav-projects summary::-webkit-details-marker {
-    display: none;
-}
-
-.nav-projects summary::after {
+.nav-projects-toggle::after {
     content: '';
     display: inline-block;
     width: .4rem;
@@ -373,14 +372,15 @@ section {
     transition: transform var(--transition);
 }
 
-.nav-projects details[open] summary::after,
-.nav-projects:hover summary::after {
+.nav-projects:hover .nav-projects-toggle::after,
+.nav-projects:focus-within .nav-projects-toggle::after,
+.nav-projects.is-open .nav-projects-toggle::after {
     transform: translateY(1px) rotate(225deg);
 }
 
 .nav-projects-menu {
     position: absolute;
-    top: calc(100% + 1rem);
+    top: calc(100% + .2rem);
     left: 50%;
     transform: translateX(-50%) translateY(8px);
     width: min(78vw, 360px);
@@ -399,7 +399,8 @@ section {
 }
 
 .nav-projects:hover .nav-projects-menu,
-.nav-projects details[open] .nav-projects-menu {
+.nav-projects:focus-within .nav-projects-menu,
+.nav-projects.is-open .nav-projects-menu {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -1116,11 +1117,12 @@ section {
         grid-template-columns: 1fr;
     }
 
-    .nav-projects details {
-        width: 100%;
+    .nav-projects {
+        padding: 0;
+        margin: 0;
     }
 
-    .nav-projects summary {
+    .nav-projects-toggle {
         display: inline-block;
         font-family: 'Plus Jakarta Sans', sans-serif;
         font-size: 1.8rem;
@@ -1132,7 +1134,7 @@ section {
         letter-spacing: 0.05em;
     }
 
-    .nav-projects summary::before {
+    .nav-projects-toggle::before {
         content: attr(data-number);
         position: absolute;
         left: -1.5rem;
@@ -1145,7 +1147,7 @@ section {
         opacity: 0.6;
     }
 
-    .nav-projects summary::after {
+    .nav-projects-toggle::after {
         width: .55rem;
         height: .55rem;
         margin-left: .75rem;
@@ -1168,7 +1170,12 @@ section {
         box-shadow: none;
     }
 
-    .nav-projects details[open] .nav-projects-menu {
+    .nav-projects:hover .nav-projects-menu,
+    .nav-projects:focus-within .nav-projects-menu {
+        display: none;
+    }
+
+    .nav-projects.is-open .nav-projects-menu {
         display: grid;
         transform: none;
     }

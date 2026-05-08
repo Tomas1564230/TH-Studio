@@ -18,19 +18,42 @@ document.addEventListener('DOMContentLoaded', () => {
     portfolioCounter.textContent = portfolioProjects.length;
   }
 
-  const projectMenus = document.querySelectorAll('.nav-projects details');
+  const projectMenus = document.querySelectorAll('.nav-projects');
   if (projectMenus.length > 0) {
+    const desktopNav = window.matchMedia('(min-width: 769px)');
+
+    projectMenus.forEach((menu) => {
+      const toggle = menu.querySelector('.nav-projects-toggle');
+      if (!toggle) return;
+
+      menu.addEventListener('pointerenter', () => {
+        if (desktopNav.matches) {
+          menu.classList.add('is-open');
+        }
+      });
+
+      menu.addEventListener('pointerleave', () => {
+        if (desktopNav.matches) {
+          menu.classList.remove('is-open');
+        }
+      });
+
+      toggle.addEventListener('click', () => {
+        menu.classList.toggle('is-open');
+      });
+    });
+
     document.addEventListener('click', (event) => {
       projectMenus.forEach((menu) => {
         if (!menu.contains(event.target)) {
-          menu.removeAttribute('open');
+          menu.classList.remove('is-open');
         }
       });
     });
 
     document.querySelectorAll('.nav-links a').forEach((link) => {
       link.addEventListener('click', () => {
-        projectMenus.forEach((menu) => menu.removeAttribute('open'));
+        projectMenus.forEach((menu) => menu.classList.remove('is-open'));
       });
     });
   }
