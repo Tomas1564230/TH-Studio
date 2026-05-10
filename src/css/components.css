@@ -989,7 +989,8 @@ section {
 
 .bento-card__screen .bc-logo,
 .bento-card__screen .bc-h,
-.bento-card__screen .bc-p {
+.bento-card__screen .bc-p,
+.bento-card__screen .bc-btn {
     display: none;
 }
 
