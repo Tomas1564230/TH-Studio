@@ -987,6 +987,12 @@ section {
     transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
+.bento-card__screen .bc-logo,
+.bento-card__screen .bc-h,
+.bento-card__screen .bc-p {
+    display: none;
+}
+
 .bento-card:hover .bc-content::before {
     opacity: 0.4; /* Reveal more of the screenshot on hover */
 }
